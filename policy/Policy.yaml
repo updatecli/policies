@@ -1,0 +1,12 @@
+authors:
+  - Olblak
+
+url: "https://github.com/updatecli/policy-autodiscovery/"
+documentation: "https://github.com/updatecli/policy-autodiscovery/blob/main/README.adoc"
+source: "https://github.com/updatecli/policy-autodiscovery/"
+version: 0.0.1-alpha
+vendor: Updatecli Project
+licenses:
+  - "Apache-2.0 license"
+description: |
+  Autodiscovery Policy for Updatecli
