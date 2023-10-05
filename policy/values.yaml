@@ -1,0 +1,53 @@
+autodiscovery:
+  groupby: all
+
+crawlers:
+  cargo:
+    enabled: true
+    #spec:
+  dockerfile:
+    enabled: true
+    #spec:
+  dockercompose:
+    enabled: true
+    #spec:
+  helmfile:
+    enabled: true
+    #spec:
+  helm:
+    enabled: true
+    #spec:
+  golang:
+    gomod:
+      enabled: true
+      #spec:
+  maven:
+    enabled: true
+    #spec:
+  npm:
+    enabled: true
+    #spec:
+  rancher:
+    fleet:
+      enabled: true
+      #spec:
+  terraform:
+    enabled: true
+    #spec:
+
+action:
+  enabled: false
+  spec:
+    labels:
+      - "dependencies"
+
+scm:
+  enabled: false
+  #user: "updatecli-bot"
+  email: ""
+  #owner: "github owner name"
+  #repository: "github repository name"
+  token: "personal github access token"
+  #username: ""
+  # Specify your GitHub Branch name to target
+  branch: "main"

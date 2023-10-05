@@ -1,0 +1,43 @@
+= README
+
+WARNING: This repository is a work in progress related to Updatecli share&reuse policy feature. It is not ready for production as we may introduce breaking change at any time,
+
+This repository defines an Updatecli policy
+
+== HOWTO
+
+**Login**
+
+This policy is published on `ghcr.io` which means we need first to authenticate by running:
+
+    docker login ghcr.io
+
+**Publish**
+
+This policy can be published by running:
+
+    updatecli manifest push --config policy/updatecli.d/ -t ghcr.io/updatecli/policies/autodiscovery:latest .
+
+**Show**
+
+We can see the content of the policy by running:
+
+    updatecli manifest show ghcr.io/updatecli/policies/autodiscovery:latest
+
+**Use**
+
+They are two ways to execute an Updatecli policy, either running one policy or several policies at once.
+
+One policy can be executed by running:
+
+    updatecli apply --config policy/updatecli.d/
+
+Assuming we have a file named `update-compose.yaml`, multiple policies can be composed and executed by running:
+    
+        updatecli compose apply
+
+.update-compose.yaml
+```yaml
+policies:
+    - policy: "ghcr.io/updatecli/policies/autodiscovery:latest"
+```
