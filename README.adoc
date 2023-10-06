@@ -16,7 +16,8 @@ This policy is published on `ghcr.io` which means we need first to authenticate 
 
 This policy can be published by running:
 
-    updatecli manifest push --config policy/updatecli.d/ -t ghcr.io/updatecli/policies/autodiscovery:latest .
+    cd policy
+    updatecli manifest push --experimental -t ghcr.io/updatecli/policies/autodiscovery --config updatecli.d --values values.yaml .
 
 **Show**
 
@@ -30,7 +31,10 @@ They are two ways to execute an Updatecli policy, either running one policy or s
 
 One policy can be executed by running:
 
-    updatecli apply --config policy/updatecli.d/
+    updatecli apply --config ghcr.io/updatecli/policies/autodiscovery:latest
+
+
+IMPORTANT: Any values files specified at runtime will override default values setting from the policy bundle
 
 Assuming we have a file named `update-compose.yaml`, multiple policies can be composed and executed by running:
     
