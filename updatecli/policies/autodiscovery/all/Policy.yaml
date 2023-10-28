@@ -4,7 +4,7 @@ authors:
 url: "https://github.com/updatecli/policy-autodiscovery/"
 documentation: "https://github.com/updatecli/policy-autodiscovery/tree/main/policies/autodiscovery/all/README.md"
 source: "https://github.com/updatecli/policy-autodiscovery/tree/main/policies/autodiscovery/all/README.md"
-version: 0.0.2-alpha
+version: 0.0.2
 vendor: Updatecli Project
 
 licenses:
