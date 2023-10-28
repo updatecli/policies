@@ -72,6 +72,8 @@ function main(){
 
   PARAM="$1"
 
+  GLOBAL_ERROR=0
+
   for POLICY in $POLICIES
   do 
     echo ""
@@ -93,9 +95,14 @@ function main(){
       echo "  => validation test not passing"
       echo ""
       echo "---"
+
+      GLOBAL_ERROR=1
     fi
+
   
   done
+
+    exit "$GLOBAL_ERROR"
 }
 
 main "${1:-}"
