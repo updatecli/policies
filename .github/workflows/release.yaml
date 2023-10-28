@@ -27,5 +27,5 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish
-        run: make publish
+        run: make release
 
