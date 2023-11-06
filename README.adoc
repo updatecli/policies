@@ -2,28 +2,25 @@
 
 WARNING: This repository is a work in progress related to Updatecli share&reuse policy feature. It is not ready for production as we may introduce breaking change at any time,
 
-This repository defines a list of Updatecli policies
+This repository contains a list of common Updatecli published on ghcr.io/updatecli/policies/**
 
 == HOWTO
 
 **Login**
 
-This policy is published on `ghcr.io` which means we need first to authenticate by running:
+Even though all Updatecli policies published on `ghcr.io` are meant to be public, you'll probably need to authenticate to reduce rate limiting by running:
 
     docker login ghcr.io
 
 **Publish**
 
-This policy can be published by running:
-
-    cd policy
-    updatecli manifest push --experimental -t ghcr.io/updatecli/policies/autodiscovery --config updatecli.d --values values.yaml .
+Each policies defines in this repository are automatically published on ghcr.io via a GitHub Action workflow
 
 **Show**
 
 We can see the content of the policy by running:
 
-    updatecli manifest show ghcr.io/updatecli/policies/autodiscovery:latest
+    updatecli manifest show ghcr.io/updatecli/policies/<a policy name>:latest
 
 **Use**
 
@@ -31,7 +28,7 @@ They are two ways to execute an Updatecli policy, either running one policy or s
 
 One policy can be executed by running:
 
-    updatecli apply --config ghcr.io/updatecli/policies/autodiscovery:latest
+    updatecli apply --config ghcr.io/updatecli/policies/<a policy name>:latest
 
 
 IMPORTANT: Any values files specified at runtime will override default values setting from the policy bundle
@@ -43,7 +40,8 @@ Assuming we have a file named `update-compose.yaml`, multiple policies can be co
 .update-compose.yaml
 ```yaml
 policies:
-    - policy: "ghcr.io/updatecli/policies/autodiscovery:latest"
+    - policy: "ghcr.io/updatecli/policies/autodiscovery/golang:latest"
+    - policy: "ghcr.io/updatecli/policies/autodiscovery/npm:latest"
 ```
 
 More information about Updatecli compose feature can be found link:https://www.updatecli.io/docs/core/compose/[here]
