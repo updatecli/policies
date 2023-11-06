@@ -15,7 +15,7 @@ POLICIES=$(find "$POLICIES_ROOT_DIR" -name "Policy.yaml")
 # release publish an Updatecli policy version to the registry
 function release(){
   local POLICY_ROOT_DIR="$1"
-  
+
   updatecli manifest push \
     --config updatecli.d \
     --values values.yaml \
@@ -25,29 +25,27 @@ function release(){
 }
 
 function runUpdatecliDiff(){
-  local POLICY_ROOT_DIR="$1"
-  
+  local POLICY_ROOT_DIR=""
+  POLICY_ROOT_DIR="$1"
+
   updatecli diff \
     --config "$POLICY_ROOT_DIR/updatecli.d" \
-    --values "$POLICY_ROOT_DIR/values.yaml" \
-    --experimental 
+    --values "$POLICY_ROOT_DIR/testdata/values.yaml" \
+    --experimental
 }
 
 function validateRequiredFile(){
   local POLICY_ROOT_DIR="$1"
   local POLICY_VALUES="$POLICY_ROOT_DIR/values.yaml"
   local POLICY_README="$POLICY_ROOT_DIR/README.md"
+  local POLICY_METADATA="$POLICY_ROOT_DIR/Policy.yaml"
   local POLICY_CHANGELOG="$POLICY_ROOT_DIR/CHANGELOG.md"
 
-  echo ""
-  echo "$POLICY_ROOT_DIR"
-  echo ""
-
-  echo "validating policy..."
+  echo "* validating policy $POLICY_ROOT_DIR"
 
 
   # Checking for files
-  for POLICY_FILE in "$POLICY_VALUES" "$POLICY_CHANGELOG" "$POLICY_README"
+  for POLICY_FILE in "$POLICY_VALUES" "$POLICY_CHANGELOG" "$POLICY_README" "$POLICY_METADATA"
   do
     if [[ ! -f "$POLICY_FILE" ]]; then
 
@@ -66,6 +64,50 @@ function validateRequiredFile(){
     true
   fi
 
+  ## Testing that Policy.yaml contains the required information
+  local sourceInformation=""
+  sourceInformation=$(grep "source:" "$POLICY_METADATA" )
+  sourceInformation=${sourceInformation#"source: "}
+  local expectedSourceInformation="\"https://github.com/updatecli/policies/tree/main/updatecli/$POLICY_ROOT_DIR/\""
+  if [[ ! $sourceInformation == "$expectedSourceInformation" ]]; then
+    POLICY_ERROR=true
+    echo "  * policy $POLICY_ROOT_DIR missing the right source information in Policy.yaml"
+    echo "     expected: $expectedSourceInformation"
+    echo "     got:      $sourceInformation"
+  fi
+
+  local documentationInformation=""
+  documentationInformation=$(grep "documentation:" "$POLICY_METADATA")
+  documentationInformation=${documentationInformation#"documentation: "}
+  local expectedDocumentationInformation="\"https://github.com/updatecli/policies/tree/main/updatecli/$POLICY_ROOT_DIR/README.md\""
+  if [[ ! $documentationInformation == "$expectedDocumentationInformation" ]]; then
+    POLICY_ERROR=true
+    echo "  * policy $POLICY_ROOT_DIR missing the right documentation information in Policy.yaml"
+    echo "     expected: $expectedDocumentationInformation"
+    echo "     got:      $documentationInformation"
+  fi
+
+  # Testing url annotation is defined
+  local urlInformation=""
+  urlInformation=$( grep "url:" "$POLICY_METADATA")
+  urlInformation=${urlInformation#"url: "}
+  local expectedUrlInformation="\"https://github.com/updatecli/policies/\""
+  if [[ ! $urlInformation == "$expectedUrlInformation" ]]; then
+    POLICY_ERROR=true
+    echo "  * policy $POLICY_ROOT_DIR missing the right url information in Policy.yaml"
+    echo "     expected: $expectedUrlInformation"
+    echo "     got:      $urlInformation"
+  fi
+
+  # Testing version annotation is defined
+  local versionInformation=""
+  versionInformation=$( grep "version:" "$POLICY_METADATA")
+  versionInformation=${versionInformation#"version: "}
+  local expectedUrlInformation="\"https://github.com/updatecli/policies/\""
+  if [[ $versionInformation == "" ]]; then
+    POLICY_ERROR=true
+    echo "  * policy $POLICY_ROOT_DIR missing a version information in Policy.yaml"
+  fi
 }
 
 function main(){
@@ -75,31 +117,33 @@ function main(){
   GLOBAL_ERROR=0
 
   for POLICY in $POLICIES
-  do 
+  do
     echo ""
-  
+
     POLICY_ROOT_DIR=$(dirname "$POLICY")
     POLICY_ERROR=false
-      validateRequiredFile "$POLICY_ROOT_DIR"
 
     if [[ "$POLICY_ERROR" = "false" ]]; then
-      echo "  => all is good for policy: $POLICY"
-      echo ""
+      echo "  => all is good"
 
       if [[ "$PARAM" == "--publish" ]]; then
         release "$POLICY_ROOT_DIR"
       fi
-      echo "___"
-    else 
+
+      if [[ "$PARAM" == "--e2e-test" ]]; then
+        runUpdatecliDiff "$POLICY_ROOT_DIR"
+      fi
+
+      if [[ "$PARAM" == "--unit-test" ||  "$PARAM" == "" ]]; then
+        validateRequiredFile "$POLICY_ROOT_DIR"
+      fi
+    else
       echo ""
       echo "  => validation test not passing"
-      echo ""
-      echo "---"
 
       GLOBAL_ERROR=1
     fi
 
-  
   done
 
     exit "$GLOBAL_ERROR"
