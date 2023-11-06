@@ -4,8 +4,7 @@
 # {{ $GitHubRepositoryList := env "GITHUB_REPOSITORY" | split "/"}}
 # {{ $GitHubPAT := env "GITHUB_TOKEN"}}
 # {{ $GitHubUsername := env "GITHUB_ACTOR"}}}
-# {{ $GitHubBranch := env "GITHUB_REF_NAME"}}}
-    
+
 name: "Updatecli Autodiscovery"
 pipelineid: {{ .pipelineid }}
 
@@ -32,7 +31,7 @@ scms:
       repository: '{{ default .scm.repository $GitHubRepositoryList._1 }}'
       token: '{{ default .scm.token $GitHubPAT }}'
       username: '{{ default .scm.username $GitHubUsername }}'
-      branch: '{{ default .scm.branch $GitHubBranch }}'
+      branch: '{{ .scm.branch }}'
 
 actions:
   default:
@@ -43,3 +42,4 @@ actions:
       labels:
          - dependencies
 {{ end }}
+

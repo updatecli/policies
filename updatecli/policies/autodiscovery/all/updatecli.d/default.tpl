@@ -48,8 +48,7 @@ scms:
       token: '{{ default .scm.token $GitHubPAT }}'
       # {{ $GitHubUsername := env "GITHUB_ACTOR"}}}
       username: '{{ default .scm.username $GitHubUsername }}'
-      # {{ $GitHubBranch := env "GITHUB_REF_NAME"}}}
-      branch: '{{ default .scm.branch $GitHubBranch }}'
+      branch: '{{ .scm.branch }}'
 {{ end }}
 
 {{ if or (.action.enabled) (env "GITHUB_REPOSITORY") }}
