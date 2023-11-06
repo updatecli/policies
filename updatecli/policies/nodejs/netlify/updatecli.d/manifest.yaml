@@ -1,0 +1,85 @@
+---
+# Helpers:
+# {{ $GitHubUser := env "GITHUB_ACTOR"}}
+# {{ $GitHubRepositoryList := env "GITHUB_REPOSITORY" | split "/"}}
+# {{ $GitHubPAT := env "GITHUB_TOKEN"}}
+# {{ $GitHubUsername := env "GITHUB_ACTOR"}}}
+# {{ $GitHubBranch := env "GITHUB_REF_NAME"}}}
+
+name : 'deps: Bump Node version in Netlify configuration'
+pipelineid: '{{ .pipelineid }}'
+
+# Only enable the scm section if Updatecli is executed from a Github Action
+# {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
+actions:
+    default:
+        title: 'deps: bump nodejs to {{ source "node" }}'
+        kind: "github/pullrequest"
+        spec:
+            automerge: {{ .automerge }}
+            labels:
+                - "chore"
+                - "dependencies"
+            mergemethod: "squash"
+        scmid: "default"
+# {{ end }}
+
+scms:
+# Only enable the scm section if Updatecli is executed from a Github Action
+# {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
+    default:
+        kind: "github"
+        spec:
+            # Priority set to the environment variable
+            user: '{{ default .scm.user $GitHubUser}}'
+            email: '{{ .scm.email }}' 
+            owner: '{{ default .scm.owner $GitHubRepositoryList._0 }}' 
+            repository: '{{ default .scm.repository $GitHubRepositoryList._1 }}' 
+            token: '{{ default .scm.token $GitHubPAT }}' 
+            username: '{{ default .scm.username $GitHubUsername }}' 
+            branch: '{{ default .scm.branch $GitHubBranch }}' 
+# {{ end }}
+
+sources:
+    majornodeversion:
+        name: "Get latest NodeJS version"
+        kind: "githubrelease"
+        transformers:
+            - trimprefix: v
+            - findsubmatch:
+                pattern: ^(\d*)
+                captureindex: 0
+        spec:
+            owner: "nodejs"
+            repository: "node"
+            token: '{{ default .scm.token $GitHubPAT }}' 
+            username: '{{ default .scm.username $GitHubUsername }}' 
+            versionfilter:
+                kind: "semver"
+                pattern: '{{ .versionpattern }}'
+    node:
+        name: "Get latest NodeJS version"
+        kind: "githubrelease"
+        spec:
+            owner: "nodejs"
+            repository: "node"
+            token: '{{ default .scm.token $GitHubPAT }}' 
+            username: '{{ default .scm.username $GitHubUsername }}' 
+            versionfilter:
+                kind: "semver"
+                pattern: '{{ .versionpattern }}'
+        transformers:
+            - trimprefix: v
+targets:
+    netlify:
+        name: 'deps: update Node used by Netlify to {{ source "node" }}'
+        kind: file
+        disablesourceinput: true
+        spec:
+            file: netlify.toml
+            matchpattern: NODE_VERSION = "(.*)"
+            replacepattern: NODE_VERSION = "{{ source "node" }}"
+# Only enable the scm section if Updatecli is executed from a Github Action
+# {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
+        scmid: default
+# {{ end }}
