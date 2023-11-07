@@ -5,7 +5,7 @@
 # {{ $GitHubPAT := env "GITHUB_TOKEN"}}
 # {{ $GitHubUsername := env "GITHUB_ACTOR"}}}
 
-name: "Updatecli Autodiscovery"
+name: "deps: bump All NPM packages version"
 pipelineid: {{ .pipelineid }}
 
 autodiscovery:

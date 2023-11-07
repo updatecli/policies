@@ -1,4 +1,4 @@
-pipelineid: npm/autodiscovery
+pipelineid: npm_autodiscovery
 automerge: false
 
 scm:
