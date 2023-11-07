@@ -1,4 +1,9 @@
 # CHANGELOG
+
+## 0.4.0
+
+* Specify default autodiscovery groupby value
+
 ## 0.3.0
 
 * update default pipelineid value to use _ instead /

@@ -1,6 +1,9 @@
 pipelineid: npm_autodiscovery
 automerge: false
 
+autodiscovery:
+  groupby: all
+
 scm:
   enabled: true
   user: updatecli-bot
