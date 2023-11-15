@@ -16,7 +16,7 @@ autodiscovery:
 
   crawlers:
     golang/gomod:
-{{ .golang.gomod.spec | toYaml | indent 6 }}
+{{ .spec | toYaml | indent 6 }}
 
 {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
 scms:

@@ -11,4 +11,4 @@ scm:
   username: "updatecli-bot"
   branch: master
 
-versionpattern: "*"
+versionpattern: "< 0.100.0"
