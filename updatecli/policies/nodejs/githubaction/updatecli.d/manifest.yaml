@@ -72,12 +72,10 @@ targets:
         kind: file
         disablesourceinput: true
         spec:
-            # Once https://github.com/updatecli/updatecli/issues/1453 is done
-            # we should use something like:
-            # files:
-            #  - .github/workflows/*.yaml
-            #  - .github/workflows/*.yml
-            file: .github/workflows/build.yaml
+            files:
+             - .github/workflows/*.yaml
+             - .github/workflows/*.yml
+            searchpattern: true
             matchpattern: 'node-version: (.*)'
             replacepattern: 'node-version: {{ source "majornodeversion" }}'
 # Only enable the scm section if Updatecli is executed from a Github Action
@@ -85,3 +83,5 @@ targets:
         scmid: default
 # {{ end }}
 
+# Represent the minimum version of Updatecli required to run this policy
+version: v0.66.1
