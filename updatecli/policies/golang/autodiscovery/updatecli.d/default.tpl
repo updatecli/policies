@@ -24,12 +24,12 @@ scms:
     kind: "github"
     spec:
       # Priority set to the environment variable
-      user: '{{ default .scm.user $GitHubUser}}'
+      user: '{{ default $GitHubUser .scm.user}}'
       email: '{{ .scm.email }}'
-      owner: '{{ default .scm.owner $GitHubRepositoryList._0 }}'
-      repository: '{{ default .scm.repository $GitHubRepositoryList._1 }}'
-      token: '{{ default .scm.token $GitHubPAT }}'
-      username: '{{ default .scm.username $GitHubUsername }}'
+      owner: '{{ default $GitHubRepositoryList._0 .scm.owner }}'
+      repository: '{{ default $GitHubRepositoryList._1 .scm.repository}}'
+      token: '{{ default $GitHubPAT .scm.token }}'
+      username: '{{ default $GitHubUsername .scm.username }}'
       branch: '{{ .scm.branch }}'
 
 actions:

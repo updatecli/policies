@@ -43,11 +43,11 @@ action:
 
 scm:
   enabled: false
-  #user: "updatecli-bot"
-  email: ""
-  #owner: "github owner name"
-  #repository: "github repository name"
-  token: "personal github access token"
-  #username: ""
+  # user: "updatecli-bot"
+  # email: ""
+  # owner: "github owner name"
+  # repository: "github repository name"
+  # token: "personal github access token"
+  # username: ""
   # Specify your GitHub Branch name to target
-  branch: "main"
+  # branch: "main"

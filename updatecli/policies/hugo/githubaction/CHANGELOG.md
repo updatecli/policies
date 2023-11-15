@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+* Swap default order for scm configuration to use environment variable if nothing else is defined
+
 ## 0.3.0
 
 * Use new file syntax introduce in Updatecli v0.66.1 to search for all workflows file
