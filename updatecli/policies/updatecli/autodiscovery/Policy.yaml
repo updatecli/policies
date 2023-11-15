@@ -1,0 +1,14 @@
+authors:
+  - Olblak <me@olblak.com>
+
+url: "https://github.com/updatecli/policies/"
+documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/updatecli/autodiscovery/README.md"
+source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/updatecli/autodiscovery/"
+version: 0.1.0
+vendor: Updatecli Project
+
+licenses:
+  - "Apache-2.0 license"
+
+description: |
+  Updatecli Autodiscovery
