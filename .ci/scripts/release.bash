@@ -30,6 +30,7 @@ function runUpdatecliDiff(){
 
   updatecli diff \
     --config "$POLICY_ROOT_DIR/updatecli.d" \
+    --values "$POLICY_ROOT_DIR/values.yaml" \
     --values "$POLICY_ROOT_DIR/testdata/values.yaml" \
     --experimental
 }
@@ -103,10 +104,17 @@ function validateRequiredFile(){
   local versionInformation=""
   versionInformation=$( grep "version:" "$POLICY_METADATA")
   versionInformation=${versionInformation#"version: "}
-  local expectedUrlInformation="\"https://github.com/updatecli/policies/\""
   if [[ $versionInformation == "" ]]; then
     POLICY_ERROR=true
     echo "  * policy $POLICY_ROOT_DIR missing a version information in Policy.yaml"
+  fi
+
+  # Testing that the latest version has a changelog entry
+  local versionChangelogEntry=""
+  versionChangelogEntry=$( grep " $versionInformation" "$POLICY_CHANGELOG")
+  if [[ $versionChangelogEntry == "" ]]; then
+    POLICY_ERROR=true
+    echo "  * Changelog missing a version entry such as '## $versionInformation' in $POLICY_CHANGELOG"
   fi
 }
 
