@@ -56,10 +56,16 @@ targets:
         kind: file
         disablesourceinput: true
         spec:
-            file: .github/workflows/build.yaml
+            files:
+                - ".github/workflows/*.yaml"
+                - ".github/workflows/*.yml"
+            searchpattern: true
             matchpattern: 'hugo-version: (.*)'
             replacepattern: 'hugo-version: {{ source "hugo" }}'
 # Only enable the scm section if Updatecli is executed from a Github Action
 # {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
         scmid: default
 # {{ end }}
+
+# Represent the minimum version of Updatecli required to run this policy
+version: 0.66.1
