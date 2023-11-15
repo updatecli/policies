@@ -2,15 +2,13 @@ pipelineid: golang
 automerge: false
 
 scm:
-  enabled: true
+  enabled: false
   user: updatecli-bot
-  email: updatecli-bot@updatecli.io
-  owner: updatecli
-  repository: updatecli
-  #token: "xxx"
-  username: "updatecli-bot"
+  # email: updatecli-bot@updatecli.io
+  # owner: updatecli
+  # repository: updatecli
+  # token: "xxx"
+  # username: "updatecli-bot"
   branch: main
 
-golang:
-  gomod:
-    spec:
+spec:
