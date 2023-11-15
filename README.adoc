@@ -2,6 +2,11 @@
 
 WARNING: This repository is a work in progress related to Updatecli share&reuse policy feature. It is not ready for production as we may introduce breaking change at any time,
 
+link:https://matrix.to/#/#Updatecli_community:gitter.im[image:https://img.shields.io/matrix/updatecli:matrix.org[]]
+link:https://github.com/updatecli/policies/blob/main/LICENSE[image:https://img.shields.io/github/license/updatecli/policies[GitHub]]
+link:https://img.shields.io/github/actions/workflow/status/updatecli/policies/validate.yaml?branch=main[image:https://img.shields.io/github/actions/workflow/status/updatecli/policies/validate.yaml?branch=main[GitHub Workflow Status]]
+
+
 This repository contains a list of common Updatecli published on ghcr.io/updatecli/policies/**
 
 == HOWTO
