@@ -7,7 +7,6 @@ scm:
   email: updatecli-bot@updatecli.io
   owner: updatecli
   repository: website
-  #token: "xxx"
   username: "updatecli-bot"
   branch: master
 

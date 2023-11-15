@@ -44,10 +44,8 @@ action:
 scm:
   enabled: false
   user: "updatecli-bot"
-  email: ""
+  email: "updatecli-bot@example.com"
   owner: "updatecli"
   repository: "udash"
-  #token: "personal github access token"
-  #username: ""
   # Specify your GitHub Branch name to target
   branch: "main"

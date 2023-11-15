@@ -39,15 +39,15 @@ scms:
     spec:
       # {{ $GitHubUser := env ""}}
       # Priority set to the environment variable
-      user: '{{ default .scm.user $GitHubUser}}'
+      user: '{{ default $GitHubUser .scm.user }}'
       email: '{{ .scm.email }}'
       # {{ $GitHubRepositoryList := env "GITHUB_REPOSITORY" | split "/"}}
-      owner: '{{ default .scm.owner $GitHubRepositoryList._0 }}'
-      repository: '{{ default .scm.repository $GitHubRepositoryList._1 }}'
+      owner: '{{ default $GitHubRepositoryList._0 .scm.owner }}'
+      repository: '{{ default $GitHubRepositoryList._1 .scm.repository }}'
       # {{ $GitHubPAT := env "GITHUB_TOKEN"}}
-      token: '{{ default .scm.token $GitHubPAT }}'
+      token: '{{ default $GitHubPAT .scm.token }}'
       # {{ $GitHubUsername := env "GITHUB_ACTOR"}}}
-      username: '{{ default .scm.username $GitHubUsername }}'
+      username: '{{ default $GitHubUsername .scm.username }}'
       branch: '{{ .scm.branch }}'
 {{ end }}
 
