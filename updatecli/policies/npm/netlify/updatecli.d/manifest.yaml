@@ -12,7 +12,6 @@ pipelineid: '{{ .pipelineid }}'
 # {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
 actions:
     default:
-        title: 'deps: bump npm to {{ source "npm" }}'
         kind: "github/pullrequest"
         spec:
             automerge: {{ .automerge }}
