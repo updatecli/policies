@@ -1,6 +1,3 @@
-pipelineid: nodejs
-automerge: false
-
 scm:
   enabled: true
   user: updatecli-bot
