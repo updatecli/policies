@@ -3,13 +3,13 @@
 # {{ $GitHubUser := env ""}}
 # {{ $GitHubRepositoryList := env "GITHUB_REPOSITORY" | split "/"}}
 # {{ $GitHubPAT := env "GITHUB_TOKEN"}}
-# {{ $GitHubUsername := env "GITHUB_ACTOR"}}}
+# {{ $GitHubUsername := env "GITHUB_ACTOR"}}
 
 name: "deps: bump All NPM packages version"
 pipelineid: {{ .pipelineid }}
 
 autodiscovery:
-  groupby: {{ .autodiscovery.groupby }}
+  groupby: {{ .groupby }}
 #{{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
   scmid: default
   actionid: default
@@ -17,7 +17,7 @@ autodiscovery:
 
   crawlers:
     npm:
-{{ .npm.spec | toYaml | indent 6 }}
+{{ .spec | toYaml | indent 6 }}
 
 {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
 scms:

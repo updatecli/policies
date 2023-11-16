@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.6.0
+
+* Rename `npm.spec` to `spec`
+* By default don't set groupby
+* Cleaning test setting
+
 ## 0.5.0
 
 * Swap default order for scm configuration to use environment variable if nothing else is defined
