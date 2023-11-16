@@ -11,4 +11,5 @@ scm:
   # username: "updatecli-bot"
   # branch: main
 
-spec:
+# spec:
+groupby: all
