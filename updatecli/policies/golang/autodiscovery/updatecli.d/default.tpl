@@ -3,12 +3,12 @@
 # {{ $GitHubUser := env ""}}
 # {{ $GitHubRepositoryList := env "GITHUB_REPOSITORY" | split "/"}}
 # {{ $GitHubPAT := env "GITHUB_TOKEN"}}
-# {{ $GitHubUsername := env "GITHUB_ACTOR"}}}
+# {{ $GitHubUsername := env "GITHUB_ACTOR"}}
 
-name: "Updatecli Autodiscovery"
+name: "deps(golang): Bump all dependencies"
 
 autodiscovery:
-  groupby: {{ .autodiscovery.groupby }}
+  groupby: {{ .groupby }}
 #{{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
   scmid: default
   actionid: default
