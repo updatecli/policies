@@ -3,12 +3,13 @@
 # {{ $GitHubUser := env ""}}
 # {{ $GitHubRepositoryList := env "GITHUB_REPOSITORY" | split "/"}}
 # {{ $GitHubPAT := env "GITHUB_TOKEN"}}
-# {{ $GitHubUsername := env "GITHUB_ACTOR"}}}
+# {{ $GitHubUsername := env "GITHUB_ACTOR"}}
 
-name: "Updatecli Autodiscovery"
+name: "deps(updatecli/policies): bump all policies"
+pipelineid: {{ .pipelineid }}
 
 autodiscovery:
-  groupby: {{ .autodiscovery.groupby }}
+  groupby: {{ .groupby }}
 #{{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
   scmid: default
   actionid: default
