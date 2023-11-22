@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+* Set action title based on groupby parameter
+
 ## 0.4.0 
 
 * Swap default order for scm configuration to use environment variable if nothing else is defined
