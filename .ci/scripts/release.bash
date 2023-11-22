@@ -7,6 +7,7 @@ pushd updatecli
 
 : "${POLICIES_ROOT_DIR:=policies}"
 : "${POLICY_ERROR:=false}"
+: "${OCI_REPOSITORY:=ghcr.io/updatecli/policies}"
 
 : "${GITHUB_REGISTRY:=}"
 
@@ -15,12 +16,14 @@ POLICIES=$(find "$POLICIES_ROOT_DIR" -name "Policy.yaml")
 # release publish an Updatecli policy version to the registry
 function release(){
   local POLICY_ROOT_DIR="$1"
+  # Trim policy path with root directory path
+  local POLICY_DIR="${1#"$POLICIES_ROOT_DIR/"}"
 
   updatecli manifest push \
     --config updatecli.d \
     --values values.yaml \
     --policy Policy.yaml \
-    --tag "ghcr.io/updatecli/policies/$POLICY_ROOT_DIR" \
+    --tag "$OCI_REPOSITORY/$POLICY_DIR" \
     "$POLICY_ROOT_DIR"
 }
 
