@@ -60,6 +60,7 @@ For example if we want to create a policy named `autodiscovery/golang`, we need 
 This policy will be named `ghcr.io/updatecli/policies/autodiscovery/golang` and will be published on `ghcr.io` docker registry.
 
 The policy folder must contain:
+
 * `Policy.yaml` file which contains the policy metadata.
 * `updatecli.d` directory which contains the policy configuration files.
 * `README.md` file which contains the policy documentation.
