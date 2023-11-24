@@ -1,0 +1,12 @@
+pipelineid: golang
+automerge: false
+
+scm:
+  enabled: true
+  user: updatecli-bot
+  email: updatecli-bot@updatecli.io
+  owner: updatecli-test
+  repository: fleet-lab
+  username: "updatecli-bot"
+  branch: main
+
