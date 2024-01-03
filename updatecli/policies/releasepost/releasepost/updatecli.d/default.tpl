@@ -21,6 +21,12 @@ targets:
         - name: GITHUB_TOKEN
         - name: RELEASEPOST_GITHUB_TOKEN
         - name: PATH
+      changedif:
+        kind: exitcode
+        spec:
+          warning: 0
+          success: 1
+          failure: 2
 
 {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
 scms:
