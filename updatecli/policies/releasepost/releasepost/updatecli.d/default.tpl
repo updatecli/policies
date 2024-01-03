@@ -16,7 +16,7 @@ targets:
     scmid: default
 ## {{ end }}
     spec:
-      command: 'releasepost --config {{ .configpath }}'
+      command: 'releasepost --dry-run="$DRY_RUN" --config {{ .configpath }}'
       environments:
         - name: GITHUB_TOKEN
         - name: RELEASEPOST_GITHUB_TOKEN
