@@ -8,3 +8,4 @@ scm:
   username: "updatecli-bot"
   branch: addChangelog
 
+configpath: .github/releasepost.yaml
