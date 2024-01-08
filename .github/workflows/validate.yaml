@@ -30,10 +30,20 @@ jobs:
       - name: Validate
         run: make test
 
+      - uses: tibdex/github-app-token@v2.1
+        # Only run e2e tests from the main branch as we need some credentials
+        # that we don't want to risk leaking from pullrequest opened by random contributors
+        if: github.ref == 'refs/heads/main'
+        id: generate_testing_token
+        with:
+          app_id: ${{ secrets.UPDATECLIBOT_TESTING_APP_ID }}
+          private_key: ${{ secrets.UPDATECLIBOT_TESTING_APP_PRIVKEY }}
+
       - name: e2e tests
+        # Only run e2e tests from the main branch as we need some credentials
+        # that we don't want to risk leaking from pullrequest opened by random contributors
+        if: github.ref == 'refs/heads/main'
         run: make e2e-test
         env:
-          GITHUB_ACTOR: ${{ github.actor }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASEPOST_GITHUB_ACTOR: ${{ github.actor }}
-          RELEASEPOST_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate_testing_token.outputs.token }}
+          RELEASEPOST_GITHUB_TOKEN: ${{ steps.generate_testing_token.outputs.token }}
