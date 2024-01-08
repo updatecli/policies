@@ -1,0 +1,17 @@
+pipelineid: releasepost
+automerge: false
+
+configpath: ".releasepost.yaml"
+
+releasedir: "content/en/changelogs/"
+
+scm:
+  enabled: false
+  user: updatecli-bot
+  #email: updatecli-bot@updatecli.io
+  #owner: updatecli
+  #repository: "repository"
+  #token: "xxx"
+  username: "updatecli-bot"
+  branch: main
+
