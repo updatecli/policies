@@ -2,10 +2,10 @@ scm:
   enabled: true
   user: updatecli-bot
   email: updatecli-bot@updatecli.io
-  owner: olblak
-  repository: website-1
+  owner: updatecli
+  repository: releasepost
   #token: "xxx"
   username: "updatecli-bot"
-  branch: addChangelog
+  branch: main
 
-configpath: .github/releasepost.yaml
+configpath: config.example.yaml
