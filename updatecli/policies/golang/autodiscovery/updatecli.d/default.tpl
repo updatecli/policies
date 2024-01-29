@@ -5,7 +5,8 @@
 # {{ $GitHubPAT := env "GITHUB_TOKEN"}}
 # {{ $GitHubUsername := env "GITHUB_ACTOR"}}
 
-name: "deps(golang): Bump all dependencies"
+name: '{{ .name }}'
+pipelineid: '{{ .pipelineid }}'
 
 autodiscovery:
   groupby: {{ .groupby }}

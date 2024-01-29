@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.0
+
+* Allow to set pipeline name using `name`
+* Allow to set pipelineid using `pipelineid`
+
 ## 0.5.0
 
 * Set action title based on groupby parameter
