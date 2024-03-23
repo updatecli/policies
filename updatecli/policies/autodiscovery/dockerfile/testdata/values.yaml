@@ -1,0 +1,10 @@
+scm:
+  enabled: true
+  user: updatecli-bot
+  email: updatecli-bot@updatecli.io
+  owner: asciidoctor
+  repository: docker-asciidoctor
+  #token: "xxx"
+  username: "updatecli-bot"
+  branch: main
+
