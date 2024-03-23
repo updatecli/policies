@@ -1,4 +1,4 @@
-pipelineid: maven_policies
+pipelineid: maven/autodiscovery
 automerge: false
 
 scm:

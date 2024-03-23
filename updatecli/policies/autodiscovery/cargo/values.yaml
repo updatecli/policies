@@ -1,4 +1,4 @@
-pipelineid: cargo_policies
+pipelineid: cargo/autodiscovery
 automerge: false
 
 scm:

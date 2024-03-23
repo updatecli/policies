@@ -1,4 +1,4 @@
-pipelineid: updatecli_policies
+pipelineid: updatecli/autodiscovery
 automerge: false
 
 scm:

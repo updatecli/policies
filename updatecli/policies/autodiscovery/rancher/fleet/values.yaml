@@ -1,4 +1,4 @@
-pipelineid: rancher_fleet_policies
+pipelineid: rancher/fleet/autodiscovery
 automerge: false
 
 scm:

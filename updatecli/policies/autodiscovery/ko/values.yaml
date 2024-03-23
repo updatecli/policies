@@ -1,4 +1,4 @@
-pipelineid: ko_policies
+pipelineid: ko/autodiscovery
 automerge: false
 
 scm:

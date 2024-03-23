@@ -1,4 +1,4 @@
-pipelineid: dockercompose_policies
+pipelineid: dockercompose/autodiscovery
 automerge: false
 
 scm:

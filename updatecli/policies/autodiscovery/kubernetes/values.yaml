@@ -1,4 +1,4 @@
-pipelineid: kubernetes_policies
+pipelineid: kubernetes/autodiscovery
 automerge: false
 
 scm:

@@ -1,4 +1,4 @@
-pipelineid: helmfile_policies
+pipelineid: helmfile/autodiscovery
 automerge: false
 
 scm:

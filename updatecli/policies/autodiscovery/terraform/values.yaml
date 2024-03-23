@@ -1,4 +1,4 @@
-pipelineid: terraform_policies
+pipelineid: terraform/autodiscovery
 automerge: false
 
 scm:

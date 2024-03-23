@@ -1,4 +1,4 @@
-pipelineid: flux_policies
+pipelineid: flux/autodiscovery
 automerge: false
 
 scm:
