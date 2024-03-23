@@ -8,3 +8,10 @@ scm:
   username: "updatecli-bot"
   branch: main
 
+spec:
+  ignore:
+    - images:
+        - "base"
+        - "main-minimal"
+
+
