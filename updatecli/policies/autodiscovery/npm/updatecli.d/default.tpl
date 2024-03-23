@@ -5,7 +5,7 @@
 # {{ $GitHubPAT := env "GITHUB_TOKEN"}}
 # {{ $GitHubUsername := env "GITHUB_ACTOR"}}
 
-name: "deps: bump All NPM packages version"
+name: "deps(npm): bump all dependencies"
 pipelineid: {{ .pipelineid }}
 
 autodiscovery:
