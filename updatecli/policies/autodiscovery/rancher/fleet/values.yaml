@@ -1,0 +1,16 @@
+pipelineid: rancher_fleet_policies
+automerge: false
+
+scm:
+  enabled: false
+  user: updatecli-bot
+  #email: updatecli-bot@updatecli.io
+  #owner: updatecli
+  #repository: "repository"
+  #token: "xxx"
+  username: "updatecli-bot"
+  branch: main
+
+# spec:
+groupby: all
+
