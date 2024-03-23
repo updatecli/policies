@@ -1,0 +1,10 @@
+scm:
+  enabled: true
+  user: updatecli-bot
+  email: updatecli-bot@updatecli.io
+  owner: jenkins-infra
+  repository: release
+  #token: "xxx"
+  username: "updatecli-bot"
+  branch: master
+
