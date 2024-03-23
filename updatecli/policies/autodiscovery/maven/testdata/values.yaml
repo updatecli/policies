@@ -1,0 +1,15 @@
+scm:
+  enabled: true
+  user: updatecli-bot
+  email: updatecli-bot@updatecli.io
+  owner: olblak
+  repository: jenkins-datadog-plugin
+  #token: "xxx"
+  username: "updatecli-bot"
+  branch: master
+
+spec:
+  only:
+    - artifactids:
+        "plugin": ""
+

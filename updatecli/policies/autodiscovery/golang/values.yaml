@@ -1,0 +1,16 @@
+name: 'deps(golang): Bump all dependencies'
+pipelineid: golang/autodiscovery
+automerge: false
+
+scm:
+  enabled: false
+  # user: updatecli-bot
+  # email: updatecli-bot@updatecli.io
+  # owner: updatecli
+  # repository: updatecli
+  # token: "xxx"
+  # username: "updatecli-bot"
+  # branch: main
+
+# spec:
+groupby: all

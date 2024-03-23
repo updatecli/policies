@@ -1,0 +1,19 @@
+pipelineid: npm/autodiscovery
+automerge: false
+
+autodiscovery:
+  groupby: all
+
+scm:
+  enabled: true
+  #user: updatecli-bot
+  #email: updatecli-bot@updatecli.io
+  #owner: updatecli
+  #repository: updatecli
+  ##token: "xxx"
+  #username: "updatecli-bot"
+  #branch: main
+
+# spec:
+groupby: all
+
