@@ -1,3 +1,4 @@
+name: "deps(terraform): bump all dependencies"
 pipelineid: terraform/autodiscovery
 automerge: false
 
