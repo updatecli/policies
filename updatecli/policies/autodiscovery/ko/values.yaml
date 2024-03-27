@@ -1,3 +1,4 @@
+name: "deps(ko): bump all dependencies"
 pipelineid: ko/autodiscovery
 automerge: false
 

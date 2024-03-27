@@ -1,3 +1,4 @@
+name: "deps(updatecli): bump all policies"
 pipelineid: updatecli/autodiscovery
 automerge: false
 

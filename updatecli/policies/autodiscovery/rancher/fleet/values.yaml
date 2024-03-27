@@ -1,3 +1,4 @@
+name: "deps(rancher/fleet): bump dependencies"
 pipelineid: rancher/fleet/autodiscovery
 automerge: false
 

@@ -1,3 +1,4 @@
+name: "deps(kubernetes): bump all dependencies"
 pipelineid: kubernetes/autodiscovery
 automerge: false
 

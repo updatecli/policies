@@ -1,3 +1,4 @@
+name: "deps(dockercompose): bump dependencies"
 pipelineid: dockercompose/autodiscovery
 automerge: false
 

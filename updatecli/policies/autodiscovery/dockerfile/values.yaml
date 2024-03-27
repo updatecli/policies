@@ -1,3 +1,4 @@
+name: "deps(dockerfile): bump all dependencies"
 pipelineid: dockerfile/autodiscovery
 automerge: false
 

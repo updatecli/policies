@@ -5,7 +5,7 @@
 # {{ $GitHubPAT := env "GITHUB_TOKEN"}}
 # {{ $GitHubUsername := env "GITHUB_ACTOR"}}
 
-name: "deps(dockercompose): bump dependencies"
+name: '{{ .name }}'
 pipelineid: {{ .pipelineid }}
 
 autodiscovery:

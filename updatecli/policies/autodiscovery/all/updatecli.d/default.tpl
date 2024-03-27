@@ -1,5 +1,5 @@
 ---
-name: "Updatecli Autodiscovery"
+name: '{{ .name }}'
 
 autodiscovery:
   groupby: {{ .autodiscovery.groupby }}

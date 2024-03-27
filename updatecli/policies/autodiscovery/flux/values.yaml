@@ -1,3 +1,4 @@
+name: "deps(flux): bump all dependencies"
 pipelineid: flux/autodiscovery
 automerge: false
 

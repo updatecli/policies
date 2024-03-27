@@ -1,3 +1,4 @@
+name: "deps(helm): bump all dependencies"
 pipelineid: helm/autodiscovery
 automerge: false
 
