@@ -1,3 +1,4 @@
+name: "deps(maven): bump all dependencies"
 pipelineid: maven/autodiscovery
 automerge: false
 
