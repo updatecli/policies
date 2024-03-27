@@ -5,7 +5,7 @@
 # {{ $GitHubPAT := env "GITHUB_TOKEN"}}
 # {{ $GitHubUsername := env "GITHUB_ACTOR"}}
 
-name: "deps(rancher/fleet): bump dependencies"
+name: '{{ .name }}'
 pipelineid: {{ .pipelineid }}
 
 autodiscovery:
