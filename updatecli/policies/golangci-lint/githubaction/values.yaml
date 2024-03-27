@@ -1,0 +1,17 @@
+pipelineid: golangci-lint
+automerge: false
+
+scm:
+  enabled: false
+  # user: updatecli-bot
+  # email: updatecli-bot@updatecli.io
+  # owner: updatecli
+  # repository: website
+  # #token: "xxx"
+  # username: "updatecli-bot"
+  # branch: main
+
+name: 'deps: Updatecli version used by GitHub action'
+
+versionpattern: "*"
+
