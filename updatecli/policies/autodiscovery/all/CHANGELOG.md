@@ -1,5 +1,9 @@
 # Changelog 
 
+# 0.4.0
+
+* Allow to override pipeline name
+
 # 0.3.0
 
 * Swap default order for scm configuration to use environment variable if nothing else is defined
