@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.7.0
+
+* Allow to override pipeline name
+
 ## 0.6.0
 
 * Rename `npm.spec` to `spec`
