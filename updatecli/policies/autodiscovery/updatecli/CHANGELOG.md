@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+* Allow to override pipeline name
+
 ## 0.2.0
 
 * Set default groupby to "all"
