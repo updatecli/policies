@@ -6,14 +6,16 @@
 # {{ $GitHubUsername := env "GITHUB_ACTOR"}}
 
 name: '{{ .name }}'
-pipelineid: {{ .pipelineid }}
+#{{ if .pipelineid }}
+pipelineid: '{{ .pipelineid }}'
+#{{ end }}
 
 autodiscovery:
   groupby: {{ .groupby }}
 #{{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
   scmid: default
   actionid: default
-# {{ end }}
+#{{ end }}
 
   crawlers:
     dockercompose:

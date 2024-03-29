@@ -1,5 +1,7 @@
 name: 'deps: Bump all dependencies'
 
+#pipelineid: all
+
 autodiscovery:
   groupby: all
 

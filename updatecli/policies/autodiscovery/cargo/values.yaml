@@ -1,6 +1,6 @@
 name: "deps(cargo): bump all policies"
 
-pipelineid: cargo/autodiscovery
+# pipelineid: cargo/autodiscovery
 automerge: false
 
 scm:

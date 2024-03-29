@@ -1,5 +1,5 @@
 name: "deps(terraform): bump all dependencies"
-pipelineid: terraform/autodiscovery
+#pipelineid: terraform/autodiscovery
 automerge: false
 
 scm:

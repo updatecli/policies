@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0
+
+* By default, undefined pipelineid
+
 ## 0.6.0
 
 * Allow to set pipeline name using `name`

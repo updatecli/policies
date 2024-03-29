@@ -1,5 +1,5 @@
 name: "deps(flux): bump all dependencies"
-pipelineid: flux/autodiscovery
+#pipelineid: flux/autodiscovery
 automerge: false
 
 scm:

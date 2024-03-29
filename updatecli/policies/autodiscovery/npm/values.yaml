@@ -1,5 +1,5 @@
 name: "deps(npm): bump all dependencies"
-pipelineid: npm/autodiscovery
+#pipelineid: npm/autodiscovery
 automerge: false
 
 autodiscovery:

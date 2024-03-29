@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.8.0
+
+* By default, undefined pipelineid
+
 ## 0.7.0
 
 * Allow to override pipeline name

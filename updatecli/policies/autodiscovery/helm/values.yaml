@@ -1,5 +1,5 @@
 name: "deps(helm): bump all dependencies"
-pipelineid: helm/autodiscovery
+#pipelineid: helm/autodiscovery
 automerge: false
 
 scm:
