@@ -6,7 +6,9 @@
 # {{ $GitHubUsername := env "GITHUB_ACTOR"}}
 
 name: '{{ .name }}'
-pipelineid: {{ .pipelineid }}
+#{{ if .pipelineid }}
+pipelineid: '{{ .pipelineid }}'
+#{{ end }}
 
 autodiscovery:
   groupby: {{ .groupby }}

@@ -1,5 +1,5 @@
 name: "deps(kubernetes): bump all dependencies"
-pipelineid: kubernetes/autodiscovery
+#pipelineid: kubernetes/autodiscovery
 automerge: false
 
 scm:

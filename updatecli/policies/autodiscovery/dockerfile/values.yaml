@@ -1,5 +1,5 @@
 name: "deps(dockerfile): bump all dependencies"
-pipelineid: dockerfile/autodiscovery
+#pipelineid: dockerfile/autodiscovery
 automerge: false
 
 scm:

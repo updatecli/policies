@@ -1,6 +1,10 @@
 ---
 name: '{{ .name }}'
 
+#{{ if .pipelineid }}
+pipelineid: '{{ .pipelineid }}'
+#{{ end }}
+
 autodiscovery:
   groupby: {{ .autodiscovery.groupby }}
 {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}

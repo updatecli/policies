@@ -1,5 +1,5 @@
 name: "deps(ko): bump all dependencies"
-pipelineid: ko/autodiscovery
+#pipelineid: ko/autodiscovery
 automerge: false
 
 scm:

@@ -1,5 +1,5 @@
 name: "deps(maven): bump all dependencies"
-pipelineid: maven/autodiscovery
+#pipelineid: maven/autodiscovery
 automerge: false
 
 scm:
