@@ -1,0 +1,65 @@
+---
+name: "deps: bump github.com/pulumi/pulumi/pkg/v3"
+
+## scms defines the source control management system to interact with.
+scms:
+  default:
+    kind: github
+    spec:
+      owner: "{{ .scm.default.owner }}"
+      repository: "{{ .scm.default.repository }}"
+      branch: "{{ .scm.default.branch }}"
+      user: "{{ .scm.default.user }}"
+      email: "{{ .scm.default.email }}"
+      username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+      token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+
+## actions defines what to do when a target with the same scmid is modified.
+actions:
+  default:
+    kind: "github/pullrequest"
+    scmid: "default"
+    spec:
+      automerge: false
+      labels:
+        - "dependencies"
+
+## sources defines where to find the information.
+sources:
+  bridge:
+    scmid: "default"
+    kind: "golang/gomod"
+    spec:
+      file: "provider/go.mod"
+      module: "github.com/pulumi/pulumi-terraform-bridge/v3"
+
+  pulumi/pkg:
+    name: 'Get github.com/pulumi/pulumi/pkg/v3 version used by github.com/pulumi/pulumi-terraform-bridge/v3 {{ source "bridge" }}'
+    kind: "golang/gomod"
+    dependson:
+      - "bridge"
+    spec:
+      file: 'https://raw.githubusercontent.com/pulumi/pulumi-terraform-bridge/{{ source "bridge" }}/go.mod'
+      module: "github.com/pulumi/pulumi/pkg/v3"
+
+conditions:
+  pulumi/pkg:
+    name: 'is github.com/pulumi/pulumi/pkg/v3 is defined'
+    scmid: "default"
+    disablesourceinput: true
+    kind: "golang/gomod"
+    spec:
+      file: "provider/go.mod"
+      module: "github.com/pulumi/pulumi/pkg/v3"
+
+targets:
+  pulumi/pkg:
+    name: 'deps: bump github.com/pulumi/pulumi/pkg/v3 to {{ source "pulumi/pkg" }}'
+    scmid: "default"
+    kind: "golang/gomod"
+    sourceid: "pulumi/pkg"
+    spec:
+      file: "provider/go.mod"
+      module: "github.com/pulumi/pulumi/pkg/v3"
+
+version: 0.76.0

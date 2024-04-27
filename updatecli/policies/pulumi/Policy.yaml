@@ -1,0 +1,29 @@
+---
+# Policy.yaml contains metadata for the Updatecli policy.
+
+## Authors is the policy authors
+authors:
+  - olivier Vernin <olivier@vernin.me>
+
+## URL is the policy url
+url: ghcr.io/updatecli/policies/updatecli/pulumi
+
+## Documentation is the policy documentation URL
+documentation: https://github.com/updatecli/policies/blob/main/updatecli/policies/pulumi/README.md
+
+## Source is the policy source URL
+source: https://github.com/updatecli/policies/blob/main/updatecli/policies/pulumi/
+
+# Version is the policy version. 
+version: 0.1.0
+
+## Vendor is the policy vendor
+vendor: Updatecli Project
+
+# License is the policy licenses
+licenses:
+  - "Apache-2.0 license"
+
+# Description is the short policy description
+description: |
+  Bump Pulumi golang packages to align with versions defined in github.com/pulumi/pulumi-terraform-bridge
