@@ -1,0 +1,9 @@
+scm:
+  default:  
+    owner: pulumiverse
+    repository: pulumi-talos
+    branch: main
+    user: updatecli
+    email: 
+    #username: 
+    #token:
