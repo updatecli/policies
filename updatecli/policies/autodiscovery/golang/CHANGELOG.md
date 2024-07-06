@@ -2,7 +2,7 @@
 
 ## 0.8.0
 
-* Allow to set commit using GitHub API using `scm.commitusingapi`
+* Allow to set commit with GitHub GraphQL API using `scm.commitusingapi`
 
 ## 0.7.0
 
