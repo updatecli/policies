@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+* Allow to set commit using GitHub API using `scm.commitusingapi`
+
 ## 0.3.0
  
 * By default, undefined pipelineid

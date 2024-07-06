@@ -6,4 +6,5 @@ scm:
   repository: udash
   username: "updatecli-bot"
   branch: main
+  commitusingapi: true
 

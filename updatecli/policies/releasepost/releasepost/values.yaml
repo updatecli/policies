@@ -14,4 +14,5 @@ scm:
   #token: "xxx"
   username: "updatecli-bot"
   branch: main
+  # commitusingapi: false
 

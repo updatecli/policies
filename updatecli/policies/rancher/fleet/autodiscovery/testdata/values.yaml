@@ -9,4 +9,5 @@ scm:
   repository: fleet-lab
   username: "updatecli-bot"
   branch: main
+  commitusingapi: true
 

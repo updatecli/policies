@@ -2,6 +2,10 @@
 
 ## 0.6.0
 
+* Allow to set commit using GitHub API using `scm.commitusingapi`
+
+## 0.6.0
+
 * Rename `npm.spec` to `spec`
 * By default don't set groupby
 * Cleaning test setting

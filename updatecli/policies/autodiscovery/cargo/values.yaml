@@ -12,6 +12,7 @@ scm:
   #token: "xxx"
   username: "updatecli-bot"
   branch: main
+  # commitusingapi: false
 
 # spec:
 groupby: all
