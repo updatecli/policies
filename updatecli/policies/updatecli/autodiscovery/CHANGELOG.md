@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+* Allow to set commit with GitHub GraphQL API using `scm.commitusingapi`
+
 ## 0.2.0
 
 * Set default groupby to "all"

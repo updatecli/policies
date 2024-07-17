@@ -13,6 +13,9 @@ scms:
       email: "{{ .scm.default.email }}"
       username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
       token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+#{{ if .scm.commitusingapi }}
+      commitusingapi: {{ .scm.commitusingapi }}
+# {{ end }}
 
 ## actions defines what to do when a target with the same scmid is modified.
 actions:

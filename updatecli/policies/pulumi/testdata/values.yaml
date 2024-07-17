@@ -3,6 +3,7 @@ scm:
     owner: pulumiverse
     repository: pulumi-talos
     branch: main
+  commitusingapi: true
     user: updatecli
     email: 
     #username: 

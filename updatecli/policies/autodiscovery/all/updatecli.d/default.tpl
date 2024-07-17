@@ -53,6 +53,9 @@ scms:
       # {{ $GitHubUsername := env "GITHUB_ACTOR"}}}
       username: '{{ default $GitHubUsername .scm.username }}'
       branch: '{{ .scm.branch }}'
+#{{ if .scm.commitusingapi }}
+      commitusingapi: {{ .scm.commitusingapi }}
+# {{ end }}
 {{ end }}
 
 {{ if or (.action.enabled) (env "GITHUB_REPOSITORY") }}

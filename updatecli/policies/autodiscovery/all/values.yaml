@@ -55,3 +55,4 @@ scm:
   # username: ""
   # Specify your GitHub Branch name to target
   # branch: "main"
+  # commitusingapi: false

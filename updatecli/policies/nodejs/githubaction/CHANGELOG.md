@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+* Allow to set commit with GitHub GraphQL API using `scm.commitusingapi`
+
 ## 0.4.0
 
 * Swap default order for scm configuration to use environment variable if nothing else is defined

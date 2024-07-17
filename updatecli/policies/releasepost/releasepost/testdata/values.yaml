@@ -7,5 +7,6 @@ scm:
   #token: "xxx"
   username: "updatecli-bot"
   branch: main
+  commitusingapi: true
 
 configpath: config.example.yaml

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.9.0
+
+* Allow to set commit with GitHub GraphQL API using `scm.commitusingapi`
+
 ## 0.8.0
 
 * By default, undefined pipelineid
