@@ -4,7 +4,7 @@ authors:
 url: "https://github.com/updatecli/policies/"
 documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/golang/README.md"
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/golang/"
-version: 0.7.0
+version: 0.8.0
 vendor: Updatecli Project
 
 licenses:
