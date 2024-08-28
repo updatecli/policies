@@ -1,0 +1,10 @@
+scm:
+  enabled: true
+  user: updatecli-bot
+  email: updatecli-bot@updatecli.io
+  owner: infra.git
+  repository: infra
+  #token: "xxx"
+  username: "updatecli-bot"
+  branch: master
+

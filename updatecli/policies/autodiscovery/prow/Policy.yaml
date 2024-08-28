@@ -1,0 +1,14 @@
+authors:
+  - loispostula <lois@postu.la>
+
+url: "https://github.com/updatecli/policies/"
+documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/prow/README.md"
+source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/prow/"
+version: 0.1.0
+vendor: Updatecli Project
+
+licenses:
+  - "Apache-2.0 license"
+
+description: |
+  Prow Autodiscovery
