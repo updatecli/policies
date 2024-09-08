@@ -18,7 +18,7 @@ autodiscovery:
 # {{ end }}
 
   crawlers:
-    updatecli:
+    prow:
 {{ .spec | toYaml | indent 6 }}
 
 {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
@@ -28,9 +28,7 @@ scms:
     spec:
       # Priority set to the environment variable
       user: '{{ default $GitHubUser .scm.user }}'
-#{{ if .scm.email }}
       email: '{{ .scm.email }}'
-# {{ end }}
       owner: '{{ default $GitHubRepositoryList._0 .scm.owner }}'
       repository: '{{ default $GitHubRepositoryList._1 .scm.repository }}'
       token: '{{ default $GitHubPAT .scm.token }}'
