@@ -15,7 +15,7 @@ documentation: https://github.com/updatecli/policies/blob/main/updatecli/policie
 source: https://github.com/updatecli/policies/blob/main/updatecli/policies/pulumi/
 
 # Version is the policy version. 
-version: 0.1.0
+version: 0.2.0
 
 ## Vendor is the policy vendor
 vendor: Updatecli Project
