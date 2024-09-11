@@ -4,7 +4,7 @@ authors:
 url: "https://github.com/updatecli/policies/"
 documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/kubernetes/README.md"
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/kubernetes/"
-version: 0.3.0
+version: 0.4.0
 vendor: Updatecli Project
 
 licenses:
