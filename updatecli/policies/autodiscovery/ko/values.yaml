@@ -1,6 +1,8 @@
 name: "deps(ko): bump all dependencies"
 #pipelineid: ko/autodiscovery
 automerge: false
+labels:
+  - dependencies
 
 scm:
   enabled: false

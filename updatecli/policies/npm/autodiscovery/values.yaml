@@ -1,5 +1,7 @@
 pipelineid: npm_autodiscovery
 automerge: false
+labels:
+  - dependencies
 
 autodiscovery:
   groupby: all

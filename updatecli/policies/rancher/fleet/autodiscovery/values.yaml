@@ -1,5 +1,7 @@
 pipelineid: rancher_fleet
 automerge: false
+labels:
+  - dependencies
 
 scm:
   enabled: false

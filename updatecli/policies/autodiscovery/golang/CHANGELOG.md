@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.0
+
+* Configure Pull Request GitHub labels using `labels`.
+
 ## 0.9.0
 
 * Allow to opt out `scm.email`.

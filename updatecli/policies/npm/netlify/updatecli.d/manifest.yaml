@@ -15,9 +15,12 @@ actions:
         kind: "github/pullrequest"
         spec:
             automerge: {{ .automerge }}
+# {{ if .labels }}
             labels:
-                - "chore"
-                - "dependencies"
+# {{ range .labels }}
+                - {{ . }}
+# {{ end }}
+# {{ end }}
             mergemethod: "squash"
         scmid: "default"
 

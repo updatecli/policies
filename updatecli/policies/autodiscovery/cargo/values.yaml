@@ -2,6 +2,8 @@ name: "deps(cargo): bump all policies"
 
 # pipelineid: cargo/autodiscovery
 automerge: false
+labels:
+  - dependencies
 
 scm:
   enabled: false

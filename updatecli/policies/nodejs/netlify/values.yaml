@@ -1,5 +1,8 @@
 pipelineid: nodejs
 automerge: false
+labels:
+  - chore
+  - dependencies
 
 scm:
   enabled: false

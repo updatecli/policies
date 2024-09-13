@@ -1,5 +1,7 @@
 pipelineid: updatecli_policies
 automerge: false
+labels:
+  - dependencies
 
 scm:
   enabled: false

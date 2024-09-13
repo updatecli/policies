@@ -1,6 +1,8 @@
 pipelineid: updatecli
 automerge: false
-
+labels:
+  - "chore"
+  - "dependencies"
 scm:
   enabled: false
   # user: updatecli-bot

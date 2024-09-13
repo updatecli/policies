@@ -24,8 +24,12 @@ actions:
     scmid: "default"
     spec:
       automerge: false
+# {{ if .labels }}
       labels:
-        - "dependencies"
+# {{ range .labels }}
+        - {{ . }}
+# {{ end }}
+# {{ end }}
 
 ## sources defines where to find the information.
 sources:

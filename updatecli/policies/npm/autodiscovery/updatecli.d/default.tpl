@@ -44,7 +44,11 @@ actions:
     scmid: "default"
     spec:
       automerge: {{ .automerge }}
+# {{ if .labels }}
       labels:
-         - dependencies
+# {{ range .labels }}
+        - {{ . }}
+# {{ end }}
+# {{ end }}
 {{ end }}
 

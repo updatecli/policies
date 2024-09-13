@@ -53,7 +53,11 @@ actions:
     scmid: "default"
     spec:
       automerge: {{ .automerge }}
+# {{ if .labels }}
       labels:
-         - documentation
+# {{ range .labels }}
+         - {{ . }}
+# {{ end }}
+# {{ end }}
 {{ end }}
 
