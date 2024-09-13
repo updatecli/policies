@@ -6,16 +6,16 @@ authors:
   - olivier Vernin <olivier@vernin.me>
 
 ## URL is the policy url
-url: ghcr.io/updatecli/policies/updatecli/pulumi
+url: "https://github.com/updatecli/policies/"
 
 ## Documentation is the policy documentation URL
-documentation: https://github.com/updatecli/policies/blob/main/updatecli/policies/pulumi/README.md
+documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/pulumi/README.md"
 
 ## Source is the policy source URL
-source: https://github.com/updatecli/policies/blob/main/updatecli/policies/pulumi/
+source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/pulumi/"
 
 # Version is the policy version. 
-version: 0.2.0
+version: 0.3.0
 
 ## Vendor is the policy vendor
 vendor: Updatecli Project
