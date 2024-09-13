@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.0
+
+* Allow to opt out `scm.email`.
+
 ## 0.8.0
 
 * Allow to set commit with GitHub GraphQL API using `scm.commitusingapi`

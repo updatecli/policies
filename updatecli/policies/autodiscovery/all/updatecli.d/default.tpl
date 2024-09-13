@@ -44,7 +44,9 @@ scms:
       # {{ $GitHubUser := env ""}}
       # Priority set to the environment variable
       user: '{{ default $GitHubUser .scm.user }}'
+# {{ if .scm.email }}
       email: '{{ .scm.email }}'
+# {{ end }}
       # {{ $GitHubRepositoryList := env "GITHUB_REPOSITORY" | split "/"}}
       owner: '{{ default $GitHubRepositoryList._0 .scm.owner }}'
       repository: '{{ default $GitHubRepositoryList._1 .scm.repository }}'
