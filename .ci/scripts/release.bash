@@ -34,8 +34,7 @@ function runUpdatecliDiff(){
   updatecli diff \
     --config "$POLICY_ROOT_DIR/updatecli.d" \
     --values "$POLICY_ROOT_DIR/values.yaml" \
-    --values "$POLICY_ROOT_DIR/testdata/values.yaml" \
-    --experimental
+    --values "$POLICY_ROOT_DIR/testdata/values.yaml"
 }
 
 function validateRequiredFile(){
@@ -119,6 +118,16 @@ function validateRequiredFile(){
     POLICY_ERROR=true
     echo "  * Changelog missing a version entry such as '## $versionInformation' in $POLICY_CHANGELOG"
   fi
+
+  # Testing that the latest changelog version is used in the Policy.yaml
+  latestVersionChangelogEntry=$( grep -r '## ' -m 1 "$POLICY_CHANGELOG")
+  latestVersionChangelogEntry=${latestVersionChangelogEntry#"## "}
+  if [[ "$latestVersionChangelogEntry" != "$versionInformation" ]]; then
+    POLICY_ERROR=true
+    echo "  * Latest Changelog version isn't the one used in Policy.yaml"
+    echo "      '## $latestVersionChangelogEntry' in $POLICY_CHANGELOG"
+    echo "      '## $versionInformation' in $POLICY_METADATA"
+  fi
 }
 
 function main(){
@@ -134,6 +143,14 @@ function main(){
     POLICY_ROOT_DIR=$(dirname "$POLICY")
     POLICY_ERROR=false
 
+    if [[ "$PARAM" == "--e2e-test" ]]; then
+      runUpdatecliDiff "$POLICY_ROOT_DIR"
+    fi
+
+    if [[ "$PARAM" == "--unit-test" ||  "$PARAM" == "" ]]; then
+      validateRequiredFile "$POLICY_ROOT_DIR"
+    fi
+
     if [[ "$POLICY_ERROR" = "false" ]]; then
       echo "  => all is good"
 
@@ -141,13 +158,6 @@ function main(){
         release "$POLICY_ROOT_DIR"
       fi
 
-      if [[ "$PARAM" == "--e2e-test" ]]; then
-        runUpdatecliDiff "$POLICY_ROOT_DIR"
-      fi
-
-      if [[ "$PARAM" == "--unit-test" ||  "$PARAM" == "" ]]; then
-        validateRequiredFile "$POLICY_ROOT_DIR"
-      fi
     else
       echo ""
       echo "  => validation test not passing"
@@ -161,3 +171,4 @@ function main(){
 }
 
 main "${1:-}"
+
