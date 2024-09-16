@@ -3,6 +3,7 @@ authors:
 
 url: "https://github.com/updatecli/policies/"
 documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/golang/README.md"
+changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/golang/CHANGELOG.md"
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/golang/"
 version: 0.10.0
 vendor: Updatecli Project

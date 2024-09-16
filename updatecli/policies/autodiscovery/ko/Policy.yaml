@@ -3,6 +3,7 @@ authors:
 
 url: "https://github.com/updatecli/policies/"
 documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/ko/README.md"
+changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/ko/CHANGELOG.md"
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/ko/"
 version: 0.6.0
 vendor: Updatecli Project

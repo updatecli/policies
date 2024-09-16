@@ -3,6 +3,7 @@ authors:
 
 url: "https://github.com/updatecli/policies/"
 documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/rancher/fleet/README.md"
+changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/rancher/fleet/CHANGELOG.md"
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/rancher/fleet/"
 version: 0.6.0
 vendor: Updatecli Project
