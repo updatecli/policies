@@ -3,6 +3,7 @@ authors:
 
 url: "https://github.com/updatecli/policies/"
 documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/hugo/githubaction/README.md"
+changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/hugo/githubaction/CHANGELOG.md"
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/hugo/githubaction/"
 version: 0.6.0
 vendor: Updatecli Project

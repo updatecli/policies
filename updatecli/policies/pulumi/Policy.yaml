@@ -9,7 +9,9 @@ authors:
 url: "https://github.com/updatecli/policies/"
 
 ## Documentation is the policy documentation URL
+## Documentation is the policy changelog URL
 documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/pulumi/README.md"
+changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/pulumi/CHANGELOG.md"
 
 ## Source is the policy source URL
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/pulumi/"
