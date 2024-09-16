@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+* Fix identation
+
 ## 0.3.0
 
 * Configure Pull Request GitHub labels using `labels`.

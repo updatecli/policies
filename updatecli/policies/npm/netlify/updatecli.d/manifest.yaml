@@ -39,7 +39,7 @@ scms:
             username: '{{ default $GitHubUsername .scm.username }}'
             branch: '{{ .scm.branch }}'
 #{{ if .scm.commitusingapi }}
-      commitusingapi: {{ .scm.commitusingapi }}
+            commitusingapi: {{ .scm.commitusingapi }}
 # {{ end }}
 # {{ end }}
 
