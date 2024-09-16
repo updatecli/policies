@@ -74,6 +74,7 @@ url: <link to this git repository>
 documentation: <link to the policy documentation>
 source: <link to this policy code>
 version: <policy version>
+changelog: <link to this policy changelog>
 description: <policy description with maximum 512 characters>
 ```
 
