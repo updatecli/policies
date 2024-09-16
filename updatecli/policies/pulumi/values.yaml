@@ -9,3 +9,6 @@
 #     username: "updatecli-bot"
 #     branch: main
   # commitusingapi: false
+
+labels:
+  - dependencies

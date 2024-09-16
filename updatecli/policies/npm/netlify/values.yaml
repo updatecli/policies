@@ -1,5 +1,8 @@
 pipelineid: npm
 automerge: false
+labels:
+  - "chore"
+  - "dependencies"
 
 scm:
   enabled: false

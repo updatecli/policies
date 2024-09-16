@@ -1,6 +1,8 @@
 name: "deps(prow): bump all dependencies"
 #pipelineid: prow/autodiscovery
 automerge: false
+labels:
+  - dependencies
 
 scm:
   enabled: false

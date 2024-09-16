@@ -5,7 +5,7 @@ url: "https://github.com/updatecli/policies/"
 documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/cargo/README.md"
 changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/cargo/CHANGELOG.md"
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/cargo/"
-version: 0.5.0
+version: 0.6.0
 vendor: Updatecli Project
 
 licenses:

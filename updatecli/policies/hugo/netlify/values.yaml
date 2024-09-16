@@ -1,5 +1,8 @@
 pipelineid: hugo
 automerge: false
+labels:
+  - chore
+  - dependencies
 
 scm:
   enabled: false

@@ -1,6 +1,8 @@
 name: 'deps(golang): Bump all dependencies'
 #pipelineid: golang/autodiscovery
 automerge: false
+labels:
+  - dependencies
 
 scm:
   enabled: false

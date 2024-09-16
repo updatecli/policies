@@ -61,8 +61,12 @@ actions:
     kind: "github/pullrequest"
     spec:
       automerge: {{ .automerge }}
+# {{ if .labels }}
       labels:
-         - dependencies
+# {{ range .labels }}
+        - {{ . }}
+# {{ end }}
+# {{ end }}
     scmid: "default"
 {{ end }}
 

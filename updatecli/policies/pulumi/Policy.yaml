@@ -17,7 +17,7 @@ changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/p
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/pulumi/"
 
 # Version is the policy version. 
-version: 0.3.0
+version: 0.4.0
 
 ## Vendor is the policy vendor
 vendor: Updatecli Project

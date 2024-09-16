@@ -1,4 +1,8 @@
-# CHANGELOG
+# Changelog
+
+## 0.4.0
+
+* Configure Pull Request GitHub labels using `labels`.
 
 ## 0.3.0
 

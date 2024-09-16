@@ -1,6 +1,8 @@
 name: 'deps: Bump Golang version'
 pipelineid: golang/version
 automerge: false
+labels:
+  - dependencies
 
 scm:
   enabled: false

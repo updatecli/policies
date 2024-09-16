@@ -94,6 +94,8 @@ actions:
         kind: github/pullrequest
         spec:
             automerge: false
+labels:
+  - dependencies
             labels:
                 - documentation
         scmid: default
