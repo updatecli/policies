@@ -2,7 +2,7 @@
 
 ## 0.4.0
 
-* Fix identation
+* Fix indentation
 
 ## 0.3.0
 
