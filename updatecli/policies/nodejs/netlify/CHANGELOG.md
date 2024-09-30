@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0
+
+* Fix indentation
+
 ## 0.6.0
 
 * Configure Pull Request GitHub labels using `labels`.
