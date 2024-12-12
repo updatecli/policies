@@ -1,0 +1,20 @@
+name: "deps(github/action): bump all dependencies"
+#pipelineid: github/action/autodiscovery
+automerge: false
+labels:
+  - dependencies
+
+scm:
+  enabled: false
+  user: updatecli-bot
+  #email: updatecli-bot@updatecli.io
+  #owner: updatecli
+  #repository: "repository"
+  #token: "xxx"
+  username: "updatecli"
+  branch: main
+  # commitusingapi: false
+
+# spec:
+groupby: all
+
