@@ -1,11 +1,8 @@
 # Changelog
 
-## 0.8.0
-
-* Update releasepost to use detailed exit code matching releasepost version 0.6.0
-
 ## 0.7.0
 
+* Update releasepost to use detailed exit code matching releasepost version 0.6.0
 * Update releasepost exitcode matching releasepost version 0.5.1
 
 ## 0.6.0
