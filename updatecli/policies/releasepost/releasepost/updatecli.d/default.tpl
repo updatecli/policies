@@ -24,8 +24,8 @@ targets:
       changedif:
         kind: exitcode
         spec:
-          warning: 0
-          success: 1
+          success: 0
+          warning: 1
           failure: 2
 
 {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
