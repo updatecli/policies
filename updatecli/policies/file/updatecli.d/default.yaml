@@ -1,0 +1,61 @@
+---
+name: Copy files {{ .sourceFiles }} from {{ requiredEnv .scm.source.owner}}/{{ .scm.source.repository}}
+
+# scms defines the source control management system to interact with.
+scms:
+  source:
+    kind: github
+    spec:
+      owner: {{ requiredEnv .scm.source.owner }}
+      repository: {{ .scm.source.repository }}
+      branch: {{ .scm.source.branch }}
+      user: {{ requiredEnv .scm.source.user }}
+      username: {{ .scm.source.username }}
+      token: {{ requiredEnv .scm.source.token }}
+  target:
+    kind: github
+    spec:
+      owner: {{ requiredEnv .scm.target.owner }}
+      repository: {{ .scm.target.repository }}
+      branch: {{ .scm.target.branch }}
+      user: {{ requiredEnv .scm.target.user }}
+      username: {{ .scm.target.username }}
+      token: {{ requiredEnv .scm.target.token }}
+
+# sources defines where to find the information.
+sources:
+# {{ range $index, $file := .sourceFiles }}
+  copy{{ $index }}:
+    name: "Copy the {{$file }} from source repository"
+    scmid: source
+    kind: file
+    spec:
+      file: {{ $file }}
+# {{ end }}
+
+## targets defines where to apply the changes.
+targets:
+# {{ range $index, $file := .targetFiles }}
+  paste{{ $index }}:
+    name: "Updates {{ $file }} file"
+    kind: file
+    scmid: target
+    sourceid: copy{{ $index }}
+    spec:
+      file: {{ $file }}
+      forcecreate: true
+# {{ end }}
+      
+# actions defines what to do when a target with the same scmid is modified.
+actions:
+  default:
+    kind: "github/pullrequest"
+    scmid: "target"
+    spec:
+      automerge: false
+# {{ if .pr.title }}
+      title: {{ .pr.title }}
+# {{ end }}
+# {{ if .pr.description }}
+      description: {{ .pr.description }}
+# {{ end }}
