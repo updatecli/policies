@@ -1,0 +1,29 @@
+---
+# Policy.yaml contains metadata for the Updatecli policy.
+
+# Authors is the policy authors
+authors:
+  - José Guilherme Vanz <jvanz@jvanz.com>
+
+# URL is the policy url
+url: https://github.com/updatecli/policies
+
+# Documentation is the policy documentation URL
+documentation: https://github.com/updatecli/policies
+
+# Source is the policy source URL
+source: https://github.com/updatecli/policies
+
+# Version is the policy version. 
+version: 0.1.0
+
+# Vendor is the policy vendor
+vendor: Updatecli project
+
+# License is the policy licenses
+licenses:
+  - "Apache-2.0 license"
+
+# Description is the short policy description
+description: |
+  Copy files from a git repository and commit it into another git repository.
