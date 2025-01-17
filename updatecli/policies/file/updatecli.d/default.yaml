@@ -1,48 +1,62 @@
 ---
-name: Copy files {{ .sourceFiles }} from {{ requiredEnv .scm.source.owner}}/{{ .scm.source.repository}}
+# Helpers
+# {{ $GitHubUser := env ""}}
+# {{ $GitHubRepositoryList := env "GITHUB_REPOSITORY" | split "/"}}
+# {{ $GitHubPAT := env "GITHUB_TOKEN"}}
+# {{ $GitHubUsername := env "GITHUB_ACTOR"}}
+# {{ $DefaultTitle := (print "chore: sync file(s) from " .src.url ) }}
+
+name: '{{ default $DefaultTitle .title }}'
+
+# {{ if .pipelineid }}
+pipelineid: '{{ .pipelineid }}'
+# {{ end }}
 
 # scms defines the source control management system to interact with.
 scms:
+  default:
+    kind: "github"
+    spec:
+      # Priority set to the environment variable
+      user: '{{ default $GitHubUser .scm.user}}'
+# {{ if .scm.email }}
+      email: '{{ .scm.email }}'
+# {{ end }}
+      owner: '{{ default $GitHubRepositoryList._0 .scm.owner }}'
+      repository: '{{ default $GitHubRepositoryList._1 .scm.repository}}'
+      token: '{{ default $GitHubPAT .scm.token }}'
+      username: '{{ default $GitHubUsername .scm.username }}'
+      branch: '{{ .scm.branch }}'
+#{{ if .scm.commitusingapi }}
+      commitusingapi: {{ .scm.commitusingapi }}
+# {{ end }}
   source:
-    kind: github
+    kind: git
     spec:
-      owner: {{ requiredEnv .scm.source.owner }}
-      repository: {{ .scm.source.repository }}
-      branch: {{ .scm.source.branch }}
-      user: {{ requiredEnv .scm.source.user }}
-      username: {{ .scm.source.username }}
-      token: {{ requiredEnv .scm.source.token }}
-  target:
-    kind: github
-    spec:
-      owner: {{ requiredEnv .scm.target.owner }}
-      repository: {{ .scm.target.repository }}
-      branch: {{ .scm.target.branch }}
-      user: {{ requiredEnv .scm.target.user }}
-      username: {{ .scm.target.username }}
-      token: {{ requiredEnv .scm.target.token }}
+      url: "{{ .src.url }}"
+      branch: "{{ .src.branch }}"
 
 # sources defines where to find the information.
 sources:
-# {{ range $index, $file := .sourceFiles }}
-  copy{{ $index }}:
-    name: "Copy the {{$file }} from source repository"
-    scmid: source
-    kind: file
+# {{ range $index, $file := .files }}
+  {{ $index }}:
+    name: 'Get {{$file.src }} from source repository'
+    scmid: 'source'
+    kind: 'file'
     spec:
-      file: {{ $file }}
+      file: '{{ $file.src }}'
 # {{ end }}
 
 ## targets defines where to apply the changes.
 targets:
-# {{ range $index, $file := .targetFiles }}
-  paste{{ $index }}:
-    name: "Updates {{ $file }} file"
-    kind: file
-    scmid: target
-    sourceid: copy{{ $index }}
+# {{ range $index, $file := .files }}
+  "{{ $index }}":
+    name: 'chore: sync {{ $file.dst }} file'
+    kind: 'file'
+    scmid: 'default'
+    sourceid: '{{ $index }}'
     spec:
-      file: {{ $file }}
+      file: '{{ $file.dst }}'
       forcecreate: true
 # {{ end }}
       
@@ -50,12 +64,18 @@ targets:
 actions:
   default:
     kind: "github/pullrequest"
-    scmid: "target"
     spec:
-      automerge: false
-# {{ if .pr.title }}
-      title: {{ .pr.title }}
-# {{ end }}
+#    {{ if .pr.title }}
+      title: '{{ .pr.title }}'
+#    {{ end }}
 # {{ if .pr.description }}
-      description: {{ .pr.description }}
+      description: '{{ .pr.description }}'
 # {{ end }}
+      automerge: {{ .pr.automerge }}
+# {{ if .pr.labels }}
+      labels:
+# {{ range .pr.labels }}
+        - '{{ . }}'
+# {{ end }}
+# {{ end }}
+    scmid: "default"
