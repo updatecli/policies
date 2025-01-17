@@ -16,7 +16,7 @@ targets:
     scmid: default
 ## {{ end }}
     spec:
-      command: 'releasepost --dry-run="$DRY_RUN" --config {{ .configpath }}'
+      command: 'releasepost --detailed-exit-code --dry-run="$DRY_RUN" --config {{ .configpath }}'
       environments:
         - name: GITHUB_TOKEN
         - name: RELEASEPOST_GITHUB_TOKEN
@@ -24,9 +24,9 @@ targets:
       changedif:
         kind: exitcode
         spec:
-          warning: 0
-          success: 1
-          failure: 2
+          success: 0
+          warning: 2
+          failure: 1
 
 {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
 scms:
