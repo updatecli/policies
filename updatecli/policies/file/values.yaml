@@ -1,0 +1,41 @@
+---
+# Values.yaml contains settings that be used from Updatecli manifest.
+
+## title override the default title of the policy
+#title: "chore: sync file from source repository"
+
+## files contains the list of files to be copied from the source repository to the target repository.
+#files:
+#  - src: ""
+#    dst: ""
+
+## pipelineid is the pipeline id to be used by the policy
+## It is used to identify the pipeline that is running the policy.
+## Different pipelines sharing the same pipelineid and the same scm configuration
+## will update the same pullrequest
+#pipelineid: "file"
+
+## pr contains the pull request settings that can be overridden
+pr:
+  automerge: false
+# description: ""
+  labels:
+  - dependencies
+# title: ""
+
+## src contains the source repository information
+## It is used to fetch the files to be copied to the target repository
+#src:
+#  url: ""
+#  branch: ""
+
+## scm contains the source control management information
+scm:
+  commitusingapi: true
+  user: updatecli
+#  email: updatecli-bot@updatecli.io
+#  owner: updatecli
+#  repository: updatecli
+#  token: "xxx"
+#  username: "updatecli-bot"
+#  branch: main
