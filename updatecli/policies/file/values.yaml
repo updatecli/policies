@@ -39,3 +39,10 @@ scm:
 #  token: "xxx"
 #  username: "updatecli-bot"
 #  branch: main
+  commitmessage:
+    type:  "chore"
+#    title: "sync file from source repository"
+#    body:  "Commit body"
+#    footers: "Signed-off-by: Updatecli bot <>"
+#    scope: "docs"
+#    hidecredit: true
