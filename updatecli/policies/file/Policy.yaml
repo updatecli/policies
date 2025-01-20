@@ -7,13 +7,13 @@ authors:
   - Olblak <me@olblak.com>
 
 # URL is the policy url
-url: https://github.com/updatecli/policies/
+url: "https://github.com/updatecli/policies/"
 
 # Documentation is the policy documentation URL
-documentation: https://github.com/updatecli/policies/tree/main/updatecli/policies/file/README.md
+documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/file/README.md"
 
 # Source is the policy source URL
-source: https://github.com/updatecli/policies/tree/main/updatecli/policies/file/
+source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/file/"
 
 # Version is the policy version. 
 version: 0.1.0
