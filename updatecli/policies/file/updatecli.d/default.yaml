@@ -30,6 +30,27 @@ scms:
 #{{ if .scm.commitusingapi }}
       commitusingapi: {{ .scm.commitusingapi }}
 # {{ end }}
+#{{ if .scm.commitmessage }}
+      commitmessage:
+#{{ if .scm.commitmessage.type }}
+        type: '{{ .scm.commitmessage.type }}'
+# {{ end }}
+#{{ if .scm.commitmessage.title }}
+        title: '{{ .scm.commitmessage.title }}'
+# {{ end }}
+#{{ if .scm.commitmessage.body }}
+        body: '{{ .scm.commitmessage.body }}'
+# {{ end }}
+#{{ if .scm.commitmessage.footers }}
+        footers: '{{ .scm.commitmessage.footers }}'
+# {{ end }}
+#{{ if .scm.commitmessage.hidecredit }}
+        hidecredit: {{ .scm.commitmessage.hidecredit }}
+# {{ end }}
+#{{ if .scm.commitmessage.scope }}
+        scope: '{{ .scm.commitmessage.scope }}'
+# {{ end }}
+# {{ end }}
   source:
     kind: git
     spec:
@@ -51,7 +72,7 @@ sources:
 targets:
 # {{ range $index, $file := .files }}
   "{{ $index }}":
-    name: 'chore: sync {{ $file.dst }} file'
+    name: 'sync {{ $file.dst }} file'
     kind: 'file'
     scmid: 'default'
     sourceid: '{{ $index }}'
