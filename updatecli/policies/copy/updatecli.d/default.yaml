@@ -1,0 +1,40 @@
+---
+# Helpers
+# {{ $DefaultTitle := (print "copy file(s) from " .src.url ) }}
+
+name: '{{ default $DefaultTitle .title }}'
+
+# {{ if .pipelineid }}
+pipelineid: '{{ .pipelineid }}'
+# {{ end }}
+
+# scms defines the source control management system to interact with.
+scms:
+  source:
+    kind: git
+    spec:
+      url: "{{ .src.url }}"
+      branch: "{{ .src.branch }}"
+
+# sources defines where to find the information.
+sources:
+# {{ range $index, $file := .files }}
+  {{ $index }}:
+    name: 'Get {{$file.src }} from source repository'
+    scmid: 'source'
+    kind: 'file'
+    spec:
+      file: '{{ $file.src }}'
+# {{ end }}
+
+## targets defines where to apply the changes.
+targets:
+# {{ range $index, $file := .files }}
+  "{{ $index }}":
+    name: 'sync {{ $file.dst }} file'
+    kind: 'file'
+    sourceid: '{{ $index }}'
+    spec:
+      file: '{{ $file.dst }}'
+      forcecreate: true
+# {{ end }}

@@ -1,0 +1,13 @@
+src:
+  url: "https://github.com/updatecli/updatecli.git"
+  branch: "main"
+
+files:
+  - src: .golangci.yml
+    dst: .golangci.yml
+  - src: _typos.toml
+    dst: _typos.toml
+  - src: codecov.yaml
+    dst: codecov.yaml
+  - src: .gitignore
+    dst: .gitignore
