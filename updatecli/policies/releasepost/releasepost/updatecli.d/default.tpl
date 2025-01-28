@@ -38,6 +38,7 @@ scms:
 # {{ if .scm.email }}
       email: '{{ .scm.email }}'
 # {{ end }}
+      submodules: {{ .scm.submodules }}
       owner: '{{ default $GitHubRepositoryList._0 .scm.owner }}'
       repository: '{{ default $GitHubRepositoryList._1 .scm.repository }}'
       token: '{{ default $GitHubPAT .scm.token }}'
