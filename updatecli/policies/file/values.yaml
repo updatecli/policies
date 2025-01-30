@@ -6,8 +6,8 @@
 
 ## files contains the list of files to be copied from the source repository to the target repository.
 #files:
-#  - src: ""
-#    dst: ""
+#  - src: "example.yaml"
+#    dst: "example.yaml"
 
 ## pipelineid is the pipeline id to be used by the policy
 ## It is used to identify the pipeline that is running the policy.
@@ -26,19 +26,19 @@ pr:
 ## src contains the source repository information
 ## It is used to fetch the files to be copied to the target repository
 #src:
-#  url: ""
-#  branch: ""
+#  url: "https://github.com/updatecli/updatecli.git"
+#  branch: "main"
 
 ## scm contains the source control management information
 scm:
   commitusingapi: true
   user: updatecli
-#  email: updatecli-bot@updatecli.io
+  email: updatecli-bot@updatecli.io
 #  owner: updatecli
 #  repository: updatecli
 #  token: "xxx"
-#  username: "updatecli-bot"
-#  branch: main
+  username: "updatecli-bot"
+  branch: main
   commitmessage:
     type:  "chore"
 #    title: "sync file from source repository"

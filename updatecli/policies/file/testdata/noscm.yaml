@@ -1,9 +1,3 @@
-scm:
-  branch: "main"
-  owner: "updatecli"
-  repository: "udash"
-  username: "updatecli-bot"
-
 src:
   url: "https://github.com/updatecli/updatecli.git"
   branch: "main"
