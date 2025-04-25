@@ -1,0 +1,10 @@
+scm:
+  enabled: true
+  user: updatecli-bot
+  email: updatecli-bot@updatecli.io
+  owner: updatecli
+  repository: udash
+  #token: "xxx"
+  username: "updatecli"
+  branch: main
+
