@@ -1,0 +1,15 @@
+authors:
+  - loispostula <lois@postu.la>
+
+url: "https://github.com/updatecli/policies/"
+documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/precommit/README.md"
+changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/precommit/CHANGELOG.md"
+source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/precommit/"
+version: 0.1.0
+vendor: Updatecli Project
+
+licenses:
+  - "Apache-2.0 license"
+
+description: |
+  Precommit Autodiscovery
