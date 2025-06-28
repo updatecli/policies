@@ -14,6 +14,7 @@ scm:
   # owner: updatecli
   # repository: updatecli
   # token: "xxx"
+  # token_env: "UPDATECLI_SCM_TOKEN"
   # username: "updatecli-bot"
   # branch: main
 

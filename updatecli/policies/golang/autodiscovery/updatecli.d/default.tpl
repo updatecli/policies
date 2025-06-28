@@ -34,7 +34,11 @@ scms:
 # {{ end }}
       owner: '{{ default $GitHubRepositoryList._0 .scm.owner }}'
       repository: '{{ default $GitHubRepositoryList._1 .scm.repository}}'
+# {{ if .scm.token_env }}
+      token: '{{ env .scm.token_env }}'
+# {{ else }}
       token: '{{ default $GitHubPAT .scm.token }}'
+# {{ end }}
       username: '{{ default $GitHubUsername .scm.username }}'
       branch: '{{ .scm.branch }}'
 #{{ if .scm.commitusingapi }}
