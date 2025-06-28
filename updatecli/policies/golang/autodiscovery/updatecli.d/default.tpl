@@ -22,7 +22,7 @@ autodiscovery:
 {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
 scms:
   default:
-    kind: "github"
+    kind: {{ default "github" .scm.kind }}
     spec:
       # Priority set to the environment variable
       user: '{{ default $GitHubUser .scm.user}}'
@@ -40,10 +40,12 @@ scms:
 
 actions:
   default:
-    kind: "github/pullrequest"
+    kind: {{ default "github/pullrequest" .action.kind }}
     scmid: "default"
     spec:
+# {{ if .automerge }}
       automerge: {{ .automerge }}
+# {{ end }}
 # {{ if .labels }}
       labels:
 # {{ range .labels }}

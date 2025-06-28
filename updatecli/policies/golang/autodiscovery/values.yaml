@@ -4,8 +4,10 @@ automerge: false
 labels:
   - dependencies
 
+
 scm:
   enabled: false
+  # kind: github
   # user: updatecli-bot
   # email: updatecli-bot@updatecli.io
   # owner: updatecli
@@ -13,6 +15,9 @@ scm:
   # token: "xxx"
   # username: "updatecli-bot"
   # branch: main
+
+action:
+  kind: github/pullrequest
 
 # spec:
 groupby: all
