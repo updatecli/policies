@@ -8,6 +8,7 @@ labels:
 scm:
   enabled: false
   # kind: github
+  # url: https://github.com
   # user: updatecli-bot
   # email: updatecli-bot@updatecli.io
   # owner: updatecli

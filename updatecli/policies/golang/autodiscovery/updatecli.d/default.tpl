@@ -24,6 +24,9 @@ scms:
   default:
     kind: {{ default "github" .scm.kind }}
     spec:
+# {{ if .scm.url }}
+      url: {{ .scm.url }}
+# {{ end }}
       # Priority set to the environment variable
       user: '{{ default $GitHubUser .scm.user}}'
 # {{ if .scm.email }}
