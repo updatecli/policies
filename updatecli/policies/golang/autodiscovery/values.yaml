@@ -6,6 +6,7 @@ labels:
 
 scm:
   enabled: false
+  kind: github
   # user: updatecli-bot
   # email: updatecli-bot@updatecli.io
   # owner: updatecli
