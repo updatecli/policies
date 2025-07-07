@@ -33,4 +33,7 @@ scms:
             # {{ if .scm.commitusingapi }}
             commitusingapi: {{.scm.commitusingapi}}
             # {{ end }}
+            # {{ if .scm.url }}
+            url: '{{ .scm.url }}'
+            # {{ end }}
 # {{ end }}

@@ -18,7 +18,4 @@ scms:
             token: '{{ default $GitbucketPAT .scm.token }}'
             username: '{{ .scm.username }}'
             branch: '{{ .scm.branch }}'
-            # {{ if .scm.url }}
-            url: '{{ .scm.url }}'
-            # {{ end }}
 # {{ end }}
