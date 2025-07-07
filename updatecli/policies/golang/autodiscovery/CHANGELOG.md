@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.0
+
+* Add policy support Gitea, Gitlab, Stash, Bitbucket
+
 ## 0.9.0
 
 * Configure Pull Request GitHub labels using `labels`.

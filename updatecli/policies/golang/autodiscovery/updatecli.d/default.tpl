@@ -1,11 +1,6 @@
-# Helpers
-# {{ $GitHubUser := env ""}}
-# {{ $GitHubRepositoryList := env "GITHUB_REPOSITORY" | split "/"}}
-# {{ $GitHubPAT := env "GITHUB_TOKEN"}}
-# {{ $GitHubUsername := env "GITHUB_ACTOR"}}
-
 name: '{{ .name }}'
 pipelineid: '{{ .pipelineid }}'
+version: v0.103.0
 
 autodiscovery:
   groupby: {{ .groupby }}
