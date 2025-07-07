@@ -7,7 +7,7 @@ labels:
 scm:
   enabled: false
   # kind defines the SCM kind to use for this policy
-  # Accepted values: github, gitea
+  # Accepted values: github, gitea, bitbucket, gitlab, stash
   kind: github
   # user: updatecli-bot
   # email: updatecli-bot@updatecli.io
