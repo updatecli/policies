@@ -5,7 +5,6 @@
 # {{ $GitHubRepositoryList := env "GITHUB_REPOSITORY" | split "/"}}
 actions:
     default:
-        title: 'deps: bump HUGO to {{ source "hugo" }}'
         kind: "github/pullrequest"
         spec:
             automerge: {{.automerge}}

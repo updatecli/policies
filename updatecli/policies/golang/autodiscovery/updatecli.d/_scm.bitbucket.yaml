@@ -2,7 +2,6 @@
 # {{ $GitbucketPAT := env .scm.env_token }}
 actions:
     default:
-        title: 'deps: bump HUGO to {{ source "hugo" }}'
         kind: "bitbucket/pullrequest"
         scmid: "default"
 
