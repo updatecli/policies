@@ -16,7 +16,7 @@ scms:
             # {{ end }}
             owner: '{{ .scm.owner }}'
             repository: '{{ .scm.repository }}'
-            token: '{{ default $GitbucketPAT .scm.token }}'
+            token: '{{ default $StashPAT .scm.token }}'
             username: '{{ .scm.username }}'
             branch: '{{ .scm.branch }}'
             # {{ if .scm.url }}
