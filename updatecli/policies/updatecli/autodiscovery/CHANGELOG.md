@@ -1,4 +1,9 @@
 # Changelog
+## 0.6.0
+
+! Require Updatecli 0.103.0 or later
+
+* Add policy support for Gitea/Gitlab/Stash/Bitbucket
 
 ## 0.5.0
 
