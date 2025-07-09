@@ -1,0 +1,22 @@
+# {{ if and .scm.enabled ( eq .scm.kind "bitbucket") }}
+# {{ $GitbucketPAT := env .scm.env_token }}
+actions:
+    default:
+        title: 'deps: Bump Golang version to {{ source "golang" }}'
+        kind: "bitbucket/pullrequest"
+        scmid: "default"
+
+scms:
+    default:
+        kind: "bitbucket"
+        spec:
+            user: '{{ .scm.user }}'
+            # {{ if .scm.email }}
+            email: '{{ .scm.email }}'
+            # {{ end }}
+            owner: '{{ .scm.owner }}'
+            repository: '{{ .scm.repository }}'
+            token: '{{ default $GitbucketPAT .scm.token }}'
+            username: '{{ .scm.username }}'
+            branch: '{{ .scm.branch }}'
+# {{ end }}
