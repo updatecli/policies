@@ -1,0 +1,23 @@
+name: "docs: synchronize release note"
+pipelineid: '{{ .pipelineid }}'
+version: v0.103.0
+
+targets:
+  default:
+    name: synchronize release notes
+    kind: shell
+    # {{ if .scm.enabled }}
+    scmid: default
+    # {{ end }}
+    spec:
+      command: 'releasepost --detailed-exit-code --dry-run="$DRY_RUN" --config {{ .configpath }}'
+      environments:
+        - name: '{{ .github.env_token }}'
+        - name: 'RELEASEPOST_GITHUB_TOKEN'
+        - name: 'PATH'
+      changedif:
+        kind: exitcode
+        spec:
+          success: 0
+          warning: 2
+          failure: 1

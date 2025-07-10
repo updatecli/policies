@@ -1,48 +1,6 @@
----
-# Helpers
-# {{ $GitHubUser := env "GITHUB_ACTOR"}}
-# {{ $GitHubRepositoryList := env "GITHUB_REPOSITORY" | split "/"}}
-# {{ $GitHubPAT := env "GITHUB_TOKEN"}}
-# {{ $GitHubUsername := env "GITHUB_ACTOR"}}}
-
 name : 'deps: bump Updatecli GH action'
 pipelineid: '{{ .pipelineid }}'
-
-# Only enable the scm section if Updatecli is executed from a Github Action
-# {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
-actions:
-    default:
-        title: 'deps: bump Updatecli GitHub action to {{ source "updatecli" }}'
-        kind: "github/pullrequest"
-        spec:
-            automerge: {{ .automerge }}
-# {{ if .labels }}
-            labels:
-# {{ range .labels }}
-                - {{ . }}
-# {{ end }}
-# {{ end }}
-            mergemethod: "squash"
-        scmid: "default"
-
-scms:
-    default:
-        kind: "github"
-        spec:
-            # Priority set to the environment variable
-            user: '{{ default $GitHubUser .scm.user }}'
-# {{ if .scm.email }}
-            email: '{{ .scm.email }}'
-# {{ end }}
-            owner: '{{ default $GitHubRepositoryList._0 .scm.owner }}'
-            repository: '{{ default $GitHubRepositoryList._1 .scm.repository }}'
-            token: '{{ default $GitHubPAT .scm.token }}'
-            username: '{{ default $GitHubUsername .scm.username }}'
-            branch: '{{ .scm.branch }}'
-#{{ if .scm.commitusingapi }}
-            commitusingapi: {{ .scm.commitusingapi }}
-# {{ end }}
-# {{ end }}
+version: v0.103.0
 
 sources:
     updatecli:
@@ -51,8 +9,8 @@ sources:
         spec:
             owner: "updatecli"
             repository: "updatecli-action"
-            token: '{{ default .scm.token $GitHubPAT }}'
-            username: '{{ default .scm.username $GitHubUsername }}'
+            token: '{{ default ( env .github.env_token ) .github.token }}'
+            username: '{{ default ( env .github.env_username ) .github.username }}'
             versionfilter:
                 kind: "semver"
                 pattern: '{{ .versionpattern }}'
@@ -69,10 +27,7 @@ targets:
             files:
              - '.github/workflows/*'
             searchpattern: true
-# Only enable the scm section if Updatecli is executed from a Github Action
-# {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
+# {{ if .scm.enabled }}
         scmid: default
 # {{ end }}
 
-# Represent the minimum version of Updatecli required to run this policy
-version: v0.68.0

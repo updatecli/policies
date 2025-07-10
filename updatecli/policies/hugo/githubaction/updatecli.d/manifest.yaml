@@ -1,48 +1,6 @@
----
-# Helpers
-# {{ $GitHubUser := env "GITHUB_ACTOR"}}
-# {{ $GitHubPAT := env "GITHUB_TOKEN" }}
-# {{ $GitHubRepositoryList := env "GITHUB_REPOSITORY" | split "/"}}
-# {{ $GitHubUsername := env "GITHUB_ACTOR" }}
-
-name : 'deps: Bump HUGO version in Netlify configuration'
+name : 'deps: Bump HUGO version from GitHub Action'
 pipelineid: '{{ .pipelineid }}'
-
-# Only enable the scm section if Updatecli is executed from a Github Action
-# {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
-actions:
-    default:
-        title: 'deps: bump HUGO to {{ source "hugo" }}'
-        kind: "github/pullrequest"
-        spec:
-            automerge: {{ .automerge }}
-# {{ if .labels }}
-            labels:
-# {{ range .labels }}
-                - {{ . }}
-# {{ end }}
-# {{ end }}
-            mergemethod: "squash"
-        scmid: "default"
-
-scms:
-    default:
-        kind: "github"
-        spec:
-            # Priority set to the environment variable
-            user: '{{ default .scm.user $GitHubUser}}'
-# {{ if .scm.email }}
-            email: '{{ .scm.email }}'
-# {{ end }}
-            owner: '{{ default $GitHubRepositoryList._0 .scm.owner }}'
-            repository: '{{ default $GitHubRepositoryList._1 .scm.repository }}'
-            token: '{{ default $GitHubPAT .scm.token }}'
-            username: '{{ default $GitHubUsername .scm.username }}'
-            branch: '{{ .scm.branch }}'
-#{{ if .scm.commitusingapi }}
-            commitusingapi: {{ .scm.commitusingapi }}
-# {{ end }}
-# {{ end }}
+version: 0.103.0
 
 sources:
     hugo:
@@ -51,15 +9,15 @@ sources:
         spec:
             owner: "gohugoio"
             repository: "hugo"
-            token: '{{ default .scm.token $GitHubPAT }}'
-            username: '{{ default .scm.username $GitHubUsername }}'
+            token: '{{ default ( env .github.env_token ) .github.token }}'
+            username: '{{ default ( env .github.env_username ) .github.username }}'
             versionfilter:
                 kind: "semver"
                 pattern: '{{ .versionpattern }}'
         transformers:
             - trimprefix: v
 targets:
-    netlify:
+    gha:
         name: 'deps: update hugo used by Github Action to {{ source "hugo" }}'
         kind: file
         disablesourceinput: true
@@ -70,10 +28,6 @@ targets:
             searchpattern: true
             matchpattern: 'hugo-version: (.*)'
             replacepattern: 'hugo-version: {{ source "hugo" }}'
-# Only enable the scm section if Updatecli is executed from a Github Action
-# {{ if or (.scm.enabled) (env "GITHUB_REPOSITORY") }}
+# {{ if .scm.enabled }}
         scmid: default
 # {{ end }}
-
-# Represent the minimum version of Updatecli required to run this policy
-version: 0.66.1

@@ -5,7 +5,7 @@ url: "https://github.com/updatecli/policies/"
 documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/githubaction/README.md"
 changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/githubaction/CHANGELOG.md"
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/githubaction/"
-version: 0.1.0
+version: 0.2.0
 vendor: Updatecli Project
 
 licenses:

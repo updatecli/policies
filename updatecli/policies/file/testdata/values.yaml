@@ -1,4 +1,6 @@
 scm:
+  author: "Updatecli bot"
+  enabled: true
   branch: "main"
   owner: "updatecli"
   repository: "udash"

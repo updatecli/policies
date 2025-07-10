@@ -6,6 +6,11 @@ labels:
 
 scm:
   enabled: false
+  # kind defines the SCM kind to use for this policy
+  # Accepted values: github, gitea, bitbucket, gitlab, stash
+  kind: github
+  ## env_token defines the environment variable to use to retrieve the token
+  env_token: GITHUB_TOKEN
   # user: updatecli-bot
   # email: updatecli-bot@updatecli.io
   # owner: updatecli
@@ -15,3 +20,10 @@ scm:
   # branch: main
 
 versionpattern: "*"
+
+## The Github settings is used to retrieve the latest NodeJS version
+github:
+  #token: ""
+  env_token: "GITHUB_TOKEN"
+  #username: ""
+  env_username: "GITHUB_ACTOR"

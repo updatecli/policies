@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.12.0
+
+! Require Updatecli 0.103.0
+
+* Add policy support for gitlab, gitea, stash and bitbucket
+* By default disable scm configuration
+
 ## 0.11.0
 
 * Configure Pull Request GitHub labels using `labels`.

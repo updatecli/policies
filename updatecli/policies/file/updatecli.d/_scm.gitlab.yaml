@@ -1,0 +1,53 @@
+# {{ if and .scm.enabled ( eq .scm.kind "gitlab") }}
+# {{ $GitlabPAT := env .scm.env_token }}
+actions:
+    default:
+        kind: "gitlab/mergerequest"
+        scmid: "default"
+        # {{ if .pr.title }}
+        title: '{{ .pr.title }}'
+        # {{ end }}
+
+scms:
+    default:
+        kind: "gitlab"
+        spec:
+            user: '{{ .scm.user }}'
+            # {{ if .scm.email }}
+            email: '{{ .scm.email }}'
+            # {{ end }}
+            owner: '{{ .scm.owner }}'
+            repository: '{{ .scm.repository }}'
+            token: '{{ default $GitlabPAT .scm.token }}'
+            username: '{{ .scm.username }}'
+            branch: '{{ .scm.branch }}'
+            # {{ if .scm.url }}
+            url: '{{ .scm.url }}'
+            # {{ end }}
+            # {{ if .scm.commitmessage }}
+            commitmessage:
+                # {{ if .scm.commitmessage.type }}
+                type: '{{ .scm.commitmessage.type }}'
+                # {{ end }}
+                # {{ if .scm.commitmessage.title }}
+                title: '{{ .scm.commitmessage.title }}'
+                # {{ end }}
+                # {{ if .scm.commitmessage.body }}
+                body: '{{ .scm.commitmessage.body }}'
+                # {{ end }}
+                # {{ if .scm.commitmessage.footers }}
+                footers: '{{ .scm.commitmessage.footers }}'
+                # {{ end }}
+                # {{ if .scm.commitmessage.hidecredit }}
+                hidecredit: {{ .scm.commitmessage.hidecredit }}
+                # {{ end }}
+                # {{ if .scm.commitmessage.scope }}
+                scope: '{{ .scm.commitmessage.scope }}'
+                # {{ end }}
+            #{{ end }}
+    source:
+        kind: git
+        spec:
+            url: "{{ .src.url }}"
+            branch: "{{ .src.branch }}"
+# {{ end }}

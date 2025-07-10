@@ -1,0 +1,24 @@
+# {{ if and .scm.enabled ( eq .scm.kind "gitlab") }}
+# {{ $GitlabPAT := env .scm.env_token }}
+actions:
+    default:
+        kind: "gitlab/mergerequest"
+        scmid: "default"
+
+scms:
+    default:
+        kind: "gitlab"
+        spec:
+            user: '{{ .scm.user }}'
+            # {{ if .scm.email }}
+            email: '{{ .scm.email }}'
+            # {{ end }}
+            owner: '{{ .scm.owner }}'
+            repository: '{{ .scm.repository }}'
+            token: '{{ default $GitlabPAT .scm.token }}'
+            username: '{{ .scm.username }}'
+            branch: '{{ .scm.branch }}'
+            # {{ if .scm.url }}
+            url: '{{ .scm.url }}'
+            # {{ end }}
+# {{ end }}

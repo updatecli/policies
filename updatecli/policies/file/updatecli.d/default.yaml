@@ -1,109 +1,33 @@
----
-# Helpers
-# {{ $GitHubUser := env ""}}
-# {{ $GitHubRepositoryList := env "GITHUB_REPOSITORY" | split "/"}}
-# {{ $DefaultGitHubOwner := default $GitHubRepositoryList._0 .scm.owner }}
-# {{ $DefaultGitHubRepository := default $GitHubRepositoryList._1 .scm.repository }}
-# {{ $GitHubPAT := env "GITHUB_TOKEN"}}
-# {{ $GitHubUsername := env "GITHUB_ACTOR"}}
 # {{ $DefaultTitle := (print "chore: sync file(s) from " .src.url ) }}
+
 name: '{{ default $DefaultTitle .title }}'
 
 # {{ if .pipelineid }}
 pipelineid: '{{ .pipelineid }}'
 # {{ end }}
 
-# scms defines the source control management system to interact with.
-scms:
-# {{ if and ( ne $DefaultGitHubOwner "") ( ne $DefaultGitHubRepository "") }}
-  default:
-    kind: "github"
-    spec:
-      # Priority set to the environment variable
-      user: '{{ default $GitHubUser .scm.user}}'
-#     {{ if .scm.email }}
-      email: '{{ .scm.email }}'
-#     {{ end }}
-      owner: '{{ $DefaultGitHubOwner }}'
-      repository: '{{ $DefaultGitHubRepository }}'
-      token: '{{ default $GitHubPAT .scm.token }}'
-      username: '{{ default $GitHubUsername .scm.username }}'
-      branch: '{{ .scm.branch }}'
-#     {{ if .scm.commitusingapi }}
-      commitusingapi: {{ .scm.commitusingapi }}
-#     {{ end }}
-#     {{ if .scm.commitmessage }}
-      commitmessage:
-#           {{ if .scm.commitmessage.type }}
-        type: '{{ .scm.commitmessage.type }}'
-#           {{ end }}
-#           {{ if .scm.commitmessage.title }}
-        title: '{{ .scm.commitmessage.title }}'
-#           {{ end }}
-#           {{ if .scm.commitmessage.body }}
-        body: '{{ .scm.commitmessage.body }}'
-#           {{ end }}
-#           {{ if .scm.commitmessage.footers }}
-        footers: '{{ .scm.commitmessage.footers }}'
-#           {{ end }}
-#           {{ if .scm.commitmessage.hidecredit }}
-        hidecredit: {{ .scm.commitmessage.hidecredit }}
-#           {{ end }}
-#           {{ if .scm.commitmessage.scope }}
-        scope: '{{ .scm.commitmessage.scope }}'
-#           {{ end }}
-#     {{ end }}
-# {{ end }}
-  source:
-    kind: git
-    spec:
-      url: "{{ .src.url }}"
-      branch: "{{ .src.branch }}"
-
 # sources defines where to find the information.
 sources:
-# {{ range $index, $file := .files }}
-  {{ $index }}:
-    name: 'Get {{$file.src }} from source repository'
-    scmid: 'source'
-    kind: 'file'
-    spec:
-      file: '{{ $file.src }}'
-# {{ end }}
+      # {{ range $index, $file := .files }}
+      '{{$index}}':
+            name: 'Get {{$file.src }} from source repository'
+            scmid: 'source'
+            kind: 'file'
+            spec:
+                  file: '{{ $file.src }}'
+      # {{ end }}
 
 ## targets defines where to apply the changes.
 targets:
-# {{ range $index, $file := .files }}
-  "{{ $index }}":
-    name: 'sync {{ $file.dst }} file'
-    kind: 'file'
-#     {{ if and $DefaultGitHubOwner $DefaultGitHubRepository }}
-    scmid: 'default'
-#     {{ end }}
-    sourceid: '{{ $index }}'
-    spec:
-      file: '{{ $file.dst }}'
-      forcecreate: true
-# {{ end }}
-      
-# {{ if and $DefaultGitHubOwner $DefaultGitHubRepository }}
-# actions defines what to do when a target with the same scmid is modified.
-actions:
-  default:
-    kind: "github/pullrequest"
-    spec:
-#     {{ if .pr.title }}
-      title: '{{ .pr.title }}'
-#     {{ end }}
-#     {{ if .pr.description }}
-      description: '{{ .pr.description }}'
-#     {{ end }}
-      automerge: {{ .pr.automerge }}
-#     {{ if .pr.labels }}
-      labels:
-#           {{ range .pr.labels }}
-        - '{{ . }}'
-#           {{ end }}
-#     {{ end }}
-    scmid: "default"
-# {{ end }}
+      # {{ range $index, $file := .files }}
+      '{{ $index }}':
+            name: 'sync {{ $file.dst }} file'
+            kind: 'file'
+            # {{ if .scm.enabled }}
+            scmid: 'default'
+            # {{ end }}
+            sourceid: '{{ $index }}'
+            spec:
+                  file: '{{ $file.dst }}'
+                  forcecreate: true
+      # {{ end }}
