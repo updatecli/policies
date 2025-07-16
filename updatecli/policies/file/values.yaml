@@ -2,30 +2,31 @@
 # Values.yaml contains settings that be used from Updatecli manifest.
 
 ## title override the default title of the policy
-#title: "chore: sync file from source repository"
+# title: "chore: sync file from source repository"
 
-## files contains the list of files to be copied from the source repository to the target repository.
-#files:
-#  - src: "example.yaml"
-#    dst: "example.yaml"
+## files contains the list of files to be copied from
+## the source repository to the target repository.
+# files:
+#  - src: ""
+#    dst: ""
 
 ## pipelineid is the pipeline id to be used by the policy
 ## It is used to identify the pipeline that is running the policy.
-## Different pipelines sharing the same pipelineid and the same scm configuration
-## will update the same pullrequest
-#pipelineid: "file"
+## Different pipelines sharing the same pipelineid and
+## the same scm configuration will update the same pullrequest
+# pipelineid: "file"
 
 ## pr contains the pull request settings that can be overridden
 pr:
   automerge: false
-# description: ""
+  # description: ""
   labels:
-  - dependencies
+    - dependencies
 # title: ""
 
 ## src contains the source repository information
 ## It is used to fetch the files to be copied to the target repository
-#src:
+# src:
 #  url: "https://github.com/updatecli/updatecli.git"
 #  branch: "main"
 
@@ -33,14 +34,19 @@ pr:
 scm:
   commitusingapi: true
   user: updatecli
-  email: updatecli-bot@updatecli.io
-#  owner: updatecli
-#  repository: updatecli
-#  token: "xxx"
-  username: "updatecli-bot"
-  branch: main
+  # email: updatecli-bot@updatecli.io
+  # kind defines the SCM kind to use for this policy
+  # Accepted values: github, gitea, bitbucket, gitlab, stash
+  kind: github
+  ## env_token defines the environment variable to use to retrieve the token
+  env_token: GITHUB_TOKEN
+  # owner: updatecli
+  # repository: updatecli
+  # token: "xxx"
+  # username: "updatecli-bot"
+  # branch: main
   commitmessage:
-    type:  "chore"
+    type: "chore"
 #    title: "sync file from source repository"
 #    body:  "Commit body"
 #    footers: "Signed-off-by: Updatecli bot <>"

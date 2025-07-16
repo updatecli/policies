@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.0
+
+! Require Updatecli 0.103.0 or later
+
+* Add policy support for Gitea/Gitlab/Stash/Bitbucket
+
 ## 0.8.0
 
 * Disable git submodules by default

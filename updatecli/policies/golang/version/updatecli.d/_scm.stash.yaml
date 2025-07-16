@@ -1,0 +1,25 @@
+# {{ if and .scm.enabled ( eq .scm.kind "stash") }}
+# {{ $StashPAT := env .scm.env_token }}
+actions:
+    default:
+        title: 'deps: Bump Golang version to {{ source "golang" }}'
+        kind: "stash/pullrequest"
+        scmid: "default"
+
+scms:
+    default:
+        kind: "stash"
+        spec:
+            user: '{{ .scm.user }}'
+            # {{ if .scm.email }}
+            email: '{{ .scm.email }}'
+            # {{ end }}
+            owner: '{{ .scm.owner }}'
+            repository: '{{ .scm.repository }}'
+            token: '{{ default $StashPAT .scm.token }}'
+            username: '{{ .scm.username }}'
+            branch: '{{ .scm.branch }}'
+            # {{ if .scm.url }}
+            url: '{{ .scm.url }}'
+            # {{ end }}
+# {{ end }}

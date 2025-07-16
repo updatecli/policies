@@ -1,0 +1,25 @@
+# {{ if and .scm.enabled ( eq .scm.kind "gitea") }}
+# {{ $GiteaPAT := env .scm.env_token }}
+actions:
+    default:
+        kind: "gitea/pullrequest"
+        scmid: "default"
+        title: 'deps: bump Updatecli GH action to {{ source "updatecli" }}'
+
+scms:
+    default:
+        kind: "gitea"
+        spec:
+            user: '{{ .scm.user }}'
+            # {{ if .scm.email }}
+            email: '{{ .scm.email }}'
+            # {{ end }}
+            owner: '{{ .scm.owner }}'
+            repository: '{{ .scm.repository }}'
+            token: '{{ default $GiteaPAT .scm.token }}'
+            username: '{{ .scm.username }}'
+            branch: '{{ .scm.branch }}'
+            # {{ if .scm.url }}
+            url: '{{ .scm.url }}'
+            # {{ end }}
+# {{ end }}

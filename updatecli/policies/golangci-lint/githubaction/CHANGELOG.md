@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0
+
+! Require Updatecli v0.103.0
+
+* Add policy support for Gitlab/Gitea/Stash/Bitbucket
+
 ## 0.5.0
 
 * Fix indentation

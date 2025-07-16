@@ -5,11 +5,11 @@ url: "https://github.com/updatecli/policies/"
 documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/hugo/githubaction/README.md"
 changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/hugo/githubaction/CHANGELOG.md"
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/hugo/githubaction/"
-version: 0.8.0
+version: 0.9.0
 vendor: Updatecli Project
 
 licenses:
   - "Apache-2.0 license"
 
 description: |
-  Automatically update the HUGO version used by Netlify.
+  Automatically update the HUGO version in GitHub action files.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.0
+
+! Require Updatecli 0.103.0
+
+* Add policy support for gitlab, gitea, stash and bitbucket
+
 ## 0.8.0
 
 * Configure Pull Request GitHub labels using `labels`.

@@ -6,11 +6,17 @@ labels:
 
 scm:
   enabled: false
+  ## kind defines the SCM kind to use for this policy
+  ## Accepted values: github, gitea, gitlab, bitbucket, stash
+  kind: github
   # user: updatecli-bot
   # email: updatecli-bot@updatecli.io
   # owner: updatecli
   # repository: updatecli
+  ## env_token defines the environment variable to use to retrieve the token
+  env_token: GITHUB_TOKEN
   # token: "xxx"
   # username: "updatecli-bot"
   # branch: main
-
+  ## url defines the base URL of the SCM repository
+  #url: ""
