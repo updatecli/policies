@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.0
+
+* Update default pipelineid to avoid git branch conflict
+
 ## 0.5.0
 
 ! Require Updatecli 0.103.0 or later

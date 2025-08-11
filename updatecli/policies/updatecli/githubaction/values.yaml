@@ -1,4 +1,4 @@
-pipelineid: updatecli
+pipelineid: updatecli_gha
 automerge: false
 labels:
   - "chore"
@@ -22,7 +22,7 @@ versionpattern: "*"
 
 ## The Github settings is used to retrieve the latest NodeJS version
 github:
-  #token: ""
+  # token: ""
   env_token: "GITHUB_TOKEN"
-  #username: ""
+  # username: ""
   env_username: "GITHUB_ACTOR"
