@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.1
+
+* Remove space from GitHub action label definition
+
 ## 0.2.0
 
   * Allow to use the policy without pushing to a git repository

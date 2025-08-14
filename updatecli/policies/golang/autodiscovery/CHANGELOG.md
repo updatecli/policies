@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.1
+
+* Remove space from GitHub action label definition
+
 ## 0.10.0
 
 * Add policy support Gitea, Gitlab, Stash, Bitbucket

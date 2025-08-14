@@ -1,4 +1,9 @@
 # Changelog
+
+## 0.6.1
+
+* Remove space from GitHub action label definition
+
 ## 0.6.0
 
 ! Require Updatecli 0.103.0 or later

@@ -11,7 +11,7 @@ actions:
             # {{ if .labels }}
             labels:
                 # {{ range .labels }}
-                - ' {{ . }}'
+                - '{{ . }}'
                 # {{ end }}
             # {{ end }}
             mergemethod: "squash"

@@ -19,7 +19,7 @@ actions:
             # {{ if .pr.labels }}
             labels:
                 # {{ range .pr.labels }}
-                - ' {{ . }}'
+                - '{{ . }}'
                 # {{ end }}
             # {{ end }}
             mergemethod: "squash"

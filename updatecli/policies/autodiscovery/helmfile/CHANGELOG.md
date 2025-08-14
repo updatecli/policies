@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.1
+
+* Remove space from GitHub action label definition
+
 ## 0.6.0
 
 * Configure Pull Request GitHub labels using `labels`.

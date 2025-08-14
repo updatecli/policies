@@ -5,7 +5,7 @@ url: "https://github.com/updatecli/policies/"
 documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/kubernetes/README.md"
 changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/kubernetes/CHANGELOG.md"
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/kubernetes/"
-version: 0.7.0
+version: 0.7.1
 vendor: Updatecli Project
 
 licenses:
