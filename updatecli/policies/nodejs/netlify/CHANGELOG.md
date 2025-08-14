@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.1
+
+* Remove space from GitHub action label definition
+
 ## 0.8.0
 
 ! Require Updatecli v0.103.0
