@@ -31,6 +31,7 @@ targets:
   policies:
     name: update POLICIES.md
     kind: shell
+    scmid: default
     spec:
       command: .ci/scripts/docgen.py
       changedif:
