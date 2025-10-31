@@ -36,14 +36,14 @@ def load_policy_metadata(file_path: str) -> PolicyMetadata:
 
 def generate_markdown_table(policies: List[PolicyMetadata]) -> str:
     """Generate a Markdown table from a list of PolicyMetadata objects."""
-    header = "| URL | Version | Description | Link |\n"
-    separator = "|------------|----------|-----------|---------| \n"
+    header = "| URL | Description | Link |\n"
+    separator = "|------------|-----------|---------| \n"
     rows = []
     for p in policies:
         description = p.description.replace("\n", " ").strip()
         ghcr_path = f"ghcr.io/{os.path.normpath(os.path.dirname(p.path))}"
         readme_url = replace_filename_in_url(f"https://github.com/updatecli/policies/tree/main/{p.path}", "README.md")
-        rows.append(f"| `{ghcr_path or '-'}` | {p.version or '-'} | {description or '-'} | {f"[link]({readme_url})" } |")
+        rows.append(f"| `{ghcr_path}@{p.version}` | {description or '-'} | {f"[link]({readme_url})" } |")
     return header + separator + "\n".join(rows)
 
 def replace_filename_in_url(url: str, new_filename: str) -> str:
