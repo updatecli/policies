@@ -41,7 +41,7 @@ def generate_markdown_table(policies: List[PolicyMetadata]) -> str:
     rows = []
     for p in policies:
         description = p.description.replace("\n", " ").strip()
-        ghcr_path = f"ghcr.io/updatecli/policies/{os.path.basename(p.path)}"
+        ghcr_path = f"ghcr.io/{os.path.normpath(os.path.dirname(p.path))}"
         readme_url = replace_filename_in_url(f"https://github.com/updatecli/policies/tree/main/{p.path}", "README.md")
         rows.append(f"| `{ghcr_path or '-'}` | {p.version or '-'} | {description or '-'} | {f"[link]({readme_url})" } |")
     return header + separator + "\n".join(rows)
