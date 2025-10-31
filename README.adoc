@@ -1,11 +1,73 @@
 = README
 
+image:https://www.updatecli.io/images/updatecli.png[alt=Updatecli,float="right",align="center",width=200,height=200]
+
 link:https://matrix.to/#/#Updatecli_community:gitter.im[image:https://img.shields.io/matrix/updatecli:matrix.org[]]
 link:https://github.com/updatecli/policies/blob/main/LICENSE[image:https://img.shields.io/github/license/updatecli/policies[GitHub]]
 link:https://img.shields.io/github/actions/workflow/status/updatecli/policies/validate.yaml?branch=main[image:https://img.shields.io/github/actions/workflow/status/updatecli/policies/validate.yaml?branch=main[GitHub Workflow Status]]
 
 
-This repository contains a list of common Updatecli published on ghcr.io/updatecli/policies/**
+These repository contains a list of common Updatecli policies that can be used to automate the update of various software components.
+These policies are published on `ghcr.io/updatecli/policies` docker registry and can be used directly by Updatecli users. 
+Policies are designed to be as generic as possible to fit most use cases and can be customized via values files at runtime.
+They follow semantic versioning to ensure compatibility and stability.
+
+== Policies
+
+A list of all available policies can be found link:./POLICIES.md[here].
+
+== Quick Start
+
+Pull and inspect a policy manifest:
+
+[source,shell]
+----
+updatecli manifest show ghcr.io/updatecli/policies/autodiscovery/golang:latest
+----
+
+Run a single policy (dry-run):
+
+[source,shell]
+----
+updatecli diff ghcr.io/updatecli/policies/autodiscovery/golang:latest
+----
+
+Apply a single policy:
+
+[source,shell]
+----
+updatecli apply --config ghcr.io/updatecli/policies/autodiscovery/golang:latest
+----
+
+Compose multiple policies using an updatecli-compose file:
+
+* Create `updatecli-compose.yaml` (example below).
+* Run:
+[source,shell]
+----
+updatecli compose apply --config ./updatecli-compose.yaml
+----
+
+.updatecli-compose.yaml
+----
+policies:
+  - policy: "ghcr.io/updatecli/policies/autodiscovery/golang:latest"
+  - policy: "ghcr.io/updatecli/policies/autodiscovery/npm:latest"
+----
+
+Please be aware that each policies comes with its own set of configuration options so please refer to the policy documentation for more information.
+You can replace the policy `ghcr.io/updatecli/policies/autodiscovery/all:latest` by any other policy available in this repository.
+
+== Authentication / Registry
+
+Policies are published on `ghcr.io`. Public pulls usually work, but authenticating reduces rate-limiting:
+
+[source,shell]
+----
+docker login ghcr.io
+----
+
+If you need to pull private policies, provide credentials via your container/runtime or via Updatecli's registry auth options.
 
 == HOWTO
 
@@ -23,24 +85,24 @@ Each policies defines in this repository are automatically published on ghcr.io 
 
 We can see the content of the policy by running:
 
-    updatecli manifest show ghcr.io/updatecli/policies/<a policy name>:latest
+    updatecli manifest show --config updatecli.d --values values.yaml
 
 **Use**
 
-They are two ways to execute an Updatecli policy, either running one policy or several policies at once.
+There are two ways to execute an Updatecli policy, either running one policy or several policies at once.
 
 One policy can be executed by running:
 
-    updatecli apply --config ghcr.io/updatecli/policies/<a policy name>:latest
+    updatecli apply --config ghcr.io/updatecli/policies/<policy-path>:<version>
 
 
 IMPORTANT: Any values files specified at runtime will override default values setting from the policy bundle
 
-Assuming we have a file named `update-compose.yaml`, multiple policies can be composed and executed by running:
+Assuming we have a file named `updatecli-compose.yaml`, multiple policies can be composed and executed by running:
 
-        updatecli compose apply
+        updatecli compose apply --config ./updatecli-compose.yaml
 
-.update-compose.yaml
+.updatecli-compose.yaml
 ```yaml
 policies:
     - policy: "ghcr.io/updatecli/policies/autodiscovery/golang:latest"
@@ -51,7 +113,80 @@ More information about Updatecli compose feature can be found link:https://www.u
 
 == CONTRIBUTING
 
-Policies can be added by creating a new folder under `updatecli/policies` directory.
+Thank you for your interest in contributing to this project.
+Here is a none exclusive list of contribution you can do.
+
+=== Documentation
+
+This project would benefit from clearer policy README files. Please improve each policy's README to explain how to use and configure the policy.
+
+To inspect a policy bundle locally (manifest and default values):
+
+[source,shell]
+----
+# Show the generated manifest (uses files in the policy bundle directory)
+updatecli manifest show --config updatecli.d --values values.yaml
+
+# Show the manifest and render a graph (Mermaid)
+updatecli manifest show --config updatecli.d --values values.yaml --graph --graph-flavor mermaid
+----
+
+Notes:
+* `--config updatecli.d` reads policy manifests shipped inside the policy bundle.
+* `--values values.yaml` overrides default policy values for local inspection.
+
+When running policies, prefer pinning by version or digest to ensure reproducible runs:
+* By tag:  `ghcr.io/updatecli/policies/autodiscovery/golang:1.0.0`
+* By digest: `ghcr.io/updatecli/policies/autodiscovery/golang@sha256:<digest>`
+
+Authentication:
+* Public pulls usually work, but authenticating with GHCR reduces rate limits:
+[source,shell]
+----
+docker login ghcr.io
+----
+* For private bundles, provide registry credentials to your runtime or via Updatecli's registry auth options.
+
+Publishing:
+* Policies in this repository are published automatically by CI when `Policy.yaml` version is bumped.
+* See the `Policy.yaml` template below and ensure you update the `version` field for releases.
+
+Policy inspection and usage summary:
+* Inspect: `updatecli manifest show --config updatecli.d --values values.yaml`
+* Dry-run: `updatecli diff ghcr.io/updatecli/policies/<path>:<version>`
+* Apply: `updatecli apply --config ghcr.io/updatecli/policies/<path>:<version>`
+
+Tip: add a short example `values.yaml` in each policy README to help users test quickly.
+
+=== Updating Policy
+
+Before changing an existing policy, open a GitHub issue to discuss the proposed change. Use the issue to explain:
+* Motivation and user impact
+* Backwards compatibility implications
+* Required changes to `Policy.yaml`, `values.yaml`, or `updatecli.d`
+* Testing plan (how the change will be validated)
+
+When preparing a PR:
+* Bump `Policy.yaml` version for behavioural changes (semantic versioning).
+* Update `CHANGELOG.md` and the policy `README.md` with usage and configuration changes.
+* Add or update `values.yaml` examples if defaults change.
+* Ensure policy validation CI (lint/manifest tests) passes.
+
+PR checklist:
+* [ ] Issue opened describing the change (link in PR)
+* [ ] `Policy.yaml` version updated when needed
+* [ ] `CHANGELOG.md` updated
+* [ ] README and example `values.yaml` updated
+* [ ] All CI checks pass (policy validation workflow)
+
+Notes:
+* Policies are published automatically by CI when `Policy.yaml.version` is updated.
+* For large or breaking changes, discuss a migration plan in the issue and notify maintainers.
+* For security-related changes, include an explanation and coordinate disclosure with maintainers.
+
+=== New Policy
+
+A new policy can be added by creating a new folder under the `updatecli/policies` directory.
 The subfolder path will be used as the policy name.
 
 For example if we want to create a policy named `autodiscovery/golang`, we need to create a folder named `updatecli/policies/autodiscovery/golang`.
@@ -89,12 +224,13 @@ Any change to the policy code must be reflected by a new version. Policies are a
 
 === Why a monorepo ?
 
-A monorepo is a repository that contains multiple projects. In our case, we have a single repository that contains multiple Updatecli policies.
+A monorepo simplifies policy discovery and publishing while we build tooling and CI. We may split later if needed.
 
-We are still in a very early stage and we are not sure yet if we will keep this repository as a monorepo or if we will split it into multiple repositories.
+== Thanks to all the contributors ❤️
 
-But it is easier to handle a monorepo than multiple repositories while we build the tooling and the process to manage Updatecli policies.
+link:https://github.com/updatecli/policies/graphs/contributors"[image:https://contrib.rocks/image?repo=updatecli/policies[]]
 
 == LINKS
 
-* link:https://www.updatecli.io/docs/core/compose/[here]
+* link:https://www.updatecli.io/docs/core/compose/[Updatecli Compose documentation]
+* link:./POLICIES.md[Full Policy list]
