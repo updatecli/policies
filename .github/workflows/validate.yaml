@@ -17,7 +17,7 @@ jobs:
         uses: updatecli/releasepost-action@864390bddae97db06ee881ab4a08d159b4464643 # v0.5.0
       - name: Validate
         run: make test
-      - uses: tibdex/github-app-token@v2.1
+      - uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
         # Only run e2e tests from the main branch as we need some credentials
         # that we don't want to risk leaking from pullrequest opened by random contributors
         if: github.ref == 'refs/heads/main'
