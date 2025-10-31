@@ -1,0 +1,40 @@
+name: Update POLICIES.md
+
+actions:
+  default:
+    title: "deps: update POLICIES.md"
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      automerge: true
+      labels:
+        - documentation
+
+scms:
+  default:
+    kind: github
+    spec:
+      branch: "{{ .scm.branch }}"
+      email: "{{ .scm.email }}"
+      owner: "{{ .scm.owner }}"
+      repository: "{{ .scm.repository }}"
+      user: "{{ .scm.user }}"
+
+conditions:
+  python:
+    name: Check if Python is installed
+    kind: shell
+    spec:
+      command: "python3 --version"
+
+targets:
+  policies:
+    name: update POLICIES.md
+    kind: shell
+    spec:
+      command: .ci/scripts/docgen.py
+      changedif:
+        kind: file/checksum
+        spec:
+          files:
+            - "POLICIES.md"
