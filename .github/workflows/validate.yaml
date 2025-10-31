@@ -1,30 +1,23 @@
 name: Validate Policies
-
 on:
   workflow_dispatch:
   pull_request:
   push:
-
 jobs:
   validate:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-        
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - name: Setup updatecli
-        uses: updatecli/updatecli-action@v2
-
+        uses: updatecli/updatecli-action@c87b6e040a27f8a44e60a17a01c08ae9247589d5 # v2
       - name: Setup releasepost
-        uses: updatecli/releasepost-action@v0.1.0
-
+        uses: updatecli/releasepost-action@864390bddae97db06ee881ab4a08d159b4464643 # v0.5.0
       - name: Validate
         run: make test
-
-      - uses: tibdex/github-app-token@v2.1
+      - uses: tibdex/github-app-token@3beb63f4bd073e61482598c45c71c1019b59b73a # v2.1.0
         # Only run e2e tests from the main branch as we need some credentials
         # that we don't want to risk leaking from pullrequest opened by random contributors
         if: github.ref == 'refs/heads/main'
@@ -32,7 +25,6 @@ jobs:
         with:
           app_id: ${{ secrets.UPDATECLIBOT_TESTING_APP_ID }}
           private_key: ${{ secrets.UPDATECLIBOT_TESTING_APP_PRIVKEY }}
-
       - name: e2e tests
         # Only run e2e tests from the main branch as we need some credentials
         # that we don't want to risk leaking from pullrequest opened by random contributors

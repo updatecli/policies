@@ -1,14 +1,11 @@
 name: Test Typos
 on: [pull_request]
-
 jobs:
   run:
     name: Spell Check with Typos
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Actions Repository
-      uses: actions/checkout@v4
-
-    - name: Check spelling of file.txt
-      uses: crate-ci/typos@master
-
+      - name: Checkout Actions Repository
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - name: Check spelling of file.txt
+        uses: crate-ci/typos@badbd805a3642af4d80951fc1f7b853247c45361 # renovate/stable-1.x
