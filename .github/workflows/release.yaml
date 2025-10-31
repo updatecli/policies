@@ -1,31 +1,24 @@
 name: Publish Policies
-
 on:
   workflow_dispatch:
   push:
     branches: ['main']
-
 jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Setup updatecli
-        uses: updatecli/updatecli-action@v2
-
+        uses: updatecli/updatecli-action@c87b6e040a27f8a44e60a17a01c08ae9247589d5 # v2
       - name: Log in to the Container registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Publish
         run: make release
-
