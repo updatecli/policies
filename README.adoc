@@ -85,6 +85,7 @@ updatecli manifest show --config ./policy-folder/updatecli.d --values ./policy-f
 == Publishing
 
 Policies in this repository are published automatically by CI when `Policy.yaml` version is bumped. When changing a policy:
+
 * Update `Policy.yaml.version` following semver.
 * Update `CHANGELOG.md` and the policy `README.md`.
 * Ensure CI validation (lint/manifest tests) passes.
@@ -94,6 +95,7 @@ Policies in this repository are published automatically by CI when `Policy.yaml`
 If you want to contribute, see link:./CONTRIBUTING.adoc[CONTRIBUTING] for contribution guidelines, PR checklist and publishing details.
 
 Short contributor checklist:
+
 * Open an issue to discuss non-trivial changes.
 * Bump Policy.yaml version if behaviour changes.
 * Update README, CHANGELOG and example values.
