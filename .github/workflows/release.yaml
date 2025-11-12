@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - name: Setup updatecli
-        uses: updatecli/updatecli-action@ec5304bdd541305889046f605f077b59cb53efba # v2
+        uses: updatecli/updatecli-action@6d99744c952aef68975473790e39317819b273f2 # v2
       - name: Log in to the Container registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
