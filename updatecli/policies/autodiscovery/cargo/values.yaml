@@ -20,6 +20,10 @@ scm:
   username: "updatecli-bot"
   branch: main
   # commitusingapi: false
+  ## githubsearch specific parameters
+  # search: 'org:MyOrg'
+  # limit: 5
+  # branch: '^main$|^master$'
 
 # spec:
 groupby: all

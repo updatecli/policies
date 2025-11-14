@@ -1,0 +1,9 @@
+scm:
+  kind: githubsearch
+  enabled: true
+  user: updatecli-bot
+  limit: 1
+  email: updatecli-bot@updatecli.io
+  search: "org:updatecli-test fork:false"
+  branch: "^main$|^master$"
+  commitusingapi: true
