@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0
+
+* Add github search support
+
 ## 0.7.1
 
 * Remove space from GitHub action label definition
