@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0
+
+* Add githubsearch scm support
+
 ## 0.6.0
 
 * Update default pipelineid to avoid git branch conflict
