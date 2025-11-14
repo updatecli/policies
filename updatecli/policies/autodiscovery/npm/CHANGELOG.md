@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.13.0
+
+* Add GitHub search support
+
 ## 0.12.1
 
 * Remove space from GitHub action label definition
@@ -57,4 +61,3 @@
 ## 0.1.0
 
 * init policy
-
