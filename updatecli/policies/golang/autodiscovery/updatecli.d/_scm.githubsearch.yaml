@@ -1,0 +1,38 @@
+# {{ if and .scm.enabled ( eq .scm.kind "githubsearch" ) }}
+# {{ $GitHubUser := env ""}}
+# {{ $GitHubUsername := env "GITHUB_ACTOR"}}
+# {{ $GitHubPAT := env .scm.env_token }}
+actions:
+    default:
+        kind: "github/pullrequest"
+        spec:
+            automerge: {{.automerge}}
+            # {{ if .labels }}
+            labels:
+                # {{ range .labels }}
+                - '{{ . }}'
+                # {{ end }}
+            # {{ end }}
+            mergemethod: "squash"
+        scmid: "default"
+scms:
+    default:
+        kind: "githubsearch"
+        spec:
+            # Priority set to the environment variable
+            user: '{{ default $GitHubUser .scm.user }}'
+            # {{ if .scm.email }}
+            email: '{{ .scm.email }}'
+            # {{ end }}
+            search: '{{ .scm.search }}'
+            limit: {{ default .scm.limit 3 }}
+            token: '{{ default $GitHubPAT .scm.token }}'
+            username: '{{ default $GitHubUsername  .scm.username }}'
+            branch: '{{ .scm.branch }}'
+            # {{ if .scm.commitusingapi }}
+            commitusingapi: {{.scm.commitusingapi}}
+            # {{ end }}
+            # {{ if .scm.url }}
+            url: '{{ .scm.url }}'
+            # {{ end }}
+# {{ end }}
