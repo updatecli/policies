@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+
+* Add githubsearch scm support
+
 ## 0.4.0
 
 * Configure Pull Request GitHub labels using `labels`.
