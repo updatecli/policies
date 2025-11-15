@@ -5,7 +5,7 @@ url: "https://github.com/updatecli/policies/"
 documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/terragrunt/README.md"
 changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/terragrunt/CHANGELOG.md"
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/terragrunt/"
-version: 0.4.1
+version: 0.5.0
 vendor: Updatecli Project
 
 licenses:
