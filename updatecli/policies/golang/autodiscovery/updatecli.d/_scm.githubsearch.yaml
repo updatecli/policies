@@ -1,5 +1,5 @@
 # {{ if and .scm.enabled ( eq .scm.kind "githubsearch" ) }}
-# {{ $GitHubUser := env ""}}
+# {{ $GitHubUser := env "GITHUB_ACTOR"}}
 # {{ $GitHubUsername := env "GITHUB_ACTOR"}}
 # {{ $GitHubPAT := env .scm.env_token }}
 actions:
