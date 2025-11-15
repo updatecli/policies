@@ -25,7 +25,7 @@ scms:
             email: '{{ .scm.email }}'
             # {{ end }}
             search: '{{ .scm.search }}'
-            limit: {{ default .scm.limit 3 }}
+            limit: {{ default 3 .scm.limit }}
             token: '{{ default $GitHubPAT .scm.token }}'
             username: '{{ default $GitHubUsername  .scm.username }}'
             branch: '{{ .scm.branch }}'
