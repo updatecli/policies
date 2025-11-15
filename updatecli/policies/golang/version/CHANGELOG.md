@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.0
+
+* Add githubsearch scm support
+
 ## 0.5.1
 
 * Remove space from GitHub action label definition

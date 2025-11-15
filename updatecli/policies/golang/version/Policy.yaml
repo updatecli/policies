@@ -5,7 +5,7 @@ url: "https://github.com/updatecli/policies/"
 documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/golang/version/README.md"
 changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/golang/version/CHANGELOG.md"
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/golang/version/"
-version: 0.5.1
+version: 0.6.0
 vendor: Updatecli Project
 
 licenses:
