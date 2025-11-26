@@ -1,4 +1,4 @@
-name: 'deps(golang): Bump all dependencies'
+name: "deps(golang): Bump all dependencies"
 pipelineid: golang/autodiscovery/all
 automerge: false
 labels:
@@ -17,9 +17,9 @@ scm:
   ## env_token defines the environment variable to use to retrieve the token
   env_token: GITHUB_TOKEN
   # username: "updatecli-bot"
-  # branch: main
+  branch: main
   ## commitusingapi defines if the commit should be done using the GitHub API
-  ## Only compatible with GitHub 
+  ## Only compatible with GitHub
   # commitusingapi: false
 
 # spec:

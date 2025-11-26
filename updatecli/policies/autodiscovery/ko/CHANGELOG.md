@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0
+
+* Add support for githubsearch scm
+
 ## 0.7.1
 
 * Remove space from GitHub action label definition
@@ -23,7 +27,7 @@
 * Allow to set commit with GitHub GraphQL API using `scm.commitusingapi`
 
 ## 0.3.0
- 
+
 * By default, undefined pipelineid
 
 ## 0.2.0

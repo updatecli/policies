@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.0
+
+* Add GitHub search scm support
+
 ## 0.11.1
 
 * Remove space from GitHub action label definition
@@ -35,7 +39,7 @@
 
 * Set action title based on groupby parameter
 
-## 0.4.0 
+## 0.4.0
 
 * Swap default order for scm configuration to use environment variable if nothing else is defined
 
