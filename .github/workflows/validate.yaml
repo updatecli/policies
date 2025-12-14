@@ -10,9 +10,9 @@ jobs:
       contents: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Setup updatecli
-        uses: updatecli/updatecli-action@0f3a07c63831e51243e116ae638192e84e9379ff # v2
+        uses: updatecli/updatecli-action@a93efa6052d12f3d77728350fe500c0ed74c169c # v2
       - name: Setup releasepost
         uses: updatecli/releasepost-action@864390bddae97db06ee881ab4a08d159b4464643 # v0.5.0
       - name: Validate
