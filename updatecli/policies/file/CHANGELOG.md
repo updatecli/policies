@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.1
+
+* Remove default source default from partial file
+
 ## 0.3.0
 
 * Add githubsearch scm support
