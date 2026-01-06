@@ -35,4 +35,9 @@ scms:
             # {{ if .scm.url }}
             url: '{{ .scm.url }}'
             # {{ end }}
+    source:
+        kind: git
+        spec:
+            url: "{{ .src.url }}"
+            branch: "{{ .src.branch }}"
 # {{ end }}

@@ -1,8 +1,0 @@
-# {{ if not .scm.enabled }}
-scms:
-    source:
-        kind: git
-        spec:
-            url: "{{ .src.url }}"
-            branch: "{{ .src.branch }}"
-# {{ end }}
