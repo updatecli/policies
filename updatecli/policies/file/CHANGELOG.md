@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.3.2
+
+* Fix conditional githubsearch limit
+* Fix target scmid
+
 ## 0.3.1
 
 * Remove default source default from partial file
@@ -14,12 +19,12 @@
 
 ## 0.2.0
 
-  * Allow to use the policy without pushing to a git repository
+* Allow to use the policy without pushing to a git repository
 
 ## 0.1.1
 
-  * Allow commit message customization
+* Allow commit message customization
 
 ## 0.1.0
 
-  * Initial release
+* Initial release

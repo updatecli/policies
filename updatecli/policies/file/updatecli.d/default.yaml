@@ -8,26 +8,28 @@ pipelineid: '{{ .pipelineid }}'
 
 # sources defines where to find the information.
 sources:
-      # {{ range $index, $file := .files }}
-      '{{$index}}':
-            name: 'Get {{$file.src }} from source repository'
-            scmid: 'source'
-            kind: 'file'
-            spec:
-                  file: '{{ $file.src }}'
-      # {{ end }}
+    # {{ range $index, $file := .files }}
+    '{{$index}}':
+        name: 'Get {{$file.src }} from source repository'
+        scmid: 'source'
+        kind: 'file'
+        spec:
+            file: '{{ $file.src }}'
+    # {{ end }}
 
 ## targets defines where to apply the changes.
 targets:
-      # {{ range $index, $file := .files }}
-      '{{ $index }}':
-            name: 'sync {{ $file.dst }} file'
-            kind: 'file'
-            # {{ if .scm.enabled }}
-            scmid: 'default'
-            # {{ end }}
-            sourceid: '{{ $index }}'
-            spec:
-                  file: '{{ $file.dst }}'
-                  forcecreate: true
-      # {{ end }}
+    # {{ $scmEnabled := .scm.enabled }}
+    # {{ range $index, $file := .files }}
+    '{{ $index }}':
+        name: 'sync {{ $file.dst }} file'
+        kind: 'file'
+        sourceid: '{{ $index }}'
+        # {{ .source.url }}
+        # {{ if $scmEnabled }}
+        scmid: 'default'
+        # {{ end }}
+        spec:
+            file: '{{ $file.dst }}'
+            forcecreate: true
+    # {{ end }}
