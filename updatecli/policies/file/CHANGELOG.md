@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.3.3
+
+* Fix pr title for githubsearch scm
+* Fix pr automerge for githubsearch scm
+
 ## 0.3.2
 
 * Fix conditional githubsearch limit

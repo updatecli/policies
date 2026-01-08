@@ -5,13 +5,16 @@
 actions:
     default:
         kind: "github/pullrequest"
+        #{{- if .pr.title }}
+        title: "{{ .pr.title }}"
+        #{{- end }}
         spec:
-            automerge: {{.automerge}}
+            automerge: {{ .pr.automerge }}
             # {{ if .labels }}
             labels:
-                # {{ range .labels }}
-                - '{{ . }}'
-                # {{ end }}
+              # {{ range .labels }}
+              - "{{ . }}"
+              # {{ end }}
             # {{ end }}
             mergemethod: "squash"
         scmid: "default"
@@ -20,22 +23,22 @@ scms:
         kind: "githubsearch"
         spec:
             # Priority set to the environment variable
-            user: '{{ default $GitHubUser .scm.user }}'
+            user: "{{ default $GitHubUser .scm.user }}"
             # {{ if .scm.email }}
-            email: '{{ .scm.email }}'
+            email: "{{ .scm.email }}"
             # {{ end }}
-            search: '{{ .scm.search }}'
+            search: "{{ .scm.search }}"
             # {{- if .scm.limit }}
             limit: {{ .scm.limit }}
             # {{- end }}
-            token: '{{ default $GitHubPAT .scm.token }}'
-            username: '{{ default $GitHubUsername  .scm.username }}'
-            branch: '{{ .scm.branch }}'
+            token: "{{ default $GitHubPAT .scm.token }}"
+            username: "{{ default $GitHubUsername  .scm.username }}"
+            branch: "{{ .scm.branch }}"
             # {{ if .scm.commitusingapi }}
-            commitusingapi: {{.scm.commitusingapi}}
+            commitusingapi: {{ .scm.commitusingapi }}
             # {{ end }}
             # {{ if .scm.url }}
-            url: '{{ .scm.url }}'
+            url: "{{ .scm.url }}"
             # {{ end }}
     source:
         kind: git
