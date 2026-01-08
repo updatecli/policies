@@ -16,7 +16,7 @@ documentation: "https://github.com/updatecli/policies/tree/main/updatecli/polici
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/file/"
 
 # Version is the policy version.
-version: 0.3.2
+version: 0.3.3
 
 # Vendor is the policy vendor
 vendor: Updatecli project
