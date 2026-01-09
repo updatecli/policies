@@ -15,7 +15,7 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8" # v6.0.1
       - name: "Setup updatecli"
-        uses: "updatecli/updatecli-action@c4b8329487d4445ac14af779deeeb3ba9ecfe48d" # v2
+        uses: "updatecli/updatecli-action@48f4297684af36adb8e49bee97432e8a0067b429" # v2
       - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
         id: generate_token
         if: github.ref == 'refs/heads/main'
