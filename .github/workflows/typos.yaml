@@ -11,4 +11,4 @@ jobs:
       - name: Checkout Actions Repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Check spelling of file.txt
-        uses: crate-ci/typos@825f9fa4c0281e0642046d629b69612264a0a1d1 # renovate/stable-1.x
+        uses: crate-ci/typos@1a688e5521066b7df03fa95e0d20e6308f347f3d # master
