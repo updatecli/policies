@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - main
+  schedule:
+    # Run daily at 03:00
+    - cron: "0 3 * * *"
 jobs:
   updatecli:
     runs-on: ubuntu-latest
