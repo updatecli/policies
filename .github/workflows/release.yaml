@@ -11,9 +11,9 @@ jobs:
       packages: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Setup updatecli
-        uses: updatecli/updatecli-action@a93efa6052d12f3d77728350fe500c0ed74c169c # v2
+        uses: updatecli/updatecli-action@630d80700a9594473b334d21603fcc79105d8ce3 # v2
       - name: Log in to the Container registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
