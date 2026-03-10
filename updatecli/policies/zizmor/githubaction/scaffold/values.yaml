@@ -1,0 +1,50 @@
+# NOTE: This file is a scaffold template for default values.
+# These values are used by updatecli when rendering the policy manifest.
+# Edit to match your repository or provide overrides at runtime with --values.
+
+scm:
+  # Enable or disable SCM integration for this policy.
+  # When disabled, Updatecli will not open PRs or push changes.
+  enabled: false
+
+  # SCM provider kind (supported: github, githubsearch).
+  # Use lowercase values.
+  kind: github
+
+  # Token lookup: by default Updatecli reads the token from the named
+  # environment variable. Set this to the env var name (e.g. GITHUB_TOKEN).
+  # Alternatively, you may set `token` below to provide a literal token
+  # (not recommended for checked-in files).
+  env_token: GITHUB_TOKEN
+
+  # Optional: provide a literal token here (overrides env_token). Avoid committing secrets.
+  # token: "ghp_xxx"
+
+  # Repository settings (recommended to fill for CI / automation):
+  # owner: my-org-or-user
+  # repository: my-repo
+  # username: updatecli-bot
+  # user: updatecli-bot
+  # email: updatecli-bot@example.com
+  # branch: main
+
+# Example: to disable SCM during local dry-runs, set `scm.enabled: false`.
+#
+
+pipelineid: scaffold_zizmor
+automerge: false
+labels:
+  - "chore"
+
+description: |+
+  This PR was automatically created by Updatecli to set up a Zizmor GitHub Action workflow for security scanning.  
+
+  Zizmor is a static analysis tool that identifies misconfigurations in GitHub Actions workflows. This workflow will only be created if no existing Zizmor configurations were detected.
+  Updatecli is a tool to automate configuration update across git repositories. It can be used to manage and maintain your infrastructure as code, including GitHub Actions workflows.
+
+  For more information:  
+
+    * [Zizmor GitHub Action](https://github.com/zizmorcore/zizmor-action)  
+
+    * [Updatecli Policies](https://github.com/updatecli/policies)
+

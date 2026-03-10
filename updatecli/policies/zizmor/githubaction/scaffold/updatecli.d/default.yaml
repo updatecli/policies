@@ -1,0 +1,100 @@
+name: Scaffold Zizmor GitHub action workflow
+pipelineid: "{{ .pipelineid }}"
+
+sources:
+  zizmor-action:
+    kind: githubrelease
+    name: Get latest zizmor github action
+    spec:
+      owner: zizmorcore
+      repository: zizmor-action
+      versionfilter:
+        kind: semver
+
+  zizmor-action-digest:
+    dependson:
+      - zizmor-action
+    name: Get latest GitHub Release digest for zizmorcore/zizmor-action
+    kind: githubrelease
+    spec:
+      key: taghash
+      owner: zizmorcore
+      repository: zizmor-action
+      versionfilter:
+        kind: regex
+        pattern: '{{ source "zizmor-action" }}'
+
+  checkout-action:
+    name: Get latest checkout github action
+    kind: githubrelease
+    spec:
+      owner: actions
+      repository: checkout
+      versionfilter:
+        kind: semver
+
+  checkout-action-digest:
+    dependson:
+      - checkout-action
+    name: Get latest GitHub Release digest for actions/checkout
+    kind: githubrelease
+    spec:
+      key: taghash
+      owner: actions
+      repository: checkout
+      versionfilter:
+        kind: semver
+        pattern: '{{ source "checkout-action" }}'
+
+conditions:
+  # Check that we have GitHub action workflows configured, otherwise it's useless to install Zizmor
+  isAnyGHAWorkflows:
+    name: Check if GitHub action workflows are defined
+    kind: file
+    disablesourceinput: true
+    # {{ if .scm.enabled }}
+    scmid: default
+    # {{ end }}
+    spec:
+      files:
+        - ".github/workflows/*.yaml"
+        - ".github/workflows/*.yml"
+      # We don't care about the content as long as the file exists
+      # So the regex is very broad on purpose.
+      matchpattern: ".*"
+      searchpattern: true
+
+  # Check if Zizmor is already being used, to avoid duplicated installations.
+  isZizmorDetected:
+    name: Check if Zizmor is already being used
+    kind: file
+    failwhen: true
+    disablesourceinput: true
+    # {{ if .scm.enabled }}
+    scmid: default
+    # {{ end }}
+    spec:
+      files:
+        - ".github/workflows/*.yaml"
+        - ".github/workflows/*.yml"
+      matchpattern: "uses: zizmorcore/zizmor-action"
+      searchpattern: true
+
+targets:
+  workflow:
+    name: Scaffold Zizmor action
+    kind: file
+    disablesourceinput: true
+    # {{ if .scm.enabled }}
+    scmid: default
+    # {{ end }}
+    spec:
+      file: ".github/workflows/zizmor.yaml"
+      forcecreate: true
+      #template: https://raw.githubusercontent.com/updatecli/updatecli/refs/heads/main/.github/workflows/zizmor.yaml
+      template: "assets/gha_security_analysis.yaml"
+      templatedata:
+        checkoutActionVersion: '{{ source "checkout-action" }}'
+        checkoutActionDigest: '{{ source "checkout-action-digest" }}'
+        zizmorActionVersion: '{{ source "zizmor-action" }}'
+        zizmorActionDigest: '{{ source "zizmor-action-digest" }}'
