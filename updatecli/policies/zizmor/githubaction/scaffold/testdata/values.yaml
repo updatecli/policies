@@ -8,3 +8,4 @@ scm:
     fork:true
   branch: "^main$"
   email: me@olblak.com
+  limit: 4
