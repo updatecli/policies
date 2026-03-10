@@ -48,3 +48,6 @@ description: |+
 
     * [Updatecli Policies](https://github.com/updatecli/policies)
 
+
+gha:
+  template_path: "https://raw.githubusercontent.com/updatecli/policies/refs/heads/main/updatecli/policies/zizmor/githubaction/scaffold/assets/gha_security_analysis.yaml"

@@ -91,8 +91,7 @@ targets:
     spec:
       file: ".github/workflows/zizmor.yaml"
       forcecreate: true
-      #template: https://raw.githubusercontent.com/updatecli/updatecli/refs/heads/main/.github/workflows/zizmor.yaml
-      template: "assets/gha_security_analysis.yaml"
+      template: "{{ .gha.template_path }}"
       templatedata:
         checkoutActionVersion: '{{ source "checkout-action" }}'
         checkoutActionDigest: '{{ source "checkout-action-digest" }}'
