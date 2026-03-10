@@ -7,7 +7,7 @@ scm:
   # When disabled, Updatecli will not open PRs or push changes.
   enabled: false
 
-  # SCM provider kind (supported: github, gitlab, gitea, bitbucket, stash).
+  # SCM provider kind (supported: github, githubsearch).
   # Use lowercase values.
   kind: github
 
