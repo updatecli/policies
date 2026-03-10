@@ -37,4 +37,4 @@ licenses:
 
 # Description: brief human-readable summary. Use a multi-line block.
 description: |
-  Updatecli policy to scaffold a zizmor github action workflow.
+  Updatecli policy to scaffold a zizmor GitHub Action workflow.

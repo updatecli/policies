@@ -57,7 +57,7 @@ pipelineid: "zizmor-scaffold"
 ```
 
 Tips: you can adjust the `search` field to target specific repositories, branches, or include forks as needed. More information
-on [Github](https://github.com/search/advanced)
+on [GitHub](https://github.com/search/advanced)
 
 ## QUICK USAGE
 
