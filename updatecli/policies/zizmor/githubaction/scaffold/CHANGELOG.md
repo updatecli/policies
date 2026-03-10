@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.2.2
+
+* Use kindIs to check githubsearch limit
+
 ## 0.2.1
 
 * Fix limit param
