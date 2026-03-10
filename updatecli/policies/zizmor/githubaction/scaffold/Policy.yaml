@@ -26,7 +26,7 @@ documentation: "https://github.com/updatecli/policies/tree/main/updatecli/polici
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/zizmor/githubaction/scaffold/"
 
 # Version: policy version (prefer semver, e.g. 1.0.0). Recommended.
-version: 0.2.0
+version: 0.2.1
 
 # Vendor: organization or maintainer (optional).
 vendor: Updatecli Project
