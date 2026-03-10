@@ -17,7 +17,7 @@ The policy will only create a new Zizmor workflow if:
 
 This policy implements a three-step process:
 
-1. **Discovery**: Checks if your repository has existing GitHub Actions workflows (`.github/workflows/*.yaml` or `.*.yml`)
+1. **Discovery**: Checks if your repository has existing GitHub Actions workflows (`.github/workflows/*.yaml` or `.github/workflows/*.yml`)
 2. **Validation**: Verifies that Zizmor is not already configured to avoid duplicates
 3. **Deployment**: Creates `.github/workflows/zizmor.yaml` with the latest Zizmor action version and compatible checkout action
 
