@@ -12,17 +12,17 @@ sources:
         kind: semver
 
   zizmor-action-digest:
-      dependson:
-          - zizmor-action
-      name: Get latest GitHub Release digest for zizmorcore/zizmor-action
-      kind: githubrelease
-      spec:
-          key: taghash
-          owner: zizmorcore
-          repository: zizmor-action
-          versionfilter:
-              kind: regex
-              pattern: '{{ source "zizmor-action" }}'
+    dependson:
+      - zizmor-action
+    name: Get latest GitHub Release digest for zizmorcore/zizmor-action
+    kind: githubrelease
+    spec:
+      key: taghash
+      owner: zizmorcore
+      repository: zizmor-action
+      versionfilter:
+        kind: regex
+        pattern: '{{ source "zizmor-action" }}'
 
   checkout-action:
     name: Get latest checkout github action
@@ -35,7 +35,7 @@ sources:
 
   checkout-action-digest:
     dependson:
-        - checkout-action
+      - checkout-action
     name: Get latest GitHub Release digest for actions/checkout
     kind: githubrelease
     spec:
@@ -64,7 +64,7 @@ conditions:
       matchpattern: ".*"
       searchpattern: true
 
-  # Check if Zizmore is already being used, to avoid duplicated installations.
+  # Check if Zizmor is already being used, to avoid duplicated installations.
   isZizmorDetected:
     name: Check if Zizmor is already being used
     kind: file
