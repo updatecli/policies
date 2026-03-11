@@ -17,9 +17,9 @@ jobs:
       actions: read # only needed for private or internal repos
     steps:
       - name: Checkout repository
-        uses: actions/checkout@{{ .checkoutActionDigest }} #{{ .checkoutActionVersion }}
+        uses: actions/checkout@{{ .checkoutActionDigest }} # {{ .checkoutActionVersion }}
         with:
           persist-credentials: false
 
       - name: Run zizmor 🌈
-        uses: zizmorcore/zizmor-action@{{ .zizmorActionDigest }} #{{ .zizmorActionVersion }}
+        uses: zizmorcore/zizmor-action@{{ .zizmorActionDigest }} # {{ .zizmorActionVersion }}
