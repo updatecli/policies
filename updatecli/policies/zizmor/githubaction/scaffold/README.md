@@ -11,14 +11,11 @@ This policy scaffolds a Zizmor GitHub Action workflow for security scanning in y
 The policy will only create a new Zizmor workflow if:
 
 - Your repository has existing GitHub Actions workflows
-- Zizmor is not already configured in your workflows
 
 ## HOW IT WORKS
 
 This policy implements a three-step process:
 
-1. **Discovery**: Checks if your repository has existing GitHub Actions workflows (`.github/workflows/*.yaml` or `.github/workflows/*.yml`)
-2. **Validation**: Verifies that Zizmor is not already configured to avoid duplicates
 3. **Deployment**: Creates `.github/workflows/zizmor.yaml` with the latest Zizmor action version and compatible checkout action
 
 The workflow runs on all pull requests and provides security analysis results directly in your PR comments.
