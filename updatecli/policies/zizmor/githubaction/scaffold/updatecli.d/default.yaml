@@ -46,44 +46,14 @@ sources:
         kind: semver
         pattern: '{{ source "checkout-action" }}'
 
-conditions:
-  # Check that we have GitHub action workflows configured, otherwise it's useless to install Zizmor
-  isAnyGHAWorkflows:
-    name: Check if GitHub action workflows are defined
-    kind: file
-    disablesourceinput: true
-    # {{ if .scm.enabled }}
-    scmid: default
-    # {{ end }}
-    spec:
-      files:
-        - ".github/workflows/*.yaml"
-        - ".github/workflows/*.yml"
-      # We don't care about the content as long as the file exists
-      # So the regex is very broad on purpose.
-      matchpattern: ".*"
-      searchpattern: true
-
-  # Check if Zizmor is already being used, to avoid duplicated installations.
-  isZizmorDetected:
-    name: Check if Zizmor is already being used
-    kind: file
-    failwhen: true
-    disablesourceinput: true
-    # {{ if .scm.enabled }}
-    scmid: default
-    # {{ end }}
-    spec:
-      files:
-        - ".github/workflows/*.yaml"
-        - ".github/workflows/*.yml"
-      matchpattern: "uses: zizmorcore/zizmor-action"
-      searchpattern: true
-
 targets:
-  workflow:
+  zizmor.yaml:
     name: Scaffold Zizmor action
     kind: file
+    dependson:
+      - condition#isAnyGHAWorkflowsYML:or
+      - condition#isAnyGHAWorkflowsYAML:or
+    disableconditions: true
     disablesourceinput: true
     # {{ if .scm.enabled }}
     scmid: default

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.0
+
+* Remove broken conditions
+
 ## 0.2.2
 
 * Use kindIs to check githubsearch limit
