@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.2
+
+* Fix space between comment and gha action version
+
 ## 0.3.1
 
 * Fix dependson
