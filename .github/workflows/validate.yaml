@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Setup updatecli
-        uses: updatecli/updatecli-action@ae5fc18155276c10e38ea3b9d1ca42903dc6efcf # v2
+        uses: updatecli/updatecli-action@da2c9e0bc4f2de16dfbd5884d87059cc62ce9000 # v2
       - name: Setup releasepost
         uses: updatecli/releasepost-action@864390bddae97db06ee881ab4a08d159b4464643 # v0.5.0
       - name: Validate
