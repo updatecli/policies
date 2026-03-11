@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.1
+
+* Fix dependson
+
 ## 0.3.0
 
 * Remove broken conditions

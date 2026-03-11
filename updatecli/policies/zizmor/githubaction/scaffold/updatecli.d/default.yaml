@@ -50,10 +50,6 @@ targets:
   zizmor.yaml:
     name: Scaffold Zizmor action
     kind: file
-    dependson:
-      - condition#isAnyGHAWorkflowsYML:or
-      - condition#isAnyGHAWorkflowsYAML:or
-    disableconditions: true
     disablesourceinput: true
     # {{ if .scm.enabled }}
     scmid: default
