@@ -55,7 +55,7 @@ scms:
       commitmessage:
         type: "{{ .scm.commitmessage.type }}"
         scope: "{{ .scm.commitmessage.scope }}"
-        # {{ if .scm.commitmessage.footers}}
+        # {{ if .scm.commitmessage.footers }}
         footers: "{{ .scm.commitmessage.footers }}"
         # {{ end }}
 # {{ end }}
