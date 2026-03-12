@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
-      #{{ if .gha.private }}
+      #{{ if .private }}
       contents: read # only needed for private or internal repos
       actions: read # only needed for private or internal repos
       #{{ end }}
@@ -28,4 +28,4 @@ jobs:
         with:
           # intentionally not scanning the entire repository,
           inputs: ./.github/
-          advanced-security: {{ .gha.advanced-security }}
+          advanced-security: {{ .advancedSecurity }}

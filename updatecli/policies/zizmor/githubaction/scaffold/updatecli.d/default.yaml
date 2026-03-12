@@ -63,3 +63,5 @@ targets:
         checkoutActionDigest: '{{ source "checkout-action-digest" }}'
         zizmorActionVersion: '{{ source "zizmor-action" }}'
         zizmorActionDigest: '{{ source "zizmor-action-digest" }}'
+        advancedSecurity: "{{ .gha.advanced_security }}"
+        private: "{{ .gha.private }}"
