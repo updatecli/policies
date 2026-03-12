@@ -6,6 +6,7 @@ actions:
   default:
     kind: "github/pullrequest"
     spec:
+      title: 'install Zizmor gha action {{ source "zizmor-action" }}'
       automerge: {{ .automerge }}
       # {{ if .labels }}
       labels:

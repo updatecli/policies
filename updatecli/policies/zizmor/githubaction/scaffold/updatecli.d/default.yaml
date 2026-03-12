@@ -1,4 +1,4 @@
-name: Scaffold Zizmor GitHub action workflow
+name: Install Zizmor GitHub action workflow
 pipelineid: "{{ .pipelineid }}"
 
 sources:

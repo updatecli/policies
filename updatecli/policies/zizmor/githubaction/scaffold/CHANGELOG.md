@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.5.0
+
+* Update pullrequest title
+* Only scan .github directory
+* Parameterize the advanced security option
+
 ## 0.4.0
 
 * Allow to use shallow clone with the parameter depth
