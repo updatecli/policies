@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.2
+
+* Fix boolean in template
+
 ## 0.5.1
 
 * Fix advanced security template variable
