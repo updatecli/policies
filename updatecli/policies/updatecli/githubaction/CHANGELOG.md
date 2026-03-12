@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0
+
+* Specify GitHub action digest
+
 ## 0.7.0
 
 * Add githubsearch scm support
