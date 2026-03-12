@@ -13,7 +13,7 @@ actions:
     kind: "github/pullrequest"
     spec:
       #{{ if .automerge }}
-      automerge: {{.automerge}}
+      automerge: { { .automerge } }
       # {{ end }}
       # {{ if .labels }}
       labels:
@@ -23,7 +23,7 @@ actions:
       # {{ end }}
       mergemethod: "squash"
       description: "{{ .description }}"
-      parent: {{ .parent }}
+      parent: { { .parent } }
     scmid: "default"
 
 scms:
@@ -44,13 +44,13 @@ scms:
       branch: "{{ .scm.branch }}"
       #{{ end }}
       # {{ if .scm.commitusingapi }}
-      commitusingapi: {{.scm.commitusingapi}}
+      commitusingapi: { { .scm.commitusingapi } }
       # {{ end }}
       # {{ if .scm.url }}
       url: "{{ .scm.url }}"
       # {{ end }}
       # {{ if .scm.depth }}
-      depth: {{ .scm.depth }}
+      depth: { { .scm.depth } }
       # {{ end }}
       commitmessage:
         type: "{{ .scm.commitmessage.type }}"
