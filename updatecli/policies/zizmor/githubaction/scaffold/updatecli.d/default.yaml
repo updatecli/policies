@@ -47,8 +47,8 @@ sources:
         pattern: '{{ source "checkout-action" }}'
 
 targets:
-  zizmor.yaml:
-    name: Scaffold Zizmor action
+  workflow:
+    name: 'install Zizmor gha action {{ source "zizmor-action" }}'
     kind: file
     disablesourceinput: true
     # {{ if .scm.enabled }}
