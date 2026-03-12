@@ -53,15 +53,17 @@ labels:
 description: |+
   This PR was automatically created by Updatecli to set up a Zizmor GitHub Action workflow for security scanning.  
 
-  Zizmor is a static analysis tool that identifies misconfigurations in GitHub Actions workflows. This workflow will only be created if no existing Zizmor configurations were detected.
-  Updatecli is a tool to automate configuration update across git repositories. It can be used to manage and maintain your infrastructure as code, including GitHub Actions workflows.
+  Zizmor is a static analysis tool that identifies misconfigurations in GitHub Actions workflows.  
+  Updatecli is a tool to automate configuration update across git repositories.  
 
   For more information:  
 
     * [Zizmor GitHub Action](https://github.com/zizmorcore/zizmor-action)  
 
-    * [Updatecli Policies](https://github.com/updatecli/policies)
+    * [Updatecli Policies](https://github.com/updatecli/policies/tree/main/updatecli/policies/zizmor/githubaction/scaffold)  
 
 
 gha:
   template_path: "https://raw.githubusercontent.com/updatecli/policies/refs/heads/main/updatecli/policies/zizmor/githubaction/scaffold/assets/gha_security_analysis.yaml"
+  private: true
+  advanced-security: true

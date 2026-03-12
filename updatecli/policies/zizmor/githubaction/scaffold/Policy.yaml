@@ -1,17 +1,6 @@
 # NOTE:
 # Policy.yaml: metadata for an Updatecli policy.
 #
-# Field guide:
-# - `authors` (optional): list of people or teams responsible for the policy.
-#   Example: ["Alice Example", "acme-team"]
-# - `url` (optional): canonical web page for the policy.
-# - `documentation` (optional): link to extended documentation or usage examples.
-# - `source` (optional): VCS or repository URL where the policy source is hosted.
-# - `version` (recommended): policy version (prefer semantic versioning, e.g. 1.0.0).
-# - `vendor` (optional): organization or maintainer name.
-# - `licenses` (recommended): list of license identifiers (SPDX preferred).
-# - `description` (recommended): short multi-line summary. Use a `|` block.
-
 # Authors: list of people or teams responsible for this policy (optional).
 authors:
   - Olivier Vernin <me@olblak.com>
@@ -26,7 +15,7 @@ documentation: "https://github.com/updatecli/policies/tree/main/updatecli/polici
 source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/zizmor/githubaction/scaffold/"
 
 # Version: policy version (prefer semver, e.g. 1.0.0). Recommended.
-version: 0.4.0
+version: 0.5.0
 
 # Vendor: organization or maintainer (optional).
 vendor: Updatecli Project

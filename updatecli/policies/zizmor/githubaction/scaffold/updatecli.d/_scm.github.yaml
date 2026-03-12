@@ -12,8 +12,9 @@ actions:
   default:
     kind: "github/pullrequest"
     spec:
+      title: 'install Zizmor gha action {{ source "zizmor-action" }}'
       #{{ if .automerge }}
-      automerge: {{.automerge}}
+      automerge: {{ .automerge }}
       # {{ end }}
       # {{ if .labels }}
       labels:
@@ -44,7 +45,7 @@ scms:
       branch: "{{ .scm.branch }}"
       #{{ end }}
       # {{ if .scm.commitusingapi }}
-      commitusingapi: {{.scm.commitusingapi}}
+      commitusingapi: {{ .scm.commitusingapi }}
       # {{ end }}
       # {{ if .scm.url }}
       url: "{{ .scm.url }}"

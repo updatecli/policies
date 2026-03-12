@@ -13,8 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
+      #{{ if .gha.private }}
       contents: read # only needed for private or internal repos
       actions: read # only needed for private or internal repos
+      #{{ end }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@{{ .checkoutActionDigest }} # {{ .checkoutActionVersion }}
@@ -23,3 +25,7 @@ jobs:
 
       - name: Run zizmor 🌈
         uses: zizmorcore/zizmor-action@{{ .zizmorActionDigest }} # {{ .zizmorActionVersion }}
+        with:
+          # intentionally not scanning the entire repository,
+          inputs: ./.github/
+          advanced-security: {{ .gha.advanced-security }}
