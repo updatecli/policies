@@ -37,7 +37,7 @@ scm:
   commitmessage:
     type: "chore"
     scope: "zizmor"
-    #footers: "Signed-off-by: updateclibot <bot@updatecli.io"
+    #footers: "Signed-off-by: updateclibot <bot@updatecli.io>"
 # Example: to disable SCM during local dry-runs, set `scm.enabled: false`.
 #
 
