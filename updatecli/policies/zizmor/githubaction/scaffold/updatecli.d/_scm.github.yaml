@@ -23,6 +23,7 @@ actions:
       # {{ end }}
       mergemethod: "squash"
       description: "{{ .description }}"
+      parent: {{ .parent }}
     scmid: "default"
 
 scms:
@@ -48,5 +49,13 @@ scms:
       # {{ if .scm.url }}
       url: "{{ .scm.url }}"
       # {{ end }}
+      # {{ if .scm.depth }}
+      depth: {{ .scm.depth }}
+      # {{ end }}
+      commitmessage:
+        type: "{{ .scm.commitmessage.type }}"
+        scope: "{{ .scm.commitmessage.scope }}"
+        # {{ if .scm.commitmessage.footers}}
+        footers: "{{ .scm.commitmessage.footers }}"
+        # {{ end }}
 # {{ end }}
-

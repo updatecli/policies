@@ -28,12 +28,25 @@ scm:
   # email: updatecli-bot@example.com
   # branch: main
 
+  commitusingapi: true
+
   limit: 3
+  # depth controls how many commits are fetched when Updatecli interacts with the SCM. A lower depth can speed up operations but may limit the ability to access historical commit.
+  # Adjust based on your needs. Default shallow clone disabled.
+  depth: 0
+  commitmessage:
+    type: "chore"
+    scope: "zizmor"
+    #footers: "Signed-off-by: updateclibot <bot@updatecli.io"
 # Example: to disable SCM during local dry-runs, set `scm.enabled: false`.
 #
 
 pipelineid: scaffold_zizmor
 automerge: false
+# Parent is a boolean that controls whether the generated PR should target the parent of the repository or the repository itself.
+# This is useful when the repository is a fork and you want to target the upstream repository instead of the fork.
+# Default is false, meaning the PR will target the repository itself.
+parent: false
 labels:
   - "chore"
 

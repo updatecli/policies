@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.4.0
+
+* Allow to use shallow clone with the parameter depth
+* Allow to customize the commit message
+* Allow to target parent repository
+
 ## 0.3.2
 
 * Fix space between comment and gha action version
