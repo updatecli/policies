@@ -64,6 +64,7 @@ description: |+
 
 
 gha:
-  template_path: "https://raw.githubusercontent.com/updatecli/policies/refs/heads/main/updatecli/policies/zizmor/githubaction/scaffold/assets/gha_security_analysis.yaml"
-  private: true
+  template_path: "assets/gha_security_analysis.yaml"
+  #template_path: "https://raw.githubusercontent.com/updatecli/policies/refs/heads/main/updatecli/policies/zizmor/githubaction/scaffold/assets/gha_security_analysis.yaml"
+  private: false
   advanced_security: true

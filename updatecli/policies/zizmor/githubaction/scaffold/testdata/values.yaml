@@ -2,10 +2,12 @@ scm:
   enabled: true
   kind: githubsearch
   search: |
-    repo:olblak/updatecli
-    repo:olblak/udash-front
     repo:olblak/.github
     fork:true
   branch: "^main$"
+  #kind: github
+  #owner: olblak
+  #repository: .github
+  #branch: main
   email: me@olblak.com
-  limit: 4
+  limit: 1

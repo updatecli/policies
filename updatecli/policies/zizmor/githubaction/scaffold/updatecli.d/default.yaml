@@ -64,4 +64,4 @@ targets:
         zizmorActionVersion: '{{ source "zizmor-action" }}'
         zizmorActionDigest: '{{ source "zizmor-action-digest" }}'
         advancedSecurity: "{{ .gha.advanced_security }}"
-        private: "{{ .gha.private }}"
+        private: {{ .gha.private }}
