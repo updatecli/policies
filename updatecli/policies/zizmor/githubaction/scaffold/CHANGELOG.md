@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.3
+
+* Use correct asset file
+
 ## 0.5.2
 
 * Fix boolean in template
