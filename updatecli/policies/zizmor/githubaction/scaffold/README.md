@@ -16,7 +16,7 @@ The policy will only create a new Zizmor workflow if:
 
 This policy implements a three-step process:
 
-3. **Deployment**: Creates `.github/workflows/zizmor.yaml` with the latest Zizmor action version and compatible checkout action
+**Deployment**: Creates `.github/workflows/zizmor.yaml` with the latest Zizmor action version and compatible checkout action
 
 The workflow runs on all pull requests and provides security analysis results directly in your PR comments.
 
