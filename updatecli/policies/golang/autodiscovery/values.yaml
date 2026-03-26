@@ -18,9 +18,15 @@ scm:
   env_token: GITHUB_TOKEN
   # username: "updatecli-bot"
   branch: main
+  limit: 3
   ## commitusingapi defines if the commit should be done using the GitHub API
   ## Only compatible with GitHub
   # commitusingapi: false
 
 # spec:
 groupby: all
+
+pipeline:
+  labels:
+    ecosystem: "golang"
+    policy: autodiscovery
