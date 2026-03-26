@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.0
+
+* Add pipeline labels support via `pipeline.labels` and `_labels.yaml`
+* Fix `groupby` key (`autodiscovery.groupby` → `groupby`)
+* Expose `limit: 3` explicitly in `values.yaml`
+* Add `name` field to `values.yaml`
+
 ## 0.6.0
 
 * Add githubsearch scm support

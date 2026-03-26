@@ -1,13 +1,14 @@
-name: "deps: bump Rancher Fleet dependencies"
+name: '{{ .name }}'
+# {{ if .pipelineid }}
 pipelineid: '{{ .pipelineid }}'
-version: v0.103.0
+# {{ end }}
 
 autodiscovery:
-  groupby: {{ .autodiscovery.groupby }}
-#{{ if .scm.enabled }}
+  groupby: {{ .groupby }}
+  # {{ if .scm.enabled }}
   scmid: default
   actionid: default
-# {{ end }}
+  # {{ end }}
 
   crawlers:
     rancher/fleet:
