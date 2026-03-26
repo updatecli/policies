@@ -1,4 +1,4 @@
-name: 'deps(golang): Bump all dependencies'
+name: "deps(golang): Bump all dependencies"
 #pipelineid: golang/autodiscovery
 automerge: false
 labels:
@@ -18,6 +18,12 @@ scm:
   # token: "xxx"
   # username: "updatecli-bot"
   # branch: main
+  limit: 3
 
 # spec:
 groupby: all
+
+pipeline:
+  labels:
+    ecosystem: "golang"
+    policy: autodiscovery

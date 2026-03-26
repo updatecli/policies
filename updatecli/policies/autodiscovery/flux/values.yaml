@@ -19,6 +19,12 @@ scm:
   username: "updatecli-bot"
   branch: main
   # commitusingapi: false
+  limit: 3
 
 # spec:
 groupby: all
+
+pipeline:
+  labels:
+    ecosystem: "flux"
+    policy: autodiscovery

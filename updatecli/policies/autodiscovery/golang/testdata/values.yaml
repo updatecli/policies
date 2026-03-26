@@ -8,3 +8,5 @@ scm:
   branch: main
   commitusingapi: true
 
+labels:
+  environment: test

@@ -19,7 +19,13 @@ scm:
   username: "updatecli"
   branch: main
   # commitusingapi: false
+  limit: 3
 
 # spec:
 groupby: all
+
+pipeline:
+  labels:
+    ecosystem: "githubaction"
+    policy: autodiscovery
 

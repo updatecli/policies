@@ -21,7 +21,12 @@ scm:
   # token: "xxx"
   # username: "updatecli-bot"
   # branch: main
+  limit: 3
 
 # spec:
 groupby: all
 
+pipeline:
+  labels:
+    ecosystem: "javascript"
+    policy: autodiscovery

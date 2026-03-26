@@ -11,7 +11,7 @@ scm:
   kind: github
   ## env_token defines the environment variable to use to retrieve the token
   env_token: GITHUB_TOKEN
-  user: updatecli-bot
+  # user: updatecli-bot
   # email: updatecli-bot@updatecli.io
   # owner: updatecli
   # repository: "repository"
@@ -19,7 +19,13 @@ scm:
   username: "updatecli-bot"
   branch: main
   # commitusingapi: false
+  limit: 3
 
 # spec:
 groupby: all
 
+
+pipeline:
+  labels:
+    ecosystem: "rancher/fleet"
+    policy: autodiscovery
