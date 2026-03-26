@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.6.0
+
+* Add pipeline labels support via `pipeline.labels` and `_labels.yaml`
+* Fix comment spacing in `_scm.github.yaml` (`#{{` → `# {{`)
+
 ## 0.5.3
 
 * Use correct asset file
