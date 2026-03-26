@@ -32,6 +32,7 @@ pr:
 
 ## scm contains the source control management information
 scm:
+  limit: 1
   commitusingapi: true
   user: updatecli
   # email: updatecli-bot@updatecli.io
