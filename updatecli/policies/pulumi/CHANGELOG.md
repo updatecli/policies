@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0
+
+* Add support for labels
+* Fix githubsearch scm limit
+
+
 ## 0.5.0
 
 * Add githubsearch scm support

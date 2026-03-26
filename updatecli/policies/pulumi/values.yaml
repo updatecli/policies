@@ -12,3 +12,6 @@
 
 labels:
   - dependencies
+
+scm:
+  limit: 3
