@@ -1,3 +1,4 @@
+---
 name: Updatecli
 on:
   release:

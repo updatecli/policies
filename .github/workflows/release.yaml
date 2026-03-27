@@ -1,3 +1,4 @@
+---
 name: Publish Policies
 on:
   workflow_dispatch:
@@ -13,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Setup updatecli
-        uses: updatecli/updatecli-action@8be0f4fb7d411d1886e1badea37daf8a96eab433 # v2
+        uses: updatecli/updatecli-action@4b17f4ea784de29f71f85f9bc4955402ba1ae53c # v2.100.0
       - name: Log in to the Container registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
