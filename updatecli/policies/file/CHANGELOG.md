@@ -1,4 +1,8 @@
-# CHANGELOG
+# Changelog
+
+## 0.3.4
+
+* Use `kindIs "int"` to conditionally render `limit` in githubsearch SCM template, fixing broken behavior when `limit` is set to `0`
 
 ## 0.3.3
 
