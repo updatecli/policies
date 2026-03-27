@@ -19,6 +19,7 @@ scm:
   # username: "updatecli-bot"
   # branch: main
 
+  limit: 3
 versionpattern: "*"
 
 ## The Github settings is used to retrieve the latest NodeJS version

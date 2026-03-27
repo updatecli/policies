@@ -18,6 +18,8 @@ scm:
   # username: "updatecli-bot"
   # branch: main
 
+  limit: 3
+
 versionpattern: ">0.0.0-0"
 
 ## The Github settings is used to retrieve the latest NodeJS version
@@ -26,3 +28,8 @@ github:
   env_token: "GITHUB_TOKEN"
   # username: ""
   env_username: "GITHUB_ACTOR"
+
+pipeline:
+  labels:
+    ecosystem: "updatecli"
+    policy: gha

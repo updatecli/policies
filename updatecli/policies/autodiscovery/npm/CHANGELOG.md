@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.14.0
+
+* Add support  for labels
+* Fix githubsearch scm limit
+
 ## 0.13.0
 
 * Add GitHub search support

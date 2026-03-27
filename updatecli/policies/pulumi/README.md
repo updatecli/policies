@@ -1,85 +1,215 @@
-# README
+# Pulumi SDK Alignment Policy
 
-WARNING: This policy is written for demo purpose and will be relocated to a better place if needed.
+> **⚠️ Demo / Prototype**: This policy is written for demonstration purposes and may be relocated or refactored.
 
-## DESCRIPTION
+Align the `github.com/pulumi/pulumi/pkg/v3` and `github.com/pulumi/pulumi/sdk/v3` Go module versions in a Pulumi provider with the versions used by `pulumi-terraform-bridge`.
 
-Bump Pulumi golang packages to align with versions defined in github.com/pulumi/pulumi-terraform-bridge
+## Overview
 
-Pulumi can "bridge" TF providers. In this setup, the Pulumi provider uses this Go module:
+This policy runs **two** Updatecli pipelines:
 
-github.com/pulumi/pulumi-terraform-bridge
+1. **`pulumi-pkg.yaml`** — bumps `github.com/pulumi/pulumi/pkg/v3` in `provider/go.mod` to the version used by `pulumi-terraform-bridge`
+2. **`pulumi-sdk.yaml`** — bumps `github.com/pulumi/pulumi/sdk/v3` in `provider/go.mod` to the version used by `pulumi-terraform-bridge`
 
-The provider *and* the bridge uses the core Pulumi SDK:
+Both pipelines follow the same pattern:
 
-github.com/pulumi/pulumi/pkg/v3
-github.com/pulumi/pulumi/sdk/v3
+- read the current `pulumi-terraform-bridge` version from `provider/go.mod`
+- fetch the bridge's own `go.mod` from GitHub to determine the exact Pulumi SDK version it uses
+- check that the corresponding Pulumi package is already declared in `provider/go.mod`
+- update it to match the bridge's version
 
-Upgrading the dependency on pulumi-terraform-bridge, I need to upgrade core pulumi SDK (sdk & pkg) to the same version that the bridge uses.
+This ensures that the provider and bridge always use the same core Pulumi SDK version, preventing subtle version mismatches that can cause build or runtime failures.
 
+## Requirements
 
-## HOW TO USE
+- `updatecli` CLI installed
+- `UPDATECLI_GITHUB_TOKEN` environment variable set to a GitHub token with read access
+- `UPDATECLI_GITHUB_ACTOR` environment variable set to the GitHub username for authentication
+- a `provider/go.mod` file that declares both `pulumi-terraform-bridge` and the Pulumi SDK packages
+- access to an OCI registry if you want to publish or consume the bundle from a registry
+- optional: `docker` or another OCI client for registry authentication
 
-**Show**
+## Supported SCM Backends
 
-They are two different approaches to see the content of this policy:
+This policy always uses GitHub as its SCM backend. It requires:
 
-Using the policy from the local filesystem by running:
+- `UPDATECLI_GITHUB_TOKEN`: GitHub personal access token with repo write access
+- `UPDATECLI_GITHUB_ACTOR`: GitHub username used for authentication
 
-	updatecli manifest show --config updatecli.d --values values.d/default.yaml
+## Policy Configuration
 
-Using the policy from the registry by running:
+### Available Input Values
 
-    updatecli manifest show $OCI_REGISTRY/< insert your policy name>:v0.1.0
+The default `values.yaml` exposes these top-level inputs:
 
+- `scm.default.owner`: GitHub organization or user owning the destination repository
+- `scm.default.repository`: destination repository name
+- `scm.default.branch`: branch to target (default: `main`)
+- `scm.default.user`: git commit author name
+- `scm.default.email`: git commit author email
+- `labels`: list of labels applied to pull requests
 
-**Use**
+### Example Values
 
-Similarly to the show command, they are two ways to execute an Updatecli policy, either using the local file or the one stored on the registry.
+```yaml
+scm:
+  default:
+    owner: myorg
+    repository: pulumi-provider-mything
+    branch: main
+    user: updatecli-bot
+    email: updatecli-bot@example.com
 
-Using the policy from the local filesystem by running:
+labels:
+  - dependencies
+```
 
-    updatecli diff --config updatecli.d --values values.d/default.yaml
+## How It Works
 
-Using the policy from the registry by running:
+Each pipeline reads the bridge version from the local `provider/go.mod`, then fetches the bridge's own `go.mod` at that tag from GitHub raw content to resolve the exact Pulumi package version:
 
-    updatecli diff ghcr.io/updatecli/policies/<a policy name>:v0.1.0
+```yaml
+sources:
+  bridge:
+    scmid: default
+    kind: golang/gomod
+    spec:
+      file: provider/go.mod
+      module: github.com/pulumi/pulumi-terraform-bridge/v3
 
+  pulumi/pkg:
+    kind: golang/gomod
+    dependson:
+      - bridge
+    spec:
+      file: https://raw.githubusercontent.com/pulumi/pulumi-terraform-bridge/<bridge-version>/go.mod
+      module: github.com/pulumi/pulumi/pkg/v3
 
-If "diff" is replaced by "apply", then the policy will be executed in enforce mode.
+conditions:
+  pulumi/pkg:
+    scmid: default
+    kind: golang/gomod
+    spec:
+      file: provider/go.mod
+      module: github.com/pulumi/pulumi/pkg/v3
 
-⚠ Any values files specified at runtime will override default values set from the policy bundle
+targets:
+  pulumi/pkg:
+    scmid: default
+    kind: golang/gomod
+    spec:
+      file: provider/go.mod
+      module: github.com/pulumi/pulumi/pkg/v3
+```
 
-**Login**
+GitHub credentials are always taken from `UPDATECLI_GITHUB_TOKEN` and `UPDATECLI_GITHUB_ACTOR` environment variables using `requiredEnv`. The SCM values block controls the repository written to.
 
-Regardless your Updatecli policy is meant to be public or private, you probably always want to be authenticated with your registry, by running:
+## Quick Usage
 
-    docker login "$OCI_REGISTRY"
+### Prerequisites
 
-INFO: OCI_REGISTRY can be any OCI compliant registry such as [Zot](https://github.com/project-zot/zot), [DockerHub](https://hub.docker.com), [ghcr.io](https://ghcr.io),etc.
+```sh
+export UPDATECLI_GITHUB_TOKEN="ghp_xxxx"
+export UPDATECLI_GITHUB_ACTOR="myusername"
+```
 
-**Publish**
+### Local Testing
 
-Policies defines in this repository can be published to your registry by running:
+Show the rendered manifests:
 
-	updatecli manifest push \
-		--config updatecli.d \
-		--values values.d/default.yaml \
-    	--policy Policy.yaml \
-    	--tag "$OCI_REGISTRY/<insert your policy name>" \
-		.
+```sh
+updatecli manifest show --config updatecli.d --values values.yaml
+```
 
-⚠ The tag is defined by the version field in the policy file
-⚠ The latest tag always represents the latest version published from
-a semantic versioning point of view.
+Run a dry-run:
 
-## NEXT STEPS
+```sh
+updatecli pipeline diff --config updatecli.d --values values.yaml
+```
 
-Feel free to look on the [Updatecli documentation](https://updatecli.io) to learn more about how to use Updatecli.
+Apply the policy through the configured SCM action:
 
-Another good starting point is to understand how to use [update-compose.yaml](https://www.updatecli.io/docs/core/compose/) to orchestrate multiple Updatecli policies.
+```sh
+updatecli pipeline apply --config updatecli.d --values values.yaml
+```
 
-## CONTRIBUTING
+### Using from an OCI Registry
 
-This document has been generated from this [template](https://github.com/updatecli/updatecli/blob/main/pkg/core/scaffold/readme.go).
-Feel free to suggest any improvements or open an [issue](https://github.com/updatecli/updatecli/issues).
+Consume the published bundle directly from a registry:
+
+```sh
+updatecli manifest show --values values.yaml ghcr.io/updatecli/policies/pulumi:0.6.0
+```
+
+```sh
+updatecli pipeline diff --values values.yaml ghcr.io/updatecli/policies/pulumi:0.6.0
+```
+
+```sh
+updatecli pipeline apply --values values.yaml ghcr.io/updatecli/policies/pulumi:0.6.0
+```
+
+## Authentication
+
+Authenticate to your OCI registry before pushing or pulling bundles:
+
+```sh
+docker login "$OCI_REGISTRY"
+```
+
+Always export the required GitHub environment variables before running Updatecli:
+
+```sh
+export UPDATECLI_GITHUB_TOKEN="ghp_xxxx"
+export UPDATECLI_GITHUB_ACTOR="myusername"
+```
+
+## Publish
+
+Publish this policy bundle to an OCI registry. The `version` field in `Policy.yaml` defines the bundle tag:
+
+```sh
+updatecli manifest push \
+  --config updatecli.d \
+  --values values.yaml \
+  --policy Policy.yaml \
+  --tag "$OCI_REGISTRY/pulumi" \
+  .
+```
+
+After publishing, reference the bundle by tag:
+
+```sh
+updatecli manifest show "$OCI_REGISTRY/pulumi:0.6.0"
+```
+
+## Troubleshooting
+
+### No updates detected
+
+1. Confirm that `provider/go.mod` declares `github.com/pulumi/pulumi-terraform-bridge/v3`.
+
+2. Confirm that `provider/go.mod` also declares `github.com/pulumi/pulumi/pkg/v3` and `github.com/pulumi/pulumi/sdk/v3` — the condition step requires them to be present.
+
+3. Run in debug mode:
+
+   ```sh
+   updatecli pipeline diff --log-level debug --config updatecli.d --values values.yaml
+   ```
+
+### Pull requests are not created
+
+1. Verify that `UPDATECLI_GITHUB_TOKEN` and `UPDATECLI_GITHUB_ACTOR` are exported.
+
+2. Confirm that `scm.default.owner` and `scm.default.repository` are set to the correct values.
+
+3. Ensure the token has write access to the target repository.
+
+## Related Documentation
+
+- Updatecli docs: <https://www.updatecli.io>
+- Golang/gomod target plugin docs: <https://www.updatecli.io/docs/plugins/targets/golang/gomod/>
+- Compose docs: <https://www.updatecli.io/docs/core/compose/>
+- Sharing and reuse: <https://www.updatecli.io/docs/core/shareandreuse/>
+- pulumi-terraform-bridge repository: <https://github.com/pulumi/pulumi-terraform-bridge>
+- Updatecli policies repository: <https://github.com/updatecli/policies>

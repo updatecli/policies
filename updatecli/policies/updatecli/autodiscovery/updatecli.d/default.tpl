@@ -3,10 +3,10 @@ pipelineid: {{ .pipelineid }}
 
 autodiscovery:
   groupby: {{ .groupby }}
-#{{ if .scm.enabled }}
+  # {{ if .scm.enabled }}
   scmid: default
   actionid: default
-# {{ end }}
+  # {{ end }}
 
   crawlers:
     updatecli:

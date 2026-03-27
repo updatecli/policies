@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.12.0
+
+* Add support for labels
+* Fix githubsearch scm limit
+
+
 ## 0.11.0
 
 * Fix missing actionid

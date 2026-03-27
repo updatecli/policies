@@ -1,4 +1,5 @@
-pipelineid: rancher_fleet
+name: "deps(rancher/fleet): bump dependencies"
+# pipelineid: rancher/fleet/autodiscovery
 automerge: false
 labels:
   - dependencies
@@ -17,5 +18,12 @@ scm:
   # token: "xxx"
   # username: "updatecli-bot"
   # branch: main
+  limit: 3
 
-spec:
+# spec:
+groupby: all
+
+pipeline:
+  labels:
+    ecosystem: "rancher/fleet"
+    policy: autodiscovery

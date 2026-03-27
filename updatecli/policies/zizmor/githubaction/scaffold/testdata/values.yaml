@@ -2,12 +2,15 @@ scm:
   enabled: true
   kind: githubsearch
   search: |
-    repo:olblak/.github
-    fork:true
+    org:updatecli
+    archived:false
   branch: "^main$"
   #kind: github
   #owner: olblak
   #repository: .github
   #branch: main
   email: me@olblak.com
-  limit: 1
+  limit: 0
+
+  #  fork:true
+  #  is:public

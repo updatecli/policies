@@ -6,7 +6,7 @@ labels:
 
 scm:
   enabled: false
-  user: updatecli-bot
+  # user: updatecli-bot
   # kind defines the SCM kind to use for this policy
   # Accepted values: github, gitea, bitbucket, gitlab, stash
   kind: github
@@ -19,7 +19,13 @@ scm:
   username: "updatecli-bot"
   branch: main
   # commitusingapi: false
+  limit: 3
 
 # spec:
 groupby: all
+
+pipeline:
+  labels:
+    ecosystem: "dockerfile"
+    policy: autodiscovery
 

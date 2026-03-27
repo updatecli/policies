@@ -1,0 +1,5 @@
+labels:
+  #{{- range $key, $value := .pipeline.labels }}
+  '{{ $key }}': '{{ $value }}'
+  #{{- end }}
+    

@@ -11,7 +11,7 @@ targets:
     go.mod:
         name: 'deps(gomod): Bump Golang version to {{ source "golang" }}'
         kind: golang/gomod
-#{{ if .scm.enabled }}
+# {{ if .scm.enabled }}
         scmid: default
         actionid: default
 # {{ end }}
@@ -26,7 +26,7 @@ targets:
               - '.github/workflows/*'
             key: '$.jobs.build.steps[?(@.uses =~ /^actions\/setup-go/)].with.go-version'
             searchpattern: true
-#{{ if .scm.enabled }}
+# {{ if .scm.enabled }}
         scmid: default
 # {{ end }}
         sourceid: golang

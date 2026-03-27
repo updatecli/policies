@@ -1,7 +1,7 @@
 name: '{{ .name }}'
-#{{ if .pipelineid }}
+# {{ if .pipelineid }}
 pipelineid: '{{ .pipelineid }}'
-#{{ end }}
+# {{ end }}
 
 autodiscovery:
   groupby: {{ .groupby }}
