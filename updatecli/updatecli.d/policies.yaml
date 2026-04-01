@@ -1,5 +1,10 @@
 name: Update POLICIES.md
 
+labels:
+  ecosystem: updatecli
+  kind: documentation
+  release: "updatecli-policies"
+
 actions:
   default:
     title: "deps: update POLICIES.md"
