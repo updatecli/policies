@@ -8,7 +8,7 @@ policies:
       - updatecli/values.d/scm.yaml
 
   - name: Update Updatecli GitHub action version
-    policy: ghcr.io/updatecli/policies/updatecli/githubaction:0.8.1
+    policy: ghcr.io/updatecli/policies/autodiscovery/githubaction:0.4.1
     valuesinline:
       rootdir: ".github"
 
