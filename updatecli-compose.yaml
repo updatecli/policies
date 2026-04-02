@@ -8,16 +8,16 @@ policies:
       - updatecli/values.d/scm.yaml
 
   - name: Update Updatecli GitHub action version
-    policy: ghcr.io/updatecli/policies/autodiscovery/githubaction:0.4.1
+    policy: ghcr.io/updatecli/policies/autodiscovery/githubaction:0.4.1@sha256:869b676074f9fee7edd5d488140a12c3b09a5f8a175f12f26ea85a4f8bd0a9d1
     valuesinline:
       rootdir: ".github"
 
   - name: Handle Updatecli version in GitHub action
-    policy: ghcr.io/updatecli/policies/updatecli/githubaction:0.8.0@sha256:a4f4e4fcf0950a0eb359ed0518ef789272ea4db1e0bdba048a3772925b81a7aa
+    policy: ghcr.io/updatecli/policies/updatecli/githubaction:0.8.1@sha256:48872bbf1a09cfff32ff5ffa07086c20b40d6888c19c36048b18f84bbdad37fe
     values:
       - updatecli/values.d/scm.yaml
 
   - name: Update Updatecli policies
-    policy: ghcr.io/updatecli/policies/updatecli/autodiscovery:0.7.0@sha256:6890c4b4093a80063f518101881098fab8211c986481641faaf797a9ad5a31c3
+    policy: ghcr.io/updatecli/policies/updatecli/autodiscovery:0.8.1@sha256:f8edda1a6cbf0d7274e2b847ede29fc4dc70dd5302ccb8575ae21b069cc0d8a0
     values:
       - updatecli/values.d/scm.yaml
