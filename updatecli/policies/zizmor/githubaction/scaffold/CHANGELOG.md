@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.7.0
+
+* Allow to set zizmor configuration via `config` parameter
+
 ## 0.6.0
 
 * Add pipeline labels support via `pipeline.labels` and `_labels.yaml`

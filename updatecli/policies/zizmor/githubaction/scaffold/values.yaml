@@ -72,3 +72,9 @@ pipeline:
   labels:
     ecosystem: "zizmor"
     policy: scaffold
+
+# Optional, config expect a valid Zizmor configuration file content.
+#config:
+#  rules:
+#    secrets-outside-env:
+#      disable: true
