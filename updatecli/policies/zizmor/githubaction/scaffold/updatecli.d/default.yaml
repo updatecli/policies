@@ -65,3 +65,19 @@ targets:
         zizmorActionDigest: '{{ source "zizmor-action-digest" }}'
         advancedSecurity: "{{ .gha.advanced_security }}"
         private: {{ .gha.private }}
+
+  # {{ if  .config }}
+  config:
+    name: "install zizmor configuration file"
+    kind: file
+    disablesourceinput: true
+    # {{ if .scm.enabled }}
+    scmid: default
+    # {{ end }}
+    spec:
+      file: ".github/zizmor.yaml"
+      forcecreate: true
+      content: |
+        {{ toYaml .config | nindent 8 }}
+# {{ end }}
+
