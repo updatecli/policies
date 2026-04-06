@@ -66,6 +66,7 @@ targets:
         advancedSecurity: "{{ .gha.advanced_security }}"
         private: {{ .gha.private }}
 
+  # {{ if  .config }}
   config:
     name: "install zizmor configuration file"
     kind: file
@@ -76,8 +77,7 @@ targets:
     spec:
       file: ".github/zizmor.yaml"
       forcecreate: true
-      # {{ if  .config }}
       content: |
         {{ toYaml .config | nindent 8 }}
-      # {{ end }}
+# {{ end }}
 
