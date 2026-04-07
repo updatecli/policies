@@ -54,9 +54,11 @@ pipelineid: "typos-scaffold"
 
 # Optional: provide a typos configuration file content
 #config: |
-#  [default.extend-words]
-#  # Ignore specific words
-#  # "wordd" = "word"
+#  [files]
+#  extend-exclude = [
+#    "go.mod",
+#    "_typos.toml"
+#  ]
 ```
 
 Tips: you can adjust the `search` field to target specific repositories, branches, or include forks as needed. More information
