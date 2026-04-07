@@ -1,0 +1,80 @@
+name: Install typos GitHub action workflow
+pipelineid: "{{ .pipelineid }}"
+
+sources:
+  typos-action:
+    kind: githubrelease
+    name: Get latest typos github action
+    spec:
+      owner: crate-ci
+      repository: typos
+      versionfilter:
+        kind: semver
+
+  typos-action-digest:
+    dependson:
+      - typos-action
+    name: Get latest GitHub Release digest for crate-ci/typos
+    kind: githubrelease
+    spec:
+      key: taghash
+      owner: crate-ci
+      repository: typos
+      versionfilter:
+        kind: regex
+        pattern: '{{ source "typos-action" }}'
+
+  checkout-action:
+    name: Get latest checkout github action
+    kind: githubrelease
+    spec:
+      owner: actions
+      repository: checkout
+      versionfilter:
+        kind: semver
+
+  checkout-action-digest:
+    dependson:
+      - checkout-action
+    name: Get latest GitHub Release digest for actions/checkout
+    kind: githubrelease
+    spec:
+      key: taghash
+      owner: actions
+      repository: checkout
+      versionfilter:
+        kind: semver
+        pattern: '{{ source "checkout-action" }}'
+
+targets:
+  workflow:
+    name: 'install typos gha action {{ source "typos-action" }}'
+    kind: file
+    disablesourceinput: true
+    # {{ if .scm.enabled }}
+    scmid: default
+    # {{ end }}
+    spec:
+      file: ".github/workflows/typos.yaml"
+      forcecreate: true
+      template: "{{ .gha.template_path }}"
+      templatedata:
+        checkoutActionVersion: '{{ source "checkout-action" }}'
+        checkoutActionDigest: '{{ source "checkout-action-digest" }}'
+        typosActionVersion: '{{ source "typos-action" }}'
+        typosActionDigest: '{{ source "typos-action-digest" }}'
+
+  # {{ if  .config }}
+  config:
+    name: "install typos configuration file"
+    kind: file
+    disablesourceinput: true
+    # {{ if .scm.enabled }}
+    scmid: default
+    # {{ end }}
+    spec:
+      file: "_typos.toml"
+      forcecreate: true
+      content: |
+        {{ .config | nindent 8 }}
+# {{ end }}

@@ -1,0 +1,54 @@
+# {{ if and .scm.enabled ( eq .scm.kind "githubsearch" ) }}
+# {{ $GitHubUser := env "GITHUB_ACTOR"}}
+# {{ $GitHubUsername := env "GITHUB_ACTOR"}}
+# {{ $GitHubPAT := env .scm.env_token }}
+actions:
+  default:
+    kind: "github/pullrequest"
+    spec:
+      title: 'install typos gha action {{ source "typos-action" }}'
+      automerge: {{ .automerge }}
+      # {{ if .labels }}
+      labels:
+        # {{ range .labels }}
+        - "{{ . }}"
+        # {{ end }}
+      # {{ end }}
+      mergemethod: "squash"
+      description: "{{ .description }}"
+      parent: {{ .parent }}
+    scmid: "default"
+scms:
+  default:
+    kind: "githubsearch"
+    spec:
+      # Priority set to the environment variable
+      # {{ if .scm.user }}
+      user: "{{ default $GitHubUser .scm.user }}"
+      # {{ end }}
+      # {{ if .scm.email }}
+      email: "{{ .scm.email }}"
+      # {{ end }}
+      search: "{{ .scm.search }}"
+      # {{ if kindIs "int" .scm.limit }}
+      limit: {{ .scm.limit }}
+      # {{ end }}
+      token: "{{ default $GitHubPAT .scm.token }}"
+      username: "{{ default $GitHubUsername  .scm.username }}"
+      branch: "{{ .scm.branch }}"
+      # {{ if .scm.commitusingapi }}
+      commitusingapi: {{ .scm.commitusingapi }}
+      # {{ end }}
+      # {{ if .scm.url }}
+      url: "{{ .scm.url }}"
+      # {{ end }}
+      # {{ if .scm.depth }}
+      depth: {{ .scm.depth }}
+      # {{ end }}
+      commitmessage:
+        type: "{{ .scm.commitmessage.type }}"
+        scope: "{{ .scm.commitmessage.scope }}"
+        # {{ if .scm.commitmessage.footers }}
+        footers: "{{ .scm.commitmessage.footers }}"
+        # {{ end }}
+# {{ end }}
