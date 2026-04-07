@@ -70,10 +70,12 @@ pipeline:
   labels:
     ecosystem: "typos"
     policy: scaffold
-
 # Optional: config expects a valid typos configuration file content.
 # When set, a `_typos.toml` file is created with the provided content.
 #config: |
-#  [default.extend-words]
-#  # Ignore specific words
-#  # "wordd" = "word"
+#  [files]
+#  extend-exclude = [
+#    "go.mod",
+#    "go.sum",
+#    "_typos.toml"
+#  ]
