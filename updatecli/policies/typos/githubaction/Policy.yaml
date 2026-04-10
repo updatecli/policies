@@ -9,10 +9,10 @@ authors:
 url: "https://github.com/updatecli/policies/"
 
 # Documentation: link to the policy's documentation or examples (optional).
-documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/typos/githubaction/scaffold/README.md"
+documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/typos/githubaction/README.md"
 
 # Source: repository or VCS URL where the policy source is stored (optional).
-source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/typos/githubaction/scaffold/"
+source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/typos/githubaction/"
 
 # Version: policy version (prefer semver, e.g. 1.0.0). Recommended.
 version: 0.1.0
