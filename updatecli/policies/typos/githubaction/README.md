@@ -50,7 +50,7 @@ scm:
   limit: 0  # 0 = no limit
 
 # Optional: Override pipelineId
-pipelineid: "typos-scaffold"
+pipelineid: "gha_typos"
 
 # Optional: provide a typos configuration file content
 #config: |
@@ -100,19 +100,19 @@ After publishing (see PUBLISH section), use the policy from a registry:
 Show the policy:
 
 ```sh
-updatecli manifest show --values values.yaml  ghcr.io/updatecli/policies/typos/githubaction/scaffold
+updatecli manifest show --values values.yaml  ghcr.io/updatecli/policies/typos/githubaction
 ```
 
 Dry-run:
 
 ```sh
-updatecli pipeline diff --values values.yaml ghcr.io/updatecli/policies/typos/githubaction/scaffold
+updatecli pipeline diff --values values.yaml ghcr.io/updatecli/policies/typos/githubaction
 ```
 
 Apply:
 
 ```sh
-updatecli pipeline apply --values values.yaml ghcr.io/updatecli/policies/typos/githubaction/scaffold
+updatecli pipeline apply --values values.yaml ghcr.io/updatecli/policies/typos/githubaction
 ```
 
 ## AUTHENTICATION
