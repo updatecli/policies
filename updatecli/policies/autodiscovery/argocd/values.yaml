@@ -7,7 +7,7 @@ labels:
 scm:
   enabled: false
   # kind defines the SCM kind to use for this policy
-  # Accepted values: github, gitea, bitbucket, gitlab, stash
+  # Accepted values: github, githubsearch, gitea, bitbucket, gitlab, stash
   kind: github
   ## env_token defines the environment variable to use to retrieve the token
   env_token: GITHUB_TOKEN
@@ -28,4 +28,3 @@ pipeline:
   labels:
     ecosystem: "argocd"
     policy: autodiscovery
-

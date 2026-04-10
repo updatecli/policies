@@ -1,6 +1,6 @@
-# Argocd Autodiscovery Policy
+# ArgoCD Autodiscovery Policy
 
-This policy wraps Updatecli autodiscovery for argocd projects.
+This policy wraps Updatecli autodiscovery for ArgoCD projects.
 It scans repositories for argocd manifests, generates Updatecli manifests for detected dependencies, and can optionally open pull requests through a supported SCM provider.
 
 ## Overview
