@@ -1,0 +1,32 @@
+name: "deps(pyproject): bump all dependencies"
+#pipelineid: pyproject/autodiscovery
+automerge: false
+labels:
+  - dependencies
+
+autodiscovery:
+  groupby: all
+
+scm:
+  enabled: false
+  ## kind defines the SCM kind to use for this policy
+  ## Accepted values: github, gitea, bitbucket, gitlab, stash
+  kind: github
+  ## env_token defines the environment variable to use to retrieve the token
+  env_token: GITHUB_TOKEN
+  # user: updatecli-bot
+  # email: updatecli-bot@updatecli.io
+  # owner: updatecli
+  # repository: updatecli
+  # token: "xxx"
+  # username: "updatecli-bot"
+  # branch: main
+  limit: 3
+
+# spec:
+groupby: all
+
+pipeline:
+  labels:
+    ecosystem: "python"
+    policy: autodiscovery
