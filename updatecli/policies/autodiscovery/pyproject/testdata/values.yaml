@@ -1,0 +1,8 @@
+scm:
+  enabled: true
+  user: updatecli-bot
+  email: updatecli-bot@updatecli.io
+  owner: updatecli
+  repository: website
+  username: "updatecli-bot"
+  branch: master
