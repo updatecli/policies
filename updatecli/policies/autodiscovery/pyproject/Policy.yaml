@@ -1,0 +1,15 @@
+authors:
+  - Loïs Postula
+
+url: "https://github.com/updatecli/policies/"
+documentation: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/pyproject/README.md"
+changelog: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/pyproject/CHANGELOG.md"
+source: "https://github.com/updatecli/policies/tree/main/updatecli/policies/autodiscovery/pyproject/"
+version: 0.1.0
+vendor: Updatecli Project
+
+licenses:
+  - "Apache-2.0 license"
+
+description: |
+  Pyproject Autodiscovery
