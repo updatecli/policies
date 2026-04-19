@@ -77,4 +77,5 @@ targets:
       forcecreate: true
       content: |
         {{ .config | nindent 8 }}
+
 # {{ end }}
