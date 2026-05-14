@@ -1,4 +1,4 @@
-name: 'deps: Bump Golang version'
+name: "deps: Bump Golang version"
 pipelineid: golang/version
 automerge: false
 labels:
@@ -21,3 +21,8 @@ scm:
   # branch: main
   ## url defines the base URL of the SCM repository
   #url: ""
+  #
+
+pipeline:
+  labels:
+    ecosystem: "golang"

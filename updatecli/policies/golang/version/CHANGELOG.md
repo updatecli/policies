@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0
+
+* Add default pipeline labels
+
 ## 0.7.1
 
 * Use `kindIs "int"` to conditionally render `limit` in githubsearch SCM template, fixing broken behavior when `limit` is set to `0`
@@ -8,7 +12,6 @@
 
 * Add support for labels
 * Fix githubsearch scm limit
-
 
 ## 0.6.0
 
