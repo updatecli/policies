@@ -69,8 +69,7 @@ function validateRequiredFile(){
 
   ## Testing that Policy.yaml contains the required information
   local sourceInformation=""
-  sourceInformation=$(grep "source:" "$POLICY_METADATA" )
-  sourceInformation=${sourceInformation#"source: "}
+  sourceInformation=$(sed -n -e 's/^source: //p' "$POLICY_METADATA" )
   local expectedSourceInformation="\"https://github.com/updatecli/policies/tree/main/updatecli/$POLICY_ROOT_DIR/\""
   if [[ ! $sourceInformation == "$expectedSourceInformation" ]]; then
     POLICY_ERROR=true
@@ -80,8 +79,7 @@ function validateRequiredFile(){
   fi
 
   local documentationInformation=""
-  documentationInformation=$(grep "documentation:" "$POLICY_METADATA")
-  documentationInformation=${documentationInformation#"documentation: "}
+  documentationInformation=$(sed -n -e 's/^documentation: //p' "$POLICY_METADATA")
   local expectedDocumentationInformation="\"https://github.com/updatecli/policies/tree/main/updatecli/$POLICY_ROOT_DIR/README.md\""
   if [[ ! $documentationInformation == "$expectedDocumentationInformation" ]]; then
     POLICY_ERROR=true
@@ -92,8 +90,7 @@ function validateRequiredFile(){
 
   # Testing url annotation is defined
   local urlInformation=""
-  urlInformation=$( grep "url:" "$POLICY_METADATA")
-  urlInformation=${urlInformation#"url: "}
+  urlInformation=$(sed -n -e 's/^url: //p' "$POLICY_METADATA")
   local expectedUrlInformation="\"https://github.com/updatecli/policies/\""
   if [[ ! $urlInformation == "$expectedUrlInformation" ]]; then
     POLICY_ERROR=true
@@ -104,8 +101,7 @@ function validateRequiredFile(){
 
   # Testing version annotation is defined
   local versionInformation=""
-  versionInformation=$( grep "version:" "$POLICY_METADATA")
-  versionInformation=${versionInformation#"version: "}
+  versionInformation=$(sed -n -e 's/^version: //p' "$POLICY_METADATA")
   if [[ $versionInformation == "" ]]; then
     POLICY_ERROR=true
     echo "  * policy $POLICY_ROOT_DIR missing a version information in Policy.yaml"
@@ -120,8 +116,7 @@ function validateRequiredFile(){
   fi
 
   # Testing that the latest changelog version is used in the Policy.yaml
-  latestVersionChangelogEntry=$( grep -r '## ' -m 1 "$POLICY_CHANGELOG")
-  latestVersionChangelogEntry=${latestVersionChangelogEntry#"## "}
+  latestVersionChangelogEntry=$(sed -n -e '1,4s/^.*## //p' "$POLICY_CHANGELOG")
   if [[ "$latestVersionChangelogEntry" != "$versionInformation" ]]; then
     POLICY_ERROR=true
     echo "  * Latest Changelog version isn't the one used in Policy.yaml"
