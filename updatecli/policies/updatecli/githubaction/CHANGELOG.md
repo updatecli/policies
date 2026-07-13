@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.0
+
+* Only run target if Updatecli version is detected in a GitHub action workflow
+
 ## 0.8.1
 
 * Use `kindIs "int"` to conditionally render `limit` in githubsearch SCM template, fixing broken behavior when `limit` is set to `0`
