@@ -1,30 +1,45 @@
-name : 'deps: Updatecli version used by GitHub action'
-pipelineid: '{{ .pipelineid }}'
+name: "deps: Updatecli version used by GitHub action"
+pipelineid: "{{ .pipelineid }}"
 version: v0.103.0
 
 sources:
-    updatecli:
-        name: "Get latest Updatecli version"
-        kind: "githubrelease"
-        spec:
-            owner: "updatecli"
-            repository: "updatecli"
-            token: '{{ default ( env .github.env_token ) .github.token }}'
-            username: '{{ default ( env .github.env_username ) .github.username }}'
-            versionfilter:
-                kind: "semver"
-                pattern: '{{ .versionpattern }}'
+  updatecli:
+    name: "Get latest Updatecli version"
+    kind: "githubrelease"
+    spec:
+      owner: "updatecli"
+      repository: "updatecli"
+      token: "{{ default ( env .github.env_token ) .github.token }}"
+      username: "{{ default ( env .github.env_username ) .github.username }}"
+      versionfilter:
+        kind: "semver"
+        pattern: "{{ .versionpattern }}"
+
+conditions:
+  githubaction:
+    name: "Is Updatecli is used in a GitHub Action workflow"
+    kind: yaml
+    spec:
+      engine: yamlpath
+      files:
+        - ".github/workflows/*"
+      key: '$.jobs.*.steps[?(@.uses =~ /^updatecli\/updatecli-action/)].with.version'
+      keyonly: true
+      searchpattern: true
+    # {{ if .scm.enabled }}
+    scmid: default
+    # {{ end }}
 
 targets:
-    githubaction:
-        name: 'deps: update Updatecli used by Github Action to {{ source "updatecli" }}'
-        kind: yaml
-        spec:
-            engine: yamlpath 
-            key: '$.jobs.*.steps[?(@.uses =~ /^updatecli\/updatecli-action/)].with.version'
-            files:
-             - '.github/workflows/*'
-            searchpattern: true
-# {{ if .scm.enabled }}
-        scmid: default
-# {{ end }}
+  githubaction:
+    name: 'deps: update Updatecli used by Github Action to {{ source "updatecli" }}'
+    kind: yaml
+    spec:
+      engine: yamlpath
+      key: '$.jobs.*.steps[?(@.uses =~ /^updatecli\/updatecli-action/)].with.version'
+      files:
+        - ".github/workflows/*"
+      searchpattern: true
+    # {{ if .scm.enabled }}
+    scmid: default
+    # {{ end }}
