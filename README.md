@@ -182,7 +182,7 @@ jobs:
   updatecli:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
       - uses: updatecli/updatecli-action@v2
       - run: updatecli compose apply --file updatecli-compose.yaml
         env:
