@@ -183,7 +183,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7.0.1
-      - uses: updatecli/updatecli-action@v2
+      - uses: updatecli/updatecli-action@v3.4.0
       - run: updatecli compose apply --file updatecli-compose.yaml
         env:
           UPDATECLI_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
