@@ -15,21 +15,6 @@ sources:
         kind: "semver"
         pattern: "{{ .versionpattern }}"
 
-conditions:
-  githubaction:
-    name: "Is Updatecli is used in a GitHub Action workflow"
-    kind: yaml
-    spec:
-      engine: yamlpath
-      files:
-        - ".github/workflows/*"
-      key: '$.jobs.*.steps[?(@.uses =~ /^updatecli\/updatecli-action/)].with.version'
-      keyonly: true
-      searchpattern: true
-    # {{ if .scm.enabled }}
-    scmid: default
-    # {{ end }}
-
 targets:
   githubaction:
     name: 'deps: update Updatecli used by Github Action to {{ source "updatecli" }}'

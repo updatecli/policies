@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.1
+
+* Revert: "Only run target if Updatecli version is detected in a GitHub action workflow"
+
 ## 0.9.0
 
 * Only run target if Updatecli version is detected in a GitHub action workflow
