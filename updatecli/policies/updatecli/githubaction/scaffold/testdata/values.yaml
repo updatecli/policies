@@ -1,0 +1,13 @@
+scm:
+  enabled: true
+  kind: githubsearch
+  search: |
+    repo:updatecli/udash
+    fork:true
+  branch: "^main$"
+  #kind: github
+  #owner: olblak
+  #repository: .github
+  #branch: main
+  email: me@olblak.com
+  limit: 1

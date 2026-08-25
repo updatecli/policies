@@ -1,0 +1,223 @@
+name: Install Updatecli GitHub action workflows
+pipelineid: "{{ .pipelineid }}"
+
+sources:
+  updatecli-action:
+    name: Get latest updatecli github action
+    kind: githubrelease
+    spec:
+      owner: updatecli
+      repository: updatecli-action
+      versionfilter:
+        kind: semver
+
+  updatecli-action-digest:
+    dependson:
+      - updatecli-action
+    name: Get latest GitHub Release digest for updatecli/updatecli-action
+    kind: githubrelease
+    spec:
+      key: taghash
+      owner: updatecli
+      repository: updatecli-action
+      versionfilter:
+        kind: semver
+        pattern: '{{ source "updatecli-action" }}'
+
+  updatecli-version:
+    name: Get latest Updatecli version
+    kind: githubrelease
+    spec:
+      owner: updatecli
+      repository: updatecli
+      versionfilter:
+        kind: semver
+
+  checkout-action:
+    name: Get latest checkout github action
+    kind: githubrelease
+    spec:
+      owner: actions
+      repository: checkout
+      versionfilter:
+        kind: semver
+
+  checkout-action-digest:
+    dependson:
+      - checkout-action
+    name: Get latest GitHub Release digest for actions/checkout
+    kind: githubrelease
+    spec:
+      key: taghash
+      owner: actions
+      repository: checkout
+      versionfilter:
+        kind: semver
+        pattern: '{{ source "checkout-action" }}'
+
+  # {{ if .gha.golang.enabled }}
+  setup-go-action:
+    name: Get latest setup-go github action
+    kind: githubrelease
+    spec:
+      owner: actions
+      repository: setup-go
+      versionfilter:
+        kind: semver
+
+  setup-go-action-digest:
+    dependson:
+      - setup-go-action
+    name: Get latest GitHub Release digest for actions/setup-go
+    kind: githubrelease
+    spec:
+      key: taghash
+      owner: actions
+      repository: setup-go
+      versionfilter:
+        kind: semver
+        pattern: '{{ source "setup-go-action" }}'
+  # {{ end }}
+
+  # {{ if .gha.npm.enabled }}
+  setup-node-action:
+    name: Get latest setup-node github action
+    kind: githubrelease
+    spec:
+      owner: actions
+      repository: setup-node
+      versionfilter:
+        kind: semver
+
+  setup-node-action-digest:
+    dependson:
+      - setup-node-action
+    name: Get latest GitHub Release digest for actions/setup-node
+    kind: githubrelease
+    spec:
+      key: taghash
+      owner: actions
+      repository: setup-node
+      versionfilter:
+        kind: semver
+        pattern: '{{ source "setup-node-action" }}'
+  # {{ end }}
+
+targets:
+  # {{ if .gha.apply.enabled }}
+  workflow_apply:
+    name: 'install Updatecli gha workflow {{ source "updatecli-version" }}'
+    kind: file
+    disablesourceinput: true
+    # {{ if .scm.enabled }}
+    scmid: default
+    # {{ end }}
+    spec:
+      file: "{{ .gha.workflow_dir }}/updatecli.yaml"
+      forcecreate: true
+      template: "{{ .gha.apply.template_path }}"
+      templatedata:
+        checkoutActionVersion: '{{ source "checkout-action" }}'
+        checkoutActionDigest: '{{ source "checkout-action-digest" }}'
+        updatecliActionVersion: '{{ source "updatecli-action" }}'
+        updatecliActionDigest: '{{ source "updatecli-action-digest" }}'
+        updatecliVersion: '{{ source "updatecli-version" }}'
+        # {{ if .gha.golang.enabled }}
+        setupGoActionVersion: '{{ source "setup-go-action" }}'
+        setupGoActionDigest: '{{ source "setup-go-action-digest" }}'
+        golangVersionFile: "{{ .gha.golang.version_file }}"
+        # {{ end }}
+        # {{ if .gha.npm.enabled }}
+        setupNodeActionVersion: '{{ source "setup-node-action" }}'
+        setupNodeActionDigest: '{{ source "setup-node-action-digest" }}'
+        npmVersionFile: "{{ .gha.npm.version_file }}"
+        # {{ end }}
+        # {{ if .gha.udash.enabled }}
+        udashEnabled: true
+        # {{ end }}
+        # {{ if eq .gha.auth "token" }}
+        tokenAuth: true
+        # {{ end }}
+        # {{ if eq .gha.auth "gitea" }}
+        giteaAuth: true
+        # {{ end }}
+        cron: "{{ .gha.apply.cron }}"
+  # {{ end }}
+
+  # {{ if .gha.test.enabled }}
+  workflow_test:
+    name: 'install Updatecli test gha workflow {{ source "updatecli-version" }}'
+    kind: file
+    disablesourceinput: true
+    # {{ if .scm.enabled }}
+    scmid: default
+    # {{ end }}
+    spec:
+      file: "{{ .gha.workflow_dir }}/updatecli_test.yaml"
+      forcecreate: true
+      template: "{{ .gha.test.template_path }}"
+      templatedata:
+        checkoutActionVersion: '{{ source "checkout-action" }}'
+        checkoutActionDigest: '{{ source "checkout-action-digest" }}'
+        updatecliActionVersion: '{{ source "updatecli-action" }}'
+        updatecliActionDigest: '{{ source "updatecli-action-digest" }}'
+        updatecliVersion: '{{ source "updatecli-version" }}'
+        # {{ if .gha.golang.enabled }}
+        setupGoActionVersion: '{{ source "setup-go-action" }}'
+        setupGoActionDigest: '{{ source "setup-go-action-digest" }}'
+        golangVersionFile: "{{ .gha.golang.version_file }}"
+        # {{ end }}
+        # {{ if .gha.npm.enabled }}
+        setupNodeActionVersion: '{{ source "setup-node-action" }}'
+        setupNodeActionDigest: '{{ source "setup-node-action-digest" }}'
+        npmVersionFile: "{{ .gha.npm.version_file }}"
+        # {{ end }}
+        # {{ if eq .gha.auth "gitea" }}
+        giteaAuth: true
+        # {{ end }}
+  # {{ end }}
+
+  # {{ if .gha.update.enabled }}
+  workflow_update:
+    name: 'install Updatecli update gha workflow {{ source "updatecli-version" }}'
+    kind: file
+    disablesourceinput: true
+    # {{ if .scm.enabled }}
+    scmid: default
+    # {{ end }}
+    spec:
+      file: "{{ .gha.workflow_dir }}/updatecli_update.yaml"
+      forcecreate: true
+      template: "{{ .gha.update.template_path }}"
+      templatedata:
+        checkoutActionVersion: '{{ source "checkout-action" }}'
+        checkoutActionDigest: '{{ source "checkout-action-digest" }}'
+        updatecliActionVersion: '{{ source "updatecli-action" }}'
+        updatecliActionDigest: '{{ source "updatecli-action-digest" }}'
+        updatecliVersion: '{{ source "updatecli-version" }}'
+        # {{ if .gha.golang.enabled }}
+        setupGoActionVersion: '{{ source "setup-go-action" }}'
+        setupGoActionDigest: '{{ source "setup-go-action-digest" }}'
+        golangVersionFile: "{{ .gha.golang.version_file }}"
+        # {{ end }}
+        # {{ if .gha.npm.enabled }}
+        setupNodeActionVersion: '{{ source "setup-node-action" }}'
+        setupNodeActionDigest: '{{ source "setup-node-action-digest" }}'
+        npmVersionFile: "{{ .gha.npm.version_file }}"
+        # {{ end }}
+        # {{ if .gha.udash.enabled }}
+        udashEnabled: true
+        # {{ end }}
+        # {{ if eq .gha.auth "token" }}
+        tokenAuth: true
+        # {{ end }}
+        # {{ if eq .gha.auth "gitea" }}
+        giteaAuth: true
+        # {{ end }}
+        cron: "{{ .gha.update.cron }}"
+        updateMatrix:
+          # {{ range .gha.update.matrix }}
+          - target_name: "{{ .target_name }}"
+            apply_args: "{{ .apply_args }}"
+          # {{ end }}
+  # {{ end }}
