@@ -78,3 +78,27 @@ pipeline:
 #  rules:
 #    secrets-outside-env:
 #      disable: true
+
+# Optional: automatically remediate the zizmor findings of the repository within the
+# same pull request, so the scaffolded workflow lands already green.
+# This requires the `zizmor` CLI to be available on the machine running Updatecli.
+autofix:
+  # Disabled by default: opt in explicitly.
+  enabled: false
+
+  # Which fixes zizmor is allowed to apply:
+  #   safe        - only fixes with a low breakage risk (default)
+  #   all         - safe and unsafe fixes
+  #   unsafe-only - only the unsafe fixes
+  # Unsafe fixes are often correct but always require a human review. Note that zizmor
+  # frequently classifies digest pinning and `persist-credentials: false` as unsafe, so
+  # `safe` may hold back most of the remediation on a repository never audited before.
+  mode: safe
+
+  # What zizmor should audit and fix. Keep it aligned with the inputs used by the
+  # scaffolded workflow.
+  inputs: "./.github/"
+
+  # Some fixes, such as the ones from the unpinned-uses audit, need the GitHub API.
+  # Name of the environment variable holding the token handed over to zizmor.
+  env_token: GITHUB_TOKEN

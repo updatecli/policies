@@ -20,6 +20,10 @@ This policy implements a three-step process:
 
 The workflow runs on all pull requests and provides security analysis results directly in your PR comments.
 
+**Remediation (optional)**: When `autofix.enabled` is set, the policy also runs `zizmor --fix` on
+the repository and commits the result to the same branch, so the pull request installs the scanner
+*and* fixes what it would have reported. See [AUTOMATIC REMEDIATION](#automatic-remediation).
+
 ## REQUIREMENTS
 
 - `updatecli` CLI installed (recommended: latest stable release)
@@ -29,6 +33,8 @@ The workflow runs on all pull requests and provides security analysis results di
   - `repo` (full control of private repositories)
   - `workflow` (read/write GitHub Actions workflows)
 - **GitHub Username** (`UPDATECLI_GITHUB_USERNAME`): GitHub account username for commit attribution
+- Only when `autofix.enabled` is set: the [`zizmor`](https://docs.zizmor.sh/installation/) CLI,
+  available in the `PATH` of the machine running Updatecli
 
 ## POLICY CONFIGURATION
 
@@ -55,6 +61,65 @@ pipelineid: "zizmor-scaffold"
 
 Tips: you can adjust the `search` field to target specific repositories, branches, or include forks as needed. More information
 on [GitHub](https://github.com/search/advanced)
+
+## AUTOMATIC REMEDIATION
+
+Installing the scanner on a repository that was never audited means the first workflow run
+reports findings that somebody then has to fix by hand. This policy can close that gap: with
+`autofix` enabled, it runs `zizmor --fix` against the repository and commits the result to the
+branch it just created, so a single pull request installs Zizmor **and** lands green.
+
+The fixes are produced by Zizmor itself, not by a heuristic of this policy: the diff is
+deterministic and reviewable like any other commit in the pull request.
+
+```yaml
+autofix:
+  # Disabled by default: opt in explicitly.
+  enabled: true
+
+  # safe | all | unsafe-only
+  mode: safe
+
+  # What Zizmor audits and fixes.
+  inputs: "./.github/"
+
+  # Environment variable holding the token handed over to Zizmor.
+  env_token: GITHUB_TOKEN
+```
+
+### Fix modes
+
+| Mode | What it applies |
+| --- | --- |
+| `safe` (default) | Only fixes with a low breakage risk, safe to apply with minimal oversight |
+| `all` | Safe **and** unsafe fixes |
+| `unsafe-only` | Only the unsafe fixes |
+
+Unsafe fixes are often correct but Zizmor makes no guarantee about their semantics — **always
+review them** before merging. Sticking to `safe` is the recommended default for unattended runs.
+
+Be aware that `safe` is conservative: Zizmor frequently classifies the two most common hardening
+fixes — pinning an action to a digest (`unpinned-uses`) and adding `persist-credentials: false`
+(`artipacked`) — as unsafe, and holds them back. On a repository that was never audited, `safe`
+may therefore report findings without changing anything, and Zizmor tells you so:
+
+```console
+No fixes available to apply (2 held back by safe mode). Use --fix=unsafe-only or --fix=all to apply unsafe fixes.
+```
+
+Use `mode: all` when you want those applied, and review the resulting commit.
+
+Findings that Zizmor cannot fix automatically — such as `template-injection` or
+`excessive-permissions` — are left untouched and reported by the scaffolded workflow as usual.
+
+### Requirements and behaviour
+
+- The `zizmor` CLI must be installed on the machine running Updatecli. The policy fails with an
+  explicit `zizmor CLI not found in PATH` message when it is missing.
+- Fixes land as an **additional commit** on the branch, after the one installing the workflow.
+- A repository with nothing to fix produces no extra commit; the pipeline simply reports no change.
+- Some fixes, such as those of the `unpinned-uses` audit, query the GitHub API. The token named by
+  `autofix.env_token` is passed through for that purpose.
 
 ## QUICK USAGE
 
