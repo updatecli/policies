@@ -26,6 +26,10 @@ jobs:
         with:
           client-id: ${{ secrets.UPDATECLIBOT_TESTING_APP_CLIENT_ID }}
           private-key: ${{ secrets.UPDATECLIBOT_TESTING_APP_PRIVKEY }}
+      - name: Setup zizmor
+        # Required by the zizmor scaffold policy when its autofix option is enabled
+        if: github.ref == 'refs/heads/main'
+        run: pipx install zizmor
       - name: e2e tests
         # Only run e2e tests from the main branch as we need some credentials
         # that we don't want to risk leaking from pullrequest opened by random contributors
