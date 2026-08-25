@@ -1,0 +1,69 @@
+---
+name: Updatecli - Update
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "{{ .cron }}"
+permissions: {}
+jobs:
+  updatecli:
+    name: "Updatecli - {{ "${{ matrix.target_name }}" }}"
+    runs-on: ubuntu-latest
+{{- if .tokenAuth }}
+    permissions:
+      contents: write
+      pull-requests: write
+{{- end }}
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        include:
+{{- range .updateMatrix }}
+          - target_name: "{{ .target_name }}"
+            apply_args: "{{ .apply_args }}"
+{{- end }}
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@{{ .checkoutActionDigest }}" # {{ .checkoutActionVersion }}
+        with:
+          persist-credentials: false
+      - name: "Setup updatecli"
+        uses: "updatecli/updatecli-action@{{ .updatecliActionDigest }}" # {{ .updatecliActionVersion }}
+        with:
+          version: "{{ .updatecliVersion }}"
+{{- if .setupGoActionDigest }}
+      - name: "Set up Go"
+        uses: "actions/setup-go@{{ .setupGoActionDigest }}" # {{ .setupGoActionVersion }}
+        with:
+          go-version-file: "{{ .golangVersionFile }}"
+        id: go
+{{- end }}
+{{- if .setupNodeActionDigest }}
+      - name: "Set up Node"
+        uses: "actions/setup-node@{{ .setupNodeActionDigest }}" # {{ .setupNodeActionVersion }}
+        with:
+          node-version-file: "{{ .npmVersionFile }}"
+        id: node
+{{- end }}
+      - name: "Run updatecli"
+        run: updatecli compose apply --clean-git-branches=true {{ "${{ matrix.apply_args }}" }}{{ if .udashEnabled }} --experimental{{ end }}
+        env:
+{{- if .giteaAuth }}
+          UPDATECLI_GITEA_TOKEN: {{ "${{ secrets.GITEA_TOKEN }}" }}
+{{- else if .tokenAuth }}
+          UPDATECLI_GITHUB_ACTOR: {{ "${{ github.actor }}" }}
+          UPDATECLI_GITHUB_TOKEN: {{ "${{ secrets.GITHUB_TOKEN }}" }}
+{{- else }}
+          UPDATECLI_GITHUB_APP_CLIENT_ID: {{ "${{ secrets.UPDATECLIBOT_APP_ID }}" }}
+          UPDATECLI_GITHUB_APP_PRIVATE_KEY: {{ "${{ secrets.UPDATECLIBOT_APP_PRIVKEY }}" }}
+          UPDATECLI_GITHUB_APP_INSTALLATION_ID: {{ "${{ secrets.UPDATECLIBOT_APP_INSTALLATION_ID }}" }}
+{{- end }}
+{{- if .udashEnabled }}
+          UPDATECLI_UDASH_API_URL: {{ "${{ secrets.UPDATECLI_UDASH_API_URL }}" }}
+          UPDATECLI_UDASH_ACCESS_TOKEN: {{ "${{ secrets.UPDATECLI_UDASH_ACCESS_TOKEN }}" }}
+          UPDATECLI_UDASH_URL: {{ "${{ secrets.UPDATECLI_UDASH_URL }}" }}
+{{- end }}

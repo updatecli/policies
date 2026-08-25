@@ -1,0 +1,42 @@
+---
+name: Updatecli Test
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  updatecli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@{{ .checkoutActionDigest }}" # {{ .checkoutActionVersion }}
+        with:
+          persist-credentials: false
+      - name: "Setup updatecli"
+        uses: "updatecli/updatecli-action@{{ .updatecliActionDigest }}" # {{ .updatecliActionVersion }}
+        with:
+          version: "{{ .updatecliVersion }}"
+{{- if .setupGoActionDigest }}
+      - name: "Set up Go"
+        uses: "actions/setup-go@{{ .setupGoActionDigest }}" # {{ .setupGoActionVersion }}
+        with:
+          go-version-file: "{{ .golangVersionFile }}"
+        id: go
+{{- end }}
+{{- if .setupNodeActionDigest }}
+      - name: "Set up Node"
+        uses: "actions/setup-node@{{ .setupNodeActionDigest }}" # {{ .setupNodeActionVersion }}
+        with:
+          node-version-file: "{{ .npmVersionFile }}"
+        id: node
+{{- end }}
+      - name: "Test updatecli in dry-run mode"
+        run: "updatecli compose diff"
+        env:
+          # This step is executed in untrusted context. We use a token with minimal permissions.
+{{- if .giteaAuth }}
+          UPDATECLI_GITEA_TOKEN: {{ "${{ secrets.GITEA_TOKEN }}" }}
+{{- else }}
+          UPDATECLI_GITHUB_USERNAME: {{ "${{ github.actor }}" }}
+          UPDATECLI_GITHUB_TOKEN: {{ "${{ secrets.GITHUB_TOKEN }}" }}
+{{- end }}
