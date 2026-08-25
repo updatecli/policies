@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.8.0
+
+* Optionally remediate zizmor findings within the same pull request via `autofix.enabled`
+
 ## 0.7.0
 
 * Allow to set zizmor configuration via `config` parameter

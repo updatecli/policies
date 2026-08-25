@@ -79,5 +79,31 @@ targets:
       forcecreate: true
       content: |
         {{ toYaml .config | nindent 8 }}
-# {{ end }}
-
+  # {{ end }}
+  # {{ if .autofix.enabled }}
+  autofix:
+    name: "fix zizmor findings ({{ .autofix.mode }} mode)"
+    kind: shell
+    disablesourceinput: true
+    # The zizmor workflow must be committed first, otherwise it shows up in the
+    # list of files fixed by this target.
+    dependson:
+      - workflow
+    # {{ if .scm.enabled }}
+    scmid: default
+    # {{ end }}
+    spec:
+      # zizmor reports on stderr so that stdout only carries the list of modified
+      # files: with the console/output detection below, an empty stdout means that
+      # there was nothing to fix.
+      command: |
+        command -v zizmor >/dev/null 2>&1 || { echo "zizmor CLI not found in PATH" >&2; exit 1; }
+        zizmor --fix={{ .autofix.mode }} --no-exit-codes {{ .autofix.inputs }} >&2
+        git diff --name-only
+      environments:
+        - name: PATH
+        - name: HOME
+        - name: "{{ .autofix.env_token }}"
+      changedif:
+        kind: console/output
+  # {{ end }}

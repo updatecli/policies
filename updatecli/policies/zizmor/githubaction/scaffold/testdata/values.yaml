@@ -2,7 +2,7 @@ scm:
   enabled: true
   kind: githubsearch
   search: |
-    org:updatecli
+    repo:updatecli/udash
     archived:false
   branch: "^main$"
   #kind: github
@@ -14,3 +14,9 @@ scm:
 
   #  fork:true
   #  is:public
+
+# Exercise the remediation path during the e2e tests.
+# This requires the zizmor CLI to be installed on the runner.
+autofix:
+  enabled: true
+  mode: all
