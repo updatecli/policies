@@ -20,3 +20,22 @@ policies:
 
   - name: Handle GitHub action version update
     policy: ghcr.io/updatecli/policies/autodiscovery/githubaction:0.4.1@sha256:869b676074f9fee7edd5d488140a12c3b09a5f8a175f12f26ea85a4f8bd0a9d1
+
+  - name: Configure Updatecli workflows
+    id: updatecli
+    policy: ghcr.io/updatecli/policies/updatecli/githubaction/scaffold:0.1.0
+    valuesinline:
+      gha:
+        udash:
+          enabled: true
+        update:
+          cron: "0 3 * * *"
+          matrix:
+            - target_name: "existing pipelines"
+              apply_args: "--existing-only=true"
+            - target_name: "monitored pipelines"
+              apply_args: "--labels=monitor:active"
+      pipeline:
+        labels:
+          ecosystem: "updatecli"
+          policy: scaffold
