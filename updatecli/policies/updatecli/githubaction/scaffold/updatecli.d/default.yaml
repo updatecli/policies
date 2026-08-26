@@ -1,6 +1,25 @@
 name: Install Updatecli GitHub action workflows
 pipelineid: "{{ .pipelineid }}"
 
+## Extra steps injected into the generated workflows
+##
+## The three workflows share one injection point, between "Setup updatecli" and
+## "Run updatecli". `gha.steps` fills it in all three, `gha.<workflow>.steps` in one.
+## Entries are passed through verbatim: this policy does not pin them, does not
+## resolve their versions, and does not validate them. Curated setup steps that the
+## policy does own live in the workflow templates, gated on `gha.golang` / `gha.npm`.
+##
+## The one transformation applied is a GitHub Action expression opener being rewritten
+## to `${__GHA__`. Updatecli re-templates the whole manifest on every pipeline
+## iteration, so a Go template opener surviving in the manifest is a parse error on the
+## second pass. The workflow templates rewrite the placeholder back.
+##
+## Note: outside a template action, never write a Go template opener literally in this
+## file -- not even inside a YAML comment. The whole file is lexed as a template before
+## it is ever parsed as YAML, so a `{`+`{` in prose is a load-time error.
+# {{ $common := default (list) (dig "gha" "steps" (list) .) }}
+# {{ $steps := dict "apply" (concat $common (default (list) (dig "gha" "apply" "steps" (list) .))) "test" (concat $common (default (list) (dig "gha" "test" "steps" (list) .))) "update" (concat $common (default (list) (dig "gha" "update" "steps" (list) .))) }}
+
 sources:
   updatecli-action:
     name: Get latest updatecli github action
@@ -132,6 +151,10 @@ targets:
         setupNodeActionDigest: '{{ source "setup-node-action-digest" }}'
         npmVersionFile: "{{ .gha.npm.version_file }}"
         # {{ end }}
+        # {{ if $steps.apply }}
+        extraSteps: |
+          {{- toYaml $steps.apply | replace "${{" "${__GHA__" | nindent 10 }}
+        # {{ end }}
         # {{ if .gha.udash.enabled }}
         udashEnabled: true
         # {{ end }}
@@ -172,6 +195,10 @@ targets:
         setupNodeActionDigest: '{{ source "setup-node-action-digest" }}'
         npmVersionFile: "{{ .gha.npm.version_file }}"
         # {{ end }}
+        # {{ if $steps.test }}
+        extraSteps: |
+          {{- toYaml $steps.test | replace "${{" "${__GHA__" | nindent 10 }}
+        # {{ end }}
         # {{ if eq .gha.auth "gitea" }}
         giteaAuth: true
         # {{ end }}
@@ -204,6 +231,10 @@ targets:
         setupNodeActionVersion: '{{ source "setup-node-action" }}'
         setupNodeActionDigest: '{{ source "setup-node-action-digest" }}'
         npmVersionFile: "{{ .gha.npm.version_file }}"
+        # {{ end }}
+        # {{ if $steps.update }}
+        extraSteps: |
+          {{- toYaml $steps.update | replace "${{" "${__GHA__" | nindent 10 }}
         # {{ end }}
         # {{ if .gha.udash.enabled }}
         udashEnabled: true
