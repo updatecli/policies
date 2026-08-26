@@ -21,6 +21,7 @@ jobs:
         uses: "actions/setup-go@{{ .setupGoActionDigest }}" # {{ .setupGoActionVersion }}
         with:
           go-version-file: "{{ .golangVersionFile }}"
+          cache: false
         id: go
 {{- end }}
 {{- if .setupNodeActionDigest }}
@@ -28,6 +29,7 @@ jobs:
         uses: "actions/setup-node@{{ .setupNodeActionDigest }}" # {{ .setupNodeActionVersion }}
         with:
           node-version-file: "{{ .npmVersionFile }}"
+          package-manager-cache: false
         id: node
 {{- end }}
       - name: "Test updatecli in dry-run mode"
