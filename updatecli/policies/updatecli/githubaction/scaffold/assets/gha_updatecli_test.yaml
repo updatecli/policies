@@ -32,6 +32,14 @@ jobs:
           package-manager-cache: false
         id: node
 {{- end }}
+{{- /*
+  Uncurated steps from gha.steps / gha.<workflow>.steps, serialised by the manifest
+  and passed through as written. ${__GHA__ is the manifest's placeholder for a
+  GitHub Action expression opener, which cannot survive the manifest literally.
+*/}}
+{{- if .extraSteps }}
+{{ .extraSteps | replace "${__GHA__" "${{" | trimSuffix "\n" | indent 6 }}
+{{- end }}
       - name: "Test updatecli in dry-run mode"
         run: "updatecli compose diff"
         env:
