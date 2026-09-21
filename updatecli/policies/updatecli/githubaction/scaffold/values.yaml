@@ -88,15 +88,33 @@ gha:
   # Use `gitea` when the generated workflows run on Gitea Actions.
   auth: app
 
-  # golang installs an actions/setup-go step in the generated workflows.
+  # golang installs a curated actions/setup-go step in the generated workflows.
+  # The action is pinned to a commit digest and kept up to date by this policy.
   golang:
     enabled: false
     version_file: "go.mod"
 
-  # npm installs an actions/setup-node step in the generated workflows.
+  # npm installs a curated actions/setup-node step in the generated workflows.
+  # The action is pinned to a commit digest and kept up to date by this policy.
   npm:
     enabled: false
     version_file: "package.json"
+
+  # steps are injected into all three generated workflows, between the "Setup updatecli"
+  # step and the "Run updatecli" step. Each entry is a GitHub Action step, written
+  # exactly as it would be written in a workflow, and passed through verbatim.
+  #
+  # This is the escape hatch for tooling the policy does not curate. Unlike the golang
+  # and npm steps above, these are YOUR responsibility: pin your own `uses` to a commit
+  # digest, and keep it current yourself. The policy neither resolves nor refreshes them.
+  #
+  # GitHub Action expressions are written normally -- ${{ github.actor }} -- but
+  # {{ ... }} Go template syntax is not supported inside a step.
+  steps: []
+  #  - name: "Set up Python"
+  #    uses: "actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97" # v7.0.0
+  #    with:
+  #      python-version-file: ".python-version"
 
   # udash renders the UPDATECLI_UDASH_* environment variables in the apply and
   # update workflows, and adds the --experimental flag to their updatecli run
@@ -109,11 +127,15 @@ gha:
   apply:
     enabled: true
     cron: "0 12 */14 * *"
+    # steps are appended after gha.steps, in this workflow only.
+    steps: []
     template_path: "https://raw.githubusercontent.com/updatecli/policies/refs/heads/main/updatecli/policies/updatecli/githubaction/scaffold/assets/gha_updatecli.yaml"
 
   # test installs .github/workflows/updatecli_test.yaml
   test:
     enabled: true
+    # steps are appended after gha.steps, in this workflow only.
+    steps: []
     template_path: "https://raw.githubusercontent.com/updatecli/policies/refs/heads/main/updatecli/policies/updatecli/githubaction/scaffold/assets/gha_updatecli_test.yaml"
 
   # update installs .github/workflows/updatecli_update.yaml
@@ -133,6 +155,8 @@ gha:
   update:
     enabled: true
     cron: "0 1 * * *"
+    # steps are appended after gha.steps, in this workflow only.
+    steps: []
     matrix:
       - target_name: "existing pipelines"
         apply_args: "--existing-only=true"

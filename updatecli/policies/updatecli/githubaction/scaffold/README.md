@@ -25,8 +25,10 @@ comment, and the `updatecli-action` `with.version` input tracks the latest Updat
 **1. These workflows become policy-owned files.** The targets use `forcecreate: true` with a
 template, which rewrites each file in full on every run. That is what keeps the digests
 current — but it also means any hand-edit you make to a scaffolded workflow is reverted on
-the next run. To customise a workflow, fork the asset template and point `template_path` at
-your copy (see [Customisation](#customisation)).
+the next run. To add steps to a workflow, use `gha.steps` (see [Adding steps the policy
+does not curate](#adding-steps-the-policy-does-not-curate)); to change the rest of it,
+fork the asset template and point `template_path` at your copy (see
+[Customisation](#customisation)).
 
 **2. Do not run this policy alongside
 `ghcr.io/updatecli/policies/updatecli/githubaction`.** That policy patches `.uses` and
@@ -117,7 +119,8 @@ else they do requires it.
 
 ### Adding a language runtime
 
-Both are off by default and independent — enable either, both, or neither.
+`gha.golang` and `gha.npm` install curated `actions/setup-go` / `actions/setup-node`
+steps. Both are off by default and independent — enable either, both, or neither.
 
 ```yaml
 gha:
@@ -129,8 +132,45 @@ gha:
     version_file: "package.json" # actions/setup-node node-version-file
 ```
 
-When a runtime is disabled, its `actions/setup-*` sources are not even declared, so no
-GitHub API calls are made for it.
+These are *curated*: the policy pins each action to a commit digest, keeps the tag as a
+trailing comment, refreshes both on every run, and sets the options that matter — caching
+is disabled for both, because these workflows only resolve versions and a warm cache is
+wasted work. When a runtime is disabled its `actions/setup-*` sources are not declared at
+all, so no GitHub API calls are made for it.
+
+### Adding steps the policy does not curate
+
+`gha.steps` injects arbitrary steps into all three workflows, between the
+`Setup updatecli` step and the `Run updatecli` step. `gha.apply.steps`,
+`gha.test.steps` and `gha.update.steps` append to a single workflow. Each entry is a
+GitHub Action step, written as it would be in a workflow and passed through verbatim:
+
+```yaml
+gha:
+  steps:
+    - name: "Set up Python"
+      uses: "actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97" # v7.0.0
+      with:
+        python-version-file: ".python-version"
+  test:
+    steps:
+      - name: "Echo actor"
+        run: 'echo ${{ github.actor }}'
+```
+
+This is the escape hatch, and the trade is explicit:
+
+- **You own the pin.** Unlike the curated runtimes above, the policy does not resolve,
+  pin or refresh anything here. Write the digest yourself and keep it current — nothing
+  will tell you when it goes stale. If your tooling is common enough to deserve curation,
+  opening an issue is a better outcome than a hand-pinned step.
+- **YAML comments do not survive.** Values are parsed before being re-serialised, so a
+  `# v7.0.0` next to your `uses` is dropped from the generated workflow.
+- **GitHub Action expressions need no escaping** — `${{ github.actor }}` works as
+  written — but Go template syntax (`{{ … }}`) is not supported inside a step.
+
+For anything beyond steps — a different trigger, changed permissions, a modified
+`updatecli` invocation — fork the template instead; see [Customisation](#customisation).
 
 ### Full example
 
@@ -161,8 +201,10 @@ gha:
 | --- | --- | --- |
 | `gha.auth` | `app` | `app`, `token` or `gitea` — see above |
 | `gha.workflow_dir` | `.github/workflows` | directory the workflows are written to |
-| `gha.golang.enabled` / `.version_file` | `false` / `go.mod` | add an `actions/setup-go` step |
-| `gha.npm.enabled` / `.version_file` | `false` / `package.json` | add an `actions/setup-node` step |
+| `gha.golang.enabled` / `.version_file` | `false` / `go.mod` | curated `actions/setup-go` step |
+| `gha.npm.enabled` / `.version_file` | `false` / `package.json` | curated `actions/setup-node` step |
+| `gha.steps` | `[]` | uncurated steps injected into all three workflows |
+| `gha.<workflow>.steps` | `[]` | uncurated steps injected into that workflow only |
 | `gha.udash.enabled` | `false` | render the `UPDATECLI_UDASH_*` variables and pass `--experimental` |
 | `gha.apply.enabled` / `.cron` | `true` / `0 12 */14 * *` | the apply workflow |
 | `gha.test.enabled` | `true` | the pull-request dry-run workflow |
@@ -226,6 +268,11 @@ updatecli apply --values values.yaml ghcr.io/updatecli/policies/updatecli/github
 ## Customisation
 
 ### Modify the generated workflows
+
+Most additions are better made with `gha.steps` (see [Adding steps the policy does not
+curate](#adding-steps-the-policy-does-not-curate)) — it survives policy upgrades, which a
+forked template does not. Fork when you need to change the trigger, the permissions block
+or the `updatecli` invocation itself.
 
 The workflow templates live in `assets/` and are **fetched over HTTPS at run time** from
 `raw.githubusercontent.com` on the `main` branch — they are not part of the OCI bundle. To

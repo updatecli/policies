@@ -11,3 +11,15 @@ scm:
   #branch: main
   email: me@olblak.com
   limit: 1
+
+# Exercise the pass-through step injection, including a GitHub Action expression.
+gha:
+  steps:
+    - name: "Set up Python"
+      uses: "actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97" # v7.0.0
+      with:
+        python-version-file: ".python-version"
+  test:
+    steps:
+      - name: "Echo actor"
+        run: 'echo ${{ github.actor }}'
