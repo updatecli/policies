@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.2
+
+* Replace the deprecated `automerge` field with `merge.strategy`
+
 ## 0.6.1
 
 * Use `kindIs "int"` to conditionally render `limit` in githubsearch SCM template, fixing broken behavior when `limit` is set to `0`

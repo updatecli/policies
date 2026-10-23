@@ -11,7 +11,8 @@ actions:
     kind: github/pullrequest
     scmid: default
     spec:
-      automerge: true
+      merge:
+        strategy: auto
       labels:
         - documentation
 

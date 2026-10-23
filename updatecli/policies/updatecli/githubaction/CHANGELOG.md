@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.2
+
+* Replace the deprecated `automerge` field with `merge.strategy`
+
 ## 0.9.1
 
 * Revert: "Only run target if Updatecli version is detected in a GitHub action workflow"

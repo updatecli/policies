@@ -8,7 +8,8 @@ actions:
         title: 'deps: Bump Golang version to {{ source "golang" }}'
         kind: "github/pullrequest"
         spec:
-            automerge: {{.automerge}}
+            merge:
+                strategy: '{{ if .automerge }}auto{{ else }}manual{{ end }}'
             # {{ if .labels }}
             labels:
                 # {{ range .labels }}

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.8.1
+
+* Replace the deprecated `automerge` field with `merge.strategy`
+
 ## 0.8.0
 
 * Optionally remediate zizmor findings within the same pull request via `autofix.enabled`

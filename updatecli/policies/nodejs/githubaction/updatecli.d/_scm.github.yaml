@@ -8,7 +8,8 @@ actions:
         title: 'deps: bump NodeJS to {{ source "node" }}'
         kind: "github/pullrequest"
         spec:
-            automerge: {{.automerge}}
+            merge:
+                strategy: '{{ if .automerge }}auto{{ else }}manual{{ end }}'
             # {{ if .labels }}
             labels:
                 # {{ range .labels }}

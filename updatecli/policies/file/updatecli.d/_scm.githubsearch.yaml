@@ -9,7 +9,8 @@ actions:
         title: "{{ .pr.title }}"
         #{{- end }}
         spec:
-            automerge: {{ .pr.automerge }}
+            merge:
+                strategy: '{{ if .pr.automerge }}auto{{ else }}manual{{ end }}'
             # {{ if .labels }}
             labels:
               # {{ range .labels }}
