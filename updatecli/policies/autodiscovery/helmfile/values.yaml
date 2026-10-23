@@ -1,6 +1,10 @@
 name : "deps(helmfile): bump all dependencies"
 #pipelineid: helmfile/autodiscovery
 automerge: false
+# merge.strategy overrides automerge: one of 'auto', 'client' or 'manual'.
+merge:
+  strategy: ""
+  after: ""
 labels:
   - dependencies
 

@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.9.2
+## 0.10.0
 
-* Replace the deprecated `automerge` field with `merge.strategy`
+* Add the `merge.strategy` and `merge.after` values, replacing the deprecated `automerge` field
 
 ## 0.9.1
 

@@ -44,6 +44,8 @@ The default `values.yaml` exposes these top-level inputs:
 - `pipelineid`: optional pipeline identifier
 - `files`: list of `{src: "", dst: ""}` pairs defining which files to copy
 - `pr.automerge`: controls pull request automerge behavior (default: `false`)
+- `pr.merge.strategy`: pull request merge strategy, one of `auto`, `client` or `manual`, overriding `pr.automerge` when set
+- `pr.merge.after`: how long a `client` merge waits before merging, such as `24h`
 - `pr.labels`: labels applied to pull requests
 - `scm`: destination repository SCM configuration
   - `kind`: SCM provider (`github`, `gitea`, `bitbucket`, `gitlab`, `stash`)

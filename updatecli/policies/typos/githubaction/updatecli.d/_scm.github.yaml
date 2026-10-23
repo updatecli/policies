@@ -14,7 +14,10 @@ actions:
     spec:
       title: 'install typos gha action {{ source "typos-action" }}'
       merge:
-        strategy: '{{ if .automerge }}auto{{ else }}manual{{ end }}'
+        strategy: '{{ if .merge.strategy }}{{ .merge.strategy }}{{ else if .automerge }}auto{{ else }}manual{{ end }}'
+        # {{ if .merge.after }}
+        after: '{{ .merge.after }}'
+        # {{ end }}
       # {{ if .labels }}
       labels:
         # {{ range .labels }}

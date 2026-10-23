@@ -10,7 +10,10 @@ actions:
         #{{- end }}
         spec:
             merge:
-                strategy: '{{ if .pr.automerge }}auto{{ else }}manual{{ end }}'
+                strategy: '{{ if .pr.merge.strategy }}{{ .pr.merge.strategy }}{{ else if .pr.automerge }}auto{{ else }}manual{{ end }}'
+                # {{ if .pr.merge.after }}
+                after: '{{ .pr.merge.after }}'
+                # {{ end }}
             # {{ if .labels }}
             labels:
               # {{ range .labels }}

@@ -1,6 +1,10 @@
 name: "deps(terragrunt): bump all policies"
 #pipelineid: terragrunt/autodiscovery
 automerge: false
+# merge.strategy overrides automerge: one of 'auto', 'client' or 'manual'.
+merge:
+  strategy: ""
+  after: ""
 labels:
   - dependencies
 

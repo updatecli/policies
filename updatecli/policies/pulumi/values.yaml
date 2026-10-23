@@ -15,3 +15,8 @@ labels:
 
 scm:
   limit: 3
+
+# merge.strategy overrides automerge: one of 'auto', 'client' or 'manual'.
+merge:
+  strategy: ""
+  after: ""

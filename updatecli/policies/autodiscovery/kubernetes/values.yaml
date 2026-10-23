@@ -1,6 +1,10 @@
 name: "deps(kubernetes): bump all dependencies"
 #pipelineid: kubernetes/autodiscovery
 automerge: false
+# merge.strategy overrides automerge: one of 'auto', 'client' or 'manual'.
+merge:
+  strategy: ""
+  after: ""
 labels:
   - dependencies
 

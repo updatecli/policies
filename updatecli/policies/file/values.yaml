@@ -19,6 +19,10 @@
 ## pr contains the pull request settings that can be overridden
 pr:
   automerge: false
+  # merge.strategy overrides automerge: one of 'auto', 'client' or 'manual'.
+  merge:
+    strategy: ""
+    after: ""
   # description: ""
   labels:
     - dependencies

@@ -45,6 +45,8 @@ The default `values.yaml` exposes these top-level inputs:
 
 - `pipelineid`: optional pipeline identifier
 - `automerge`: controls GitHub and GitHub search pull request automerge behavior
+- `merge.strategy`: pull request merge strategy, one of `auto`, `client` or `manual`, overriding `automerge` when set
+- `merge.after`: how long a `client` merge waits before merging, such as `24h`
 - `labels`: labels applied on GitHub and GitHub search pull requests (default: `documentation`)
 - `configpath`: path to the `releasepost` configuration file (default: `.releasepost.yaml`)
 - `releasedir`: directory where release note files are written (default: `content/en/changelogs/`)

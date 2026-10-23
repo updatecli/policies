@@ -57,6 +57,10 @@ scm:
 
 # Optional: Override pipelineId
 pipelineid: "zizmor-scaffold"
+
+# Optional: pull request merge strategy, 'auto', 'client' or 'manual'
+#merge:
+#  strategy: auto
 ```
 
 Tips: you can adjust the `search` field to target specific repositories, branches, or include forks as needed. More information

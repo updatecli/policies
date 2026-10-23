@@ -1,6 +1,10 @@
 name: "deps(updatecli): bump all policies"
 #pipelineid: updatecli/autodiscovery
 automerge: false
+# merge.strategy overrides automerge: one of 'auto', 'client' or 'manual'.
+merge:
+  strategy: ""
+  after: ""
 labels:
   - dependencies
 

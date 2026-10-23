@@ -1,6 +1,10 @@
 name: "deps(argocd): bump all dependencies"
 #pipelineid: argocd/autodiscovery
 automerge: false
+# merge.strategy overrides automerge: one of 'auto', 'client' or 'manual'.
+merge:
+  strategy: ""
+  after: ""
 labels:
   - dependencies
 

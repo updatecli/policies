@@ -48,6 +48,8 @@ The default `values.yaml` exposes these top-level inputs:
 - `scm.default.user`: git commit author name
 - `scm.default.email`: git commit author email
 - `labels`: list of labels applied to pull requests
+- `merge.strategy`: pull request merge strategy, one of `auto`, `client` or `manual`
+- `merge.after`: how long a `client` merge waits before merging, such as `24h`
 
 ### Example Values
 
