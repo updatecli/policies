@@ -8,7 +8,11 @@ actions:
         kind: "github/pullrequest"
         title: 'deps: bump Updatecli GH action to {{ source "updatecli" }}'
         spec:
-            automerge: {{.automerge}}
+            merge:
+                strategy: '{{ if .merge.strategy }}{{ .merge.strategy }}{{ else if .automerge }}auto{{ else }}manual{{ end }}'
+                # {{ if .merge.after }}
+                after: '{{ .merge.after }}'
+                # {{ end }}
             # {{ if .labels }}
             labels:
                 # {{ range .labels }}

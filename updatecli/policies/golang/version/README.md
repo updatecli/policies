@@ -44,6 +44,8 @@ The default `values.yaml` exposes these top-level inputs:
 - `name`: pipeline name (default: `deps: Bump Golang version`)
 - `pipelineid`: optional pipeline identifier
 - `automerge`: controls GitHub and GitHub search pull request automerge behavior
+- `merge.strategy`: pull request merge strategy, one of `auto`, `client` or `manual`, overriding `automerge` when set
+- `merge.after`: how long a `client` merge waits before merging, such as `24h`
 - `labels`: labels applied on GitHub and GitHub search pull requests
 - `scm`: optional SCM configuration used to open pull requests
 

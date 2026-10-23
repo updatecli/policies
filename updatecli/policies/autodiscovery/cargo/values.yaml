@@ -2,6 +2,10 @@ name: "deps(cargo): bump all policies"
 
 # pipelineid: cargo/autodiscovery
 automerge: false
+# merge.strategy overrides automerge: one of 'auto', 'client' or 'manual'.
+merge:
+  strategy: ""
+  after: ""
 labels:
   - dependencies
 

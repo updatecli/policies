@@ -1,6 +1,10 @@
 name: "deps(prow): bump all dependencies"
 #pipelineid: prow/autodiscovery
 automerge: false
+# merge.strategy overrides automerge: one of 'auto', 'client' or 'manual'.
+merge:
+  strategy: ""
+  after: ""
 labels:
   - dependencies
 

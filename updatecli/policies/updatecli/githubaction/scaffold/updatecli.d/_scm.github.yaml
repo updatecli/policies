@@ -13,9 +13,11 @@ actions:
     kind: "github/pullrequest"
     spec:
       title: 'install Updatecli gha workflows {{ source "updatecli-version" }}'
-      # {{ if .automerge }}
-      automerge: {{ .automerge }}
-      # {{ end }}
+      merge:
+        strategy: '{{ if .merge.strategy }}{{ .merge.strategy }}{{ else if .automerge }}auto{{ else }}manual{{ end }}'
+        # {{ if .merge.after }}
+        after: '{{ .merge.after }}'
+        # {{ end }}
       # {{ if .labels }}
       labels:
         # {{ range .labels }}

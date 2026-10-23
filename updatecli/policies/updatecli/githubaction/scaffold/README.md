@@ -169,6 +169,8 @@ gha:
 | `gha.update.enabled` / `.cron` | `true` / `0 1 * * *` | the update workflow |
 | `gha.update.matrix` | one `--existing-only=true` leg | job matrix of the update workflow |
 | `gha.<workflow>.template_path` | raw URL on `main` | where the asset template is fetched from |
+| `merge.strategy` | empty | `auto`, `client` or `manual`, overriding `automerge` when set |
+| `merge.after` | empty | how long a `client` merge waits before merging, such as `24h` |
 
 > **Scheduling.** If you scaffold this across a whole organisation, vary `gha.apply.cron`
 > and `gha.update.cron` so every repository does not wake up at the same minute.

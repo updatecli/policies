@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.0
+
+* Add the `merge.strategy` and `merge.after` values, replacing the deprecated `automerge` field
+
 ## 0.8.0
 
 * Add default pipeline labels

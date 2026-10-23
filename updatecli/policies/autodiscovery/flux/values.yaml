@@ -1,6 +1,10 @@
 name: "deps(flux): bump all dependencies"
 #pipelineid: flux/autodiscovery
 automerge: false
+# merge.strategy overrides automerge: one of 'auto', 'client' or 'manual'.
+merge:
+  strategy: ""
+  after: ""
 labels:
   - dependencies
 

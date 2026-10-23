@@ -52,6 +52,10 @@ scm:
 # Optional: Override pipelineId
 pipelineid: "gha_typos"
 
+# Optional: pull request merge strategy, 'auto', 'client' or 'manual'
+#merge:
+#  strategy: auto
+
 # Optional: provide a typos configuration file content
 #config: |
 #  [files]

@@ -13,9 +13,11 @@ actions:
     kind: "github/pullrequest"
     spec:
       title: 'install Zizmor gha action {{ source "zizmor-action" }}'
-      # {{ if .automerge }}
-      automerge: {{ .automerge }}
-      # {{ end }}
+      merge:
+        strategy: '{{ if .merge.strategy }}{{ .merge.strategy }}{{ else if .automerge }}auto{{ else }}manual{{ end }}'
+        # {{ if .merge.after }}
+        after: '{{ .merge.after }}'
+        # {{ end }}
       # {{ if .labels }}
       labels:
         # {{ range .labels }}
