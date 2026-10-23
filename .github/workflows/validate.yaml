@@ -24,7 +24,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         id: generate_testing_token
         with:
-          client-id: ${{ secrets.UPDATECLIBOT_TESTING_APP_CLIENT_ID }}
+          client-id: ${{ secrets.UPDATECLIBOT_TESTING_APP_ID }}
           private-key: ${{ secrets.UPDATECLIBOT_TESTING_APP_PRIVKEY }}
       - name: Setup zizmor
         # Required by the zizmor scaffold policy when its autofix option is enabled
