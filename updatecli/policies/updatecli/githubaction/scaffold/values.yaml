@@ -104,7 +104,9 @@ gha:
 
   # udash renders the UPDATECLI_UDASH_* environment variables in the apply and
   # update workflows, and adds the --experimental flag to their updatecli run
-  # (Udash reporting is gated behind it). Only enable it if the target repository
+  # (Udash reporting is gated behind it). It also adds a `refresh` job
+  # to the update workflow that runs `updatecli compose diff` once after the matrix jobs, so Udash
+  # learns about merged or closed pull requests. Only enable it if the target repository
   # has those secrets and an Udash instance to report to.
   udash:
     enabled: false
