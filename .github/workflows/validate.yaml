@@ -18,7 +18,7 @@ jobs:
         uses: updatecli/releasepost-action@864390bddae97db06ee881ab4a08d159b4464643 # v0.5.0
       - name: Validate
         run: make test
-      - uses: actions/create-github-app-token@305e4aec4e2000ce216527e282f0749f47637923 # v3.4.0
+      - uses: actions/create-github-app-token@f418cff399f7aef4c2f0ad47e25ca7a6abbdd6fc # v3.4.0
         # Only run e2e tests from the main branch as we need some credentials
         # that we don't want to risk leaking from pullrequest opened by random contributors
         if: github.ref == 'refs/heads/main'
